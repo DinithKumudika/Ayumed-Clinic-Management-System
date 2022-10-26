@@ -1,0 +1,114 @@
+/*fonts*/
+
+/*poppins*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+/* color variables*/
+:root {
+     --green:#19A627;
+     --dark-green:#007B0C;
+     --darker-green:#315F30;
+     --dark:#000000;
+     --light:#ffffff;
+     --primary:#007BFF;
+     --secondary:#6C757D;
+     --danger:#DC3545;
+     --success:#28A745;
+     --warning:#FFC107;
+     --info:#17A2B8;
+}
+
+
+body{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     justify-content: center;
+     align-content: center;
+     font-family: 'Poppins', sans-serif;
+}
+
+.btn{
+     cursor: pointer;
+     border-radius: 5px;
+     font-size: 15px;
+     border: 0px;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     padding-left: 15px;
+     padding-right: 15px;
+     
+}
+
+.btn a{
+     text-decoration:  none;
+     color: white;
+}
+
+.container{
+     padding-top: 10px;
+     text-align: center;
+     margin-left: auto;
+     margin-right: auto;
+     width: 90%;  
+}
+
+.col-2{
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     grid-gap: 7rem;
+}
+
+/*login page styles*/
+
+.login-img{
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     height: 100%;
+}
+
+.login-container{
+     display: flex;
+     align-items: center;
+     text-align: center;
+}
+
+/*login page styles end*/
+
+
+/*404 page styles*/
+.img-404{
+     width: 45vw;
+     display: flex;
+     margin: auto;
+}
+
+.error-page-heading{
+     font-size: 50px;
+     color: var(--dark-green);
+     font-weight: bold;
+}
+
+.error-page-content{
+     font-size: 30px;
+     color: var(--dark-green);
+}
+
+.error-page-btn{
+     color: white;
+     font-weight: bold;
+     background-color: var(--green);
+     text-transform: uppercase;
+     box-shadow: 0 0  10px var(--secondary);
+     transition-duration: 0.3s;
+     transition-property: box-shadow, transform;
+}
+
+.error-page-btn:hover, .error-page-btn:focus{
+     background-color: var(--dark-green);
+     box-shadow: 0 0  20px var(--secondary);
+     transform: scale(1.05);
+}
+
+/*404 page styles end*/
