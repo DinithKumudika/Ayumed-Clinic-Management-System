@@ -2,8 +2,6 @@
     // App root (app directory)
     define('APP_ROOT', dirname(dirname(__FILE__)));
 
-    echo(__FILE__);
-
     // URL root
     define('URL_ROOT', 'http://localhost/ayumed');
 
