@@ -90,6 +90,7 @@ body{
 
 .login-form h2{
      font-size: 40px;
+     text-transform: uppercase;
 }
 
 .login-form .form-group{
@@ -161,12 +162,12 @@ body{
      background-color: var(--dark-green);
 }
 
-.show-pwd-check input{
-     margin-right: 10px;
-}
-
-.show-pwd-check h5{
+.err-login{
+     text-align: left;
+     margin-left: 10%;
      font-size: 20px;
+     font-weight: bold;
+     color: var(--danger);
 }
 
 /* login page styles end */
