@@ -1,5 +1,5 @@
 <IfModule mod_rewrite.c>
-     Options -Multiviews
+     Options -MultiViews
      RewriteEngine On
      RewriteBase /ayumed/public
      RewriteCond %{REQUEST_FILENAME} !-d

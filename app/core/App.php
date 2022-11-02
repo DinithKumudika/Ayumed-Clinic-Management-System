@@ -5,11 +5,11 @@
      
      class App {
           protected $controller;
-          protected $method;
+          protected $action;
           protected $params = [];
 
           public function __construct(){
-               $url = $this->getURL();
+               $url = $this->parseURL();
 
                // get controller from url
                $this->controller = $this->getController($url);
@@ -22,13 +22,13 @@
                $this->controller = new $this->controller;
 
                // get method from url
-               $this->method = $this->getMethod($url);
+               $this->action = $this->getAction($url);
                unset($url[1]);
 
                //get parameters from url
                $this->params = $this->getParams($url);
 
-               call_user_func_array([$this->controller,$this->method],$this->params);
+               call_user_func_array([$this->controller,$this->action],$this->params);
      }
 
      private function getController($url){
@@ -41,19 +41,19 @@
           return $controller;
      }
 
-     private function getMethod($url){
+     private function getAction($url){
           if(isset($url[1])){
                if(method_exists($this->controller, $url[1])){
-                    $method = $url[1];   
+                    $action = $url[1];   
                }
                else{
-                    $method = "error";
+                    $action = "error";
                }
           }
           else{
-               $method = "index";
+               $action = "index";
           }
-          return $method;
+          return $action;
      }
 
      private function getParams($url){
@@ -65,7 +65,7 @@
           }
      }
 
-     private function getURL()
+     private function parseURL()
           {
                if (isset($_GET['url'])){
                     $url = rtrim($_GET['url'], '/');
