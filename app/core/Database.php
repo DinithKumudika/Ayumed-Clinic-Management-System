@@ -1,24 +1,21 @@
 <?php
      /* Database connection */
-     class Database{
-          private $host = DB_HOST;
-          private $user = DB_USER;
-          private $password = DB_PASSWORD;
-          private $dbname = DB_NAME;
+     abstract class Database{
+          static $dbh = null;
 
-          private $dbh;
-          private $error;
-
-          public function __construct()
-          {
-               $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+          static function connect(){
+               $host = DB_HOST;
+               $username = DB_USER;
+               $password = DB_PASSWORD;
+               $dbname = DB_NAME;
 
                try {
-                    $this->dbh = new PDO($dsn,$this->user, $this->password);
+                    $dbh = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $username, $password);
+                    return $dbh;
                } 
                catch (PDOException $e) {
-                    $this->error = $e->getMessage();
-                    echo $this->error;
+                    $error = $e->getMessage();
+                    echo $error;
                }
           }
-     }
+     } 
