@@ -10,7 +10,7 @@ Package Manager : `Composer`
 
 ## Tech Stack
 
-LAMP Stack\
+LAMP Stack
 
 Web Server OS : `Linux`\
 Web Server : `Apache`\
