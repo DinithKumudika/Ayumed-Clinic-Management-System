@@ -48,7 +48,7 @@ Bacnkend Language : `PHP`
   <li>MySQL Database</li>
 </ul>
 
-Install [XAMPP](https://www.apachefriends.org/it/index.html) for an easy quickstart. Also something like WAMP(https://sourceforge.net/projects/wampserver/) can be also used instead of XAMPP
+Install [XAMPP](https://www.apachefriends.org/it/index.html) for an easy quickstart. Also something like [WAMP](https://sourceforge.net/projects/wampserver/) can be also used instead of XAMPP
 
 ### Config Files
 
