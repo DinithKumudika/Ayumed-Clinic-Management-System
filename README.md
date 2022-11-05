@@ -62,8 +62,8 @@ define('DB_PASS', '<your db Password>');
 define('DB_NAME', '<your db Name>');
 ```
 Modify the URL_ROOT and SITE_NAME in the config.php to your project folder and name of the site name as you prefer
-```
 
+```
 // URL root
 define('URL_ROOT', 'http://localhost/<project root>');
 
