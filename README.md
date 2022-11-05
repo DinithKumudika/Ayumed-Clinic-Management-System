@@ -11,6 +11,15 @@ This web application currently has 5 stakeholders
 <li>Admin</li>
 </ul>
 
+## Group Details
+
+| Name     | Student ID      |
+| ------------- | ------------- |
+| Dinith Kumudika | `2020/IS/059`  |
+| Jayani Ranasinghe | `2020/IS/081`  |
+| Pabasara Sathsarani | `2020/IS/004`  | 
+| Affdha Awfar | `2020/IS/010`  | 
+
 ## Technologies
 
 Architecture : `MVC`\
