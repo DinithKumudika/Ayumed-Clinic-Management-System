@@ -50,7 +50,7 @@ Bacnkend Language : `PHP`
 
 Install [XAMPP](https://www.apachefriends.org/it/index.html) for an easy quickstart. Also something like WAMP(https://sourceforge.net/projects/wampserver/) can be also used instead of XAMPP
 
-### Config File
+### Config Files
 
 Modify the app/config/dbCredentials.php file according to configure the database you are using
 
@@ -60,6 +60,15 @@ define('DB_HOST', '<your db Host>');
 define('DB_USER', '<your db Username>');
 define('DB_PASS', '<your db Password>');
 define('DB_NAME', '<your db Name>');
+```
+Modify the URL_ROOT and SITE_NAME in the config.php to your project folder and name of the site name as you prefer
+```
+
+// URL root
+define('URL_ROOT', 'http://localhost/<project root>');
+
+//SITE name
+define('SITE_NAME', <site name>);
 ```
 ### htaccess file
 
