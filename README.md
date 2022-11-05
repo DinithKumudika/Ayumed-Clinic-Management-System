@@ -35,3 +35,15 @@ Web Server OS : `Linux`\
 Web Server : `Apache`\
 Database : `MySQL`\
 Bacnkend Language : `PHP`
+
+## Getting Started
+
+Prerequisites
+
+<ul>
+  <li>Apache Server</li>
+  <li>PHP 5.6+</li>
+  <li>MySQL Database</li>
+</ul>
+
+Install [XAMPP](https://www.apachefriends.org/it/index.html) for an easy quickstart. Also something like WAMP(https://sourceforge.net/projects/wampserver/) can be also used instead of XAMPP
