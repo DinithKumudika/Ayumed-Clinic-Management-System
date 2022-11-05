@@ -71,3 +71,5 @@ RewriteBase /<your root folder>/public
 ### Install the Database
 
 Create a database of your choice in PhpMyAdmin and import the sql file to it.
+
+### composer installation
