@@ -17,9 +17,4 @@ class Home extends BaseController
      public function error(){
           $this->view('404');
      }
-
-     public function about()
-     {
-          $this->view('pages/about');
-     }
 }

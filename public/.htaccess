@@ -4,5 +4,6 @@
      RewriteBase /ayumed/public
      RewriteCond %{REQUEST_FILENAME} !-d
      RewriteCond %{REQUEST_FILENAME} !-f
+     #add everything after localhost/ayumed/ in URL to a URL variable named url
      RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
 </IfModule>

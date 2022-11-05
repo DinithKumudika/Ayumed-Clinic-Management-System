@@ -154,7 +154,8 @@ body{
      background-color: var(--green);
      color: var(--light);
      font-size: 25px;
-     width: 70%;
+     width: 50%;
+     margin: auto;
      transition: all 0.2s ease-in-out;
 }
 

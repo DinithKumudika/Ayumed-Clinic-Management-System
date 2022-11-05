@@ -1,21 +1,79 @@
 <?php
      /* Database connection */
      abstract class Database{
-          static $dbh = null;
 
-          static function connect(){
+          protected static $dbh = null;
+          private $stmt;
+
+          // connect to the database
+          protected static function connect(){
                $host = DB_HOST;
                $username = DB_USER;
                $password = DB_PASSWORD;
                $dbname = DB_NAME;
 
                try {
-                    $dbh = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $username, $password);
-                    return $dbh;
+                    // PDO instance
+                    $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
+                    self::$dbh = new PDO($dsn, $username, $password);
+                    // enable errors in the form of exceptions
+                    self::$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                    // set default fetch mode as object
+                    self::$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+                    // disable emulation mode
+                    self::$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+                    return self::$dbh;
                } 
                catch (PDOException $e) {
-                    $error = $e->getMessage();
-                    echo $error;
+                    echo "Connection failed: " . $e->getMessage();
                }
+          }
+
+          // prepare sql query
+          public function prepare($sql){
+               $this->stmt = self::$dbh->prepare($sql);
+          }
+
+          // bind values to the query
+          // public function bind($param, $value, $type = null){
+          //      if($type == null){
+          //           if(is_int($value)){
+          //                $type = PDO::PARAM_INT;
+          //           }
+          //           else if(is_bool($value)){
+          //                $type = PDO::PARAM_BOOL;
+          //           }
+          //           else if(is_null($value)){
+          //                $type == PDO::PARAM_NULL;
+          //           }
+          //           else{
+          //                $type = PDO::PARAM_STR;
+          //           }
+          //      }
+
+          //      $this->stmt->bindValue($param, $value, $type);
+          // }
+
+          // execute the query
+          public function execute($params){
+               return $this->stmt->execute($params);
+          }
+
+          // get result set as an object
+          public function resultSet($params){
+               $this->execute($params);
+               return $this->stmt->fetchAll();
+          }
+
+          //get a single result as an object
+          public function result($params){
+               $this->execute($params);
+               return $this->stmt->fetch();
+          }
+
+          //get the result row count
+          public function rowCount(){
+               return $this->stmt->rowCount();
           }
      } 
