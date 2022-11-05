@@ -40,7 +40,7 @@ Bacnkend Language : `PHP`
 
 ## Getting Started
 
-Prerequisites
+###Prerequisites
 
 <ul>
   <li>Apache Server</li>
@@ -49,3 +49,15 @@ Prerequisites
 </ul>
 
 Install [XAMPP](https://www.apachefriends.org/it/index.html) for an easy quickstart. Also something like WAMP(https://sourceforge.net/projects/wampserver/) can be also used instead of XAMPP
+
+### Config File
+
+Modify the app/config/dbCredentials.php file according to configure the database you are using
+
+```
+// Database config
+define('DB_HOST', '<your db Host>');
+define('DB_USER', '<your db Username>');
+define('DB_PASS', '<your db Password>');
+define('DB_NAME', '<your db Name>');
+```
