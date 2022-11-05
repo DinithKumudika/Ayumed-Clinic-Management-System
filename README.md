@@ -61,3 +61,10 @@ define('DB_USER', '<your db Username>');
 define('DB_PASS', '<your db Password>');
 define('DB_NAME', '<your db Name>');
 ```
+### htaccess file
+
+Modify the RewriteBase in the .htaccess file inside the public folder to match the name of your installation folder
+
+```
+RewriteBase /<your root folder>/public
+```
