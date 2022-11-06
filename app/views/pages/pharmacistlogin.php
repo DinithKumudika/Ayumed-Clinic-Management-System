@@ -3,7 +3,7 @@
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/css/pharmacistlogin.css">
     <title>login page</title>
 </head>
 
@@ -12,7 +12,7 @@
         <div class="grid-container">
             <div class="item1 grid-row">
                 <form action="login.php" method="post" id="form" class="login-form grid-row">
-                    <img src="images/logo.png" alt="logo" class="logo">
+                    <img src="<?php echo URL_ROOT; ?>/images/logo.png" alt="logo" class="logo">
                     <div class=" form-content">
                         <h1 class="topic">Pharmacist Login</h1>
                         <h4>Username</h4>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <script src="login.js"></script>
+    <script src="<?php echo URL_ROOT; ?>/public/js/pharmacistlogin.js"></script>
 </body>
 
 </html>
