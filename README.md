@@ -82,6 +82,6 @@ RewriteBase /<your root folder>/public
 ```
 ### Install the Database
 
-Create a database of your choice in PhpMyAdmin and import the sql file to it.
+Create a database named as `ayumed_clinic_mgt_system` using PhpMyAdmin and import the sql file to it.
 
 ### composer installation
