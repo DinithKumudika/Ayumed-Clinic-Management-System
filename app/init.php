@@ -1,5 +1,6 @@
 <?php
      //composer autoload
+     require_once '../vendor/autoload.php';
      
      // Load config
      require_once 'config/config.php';
@@ -14,4 +15,4 @@
      require_once 'core/App.php';
      require_once 'core/BaseController.php';
      require_once 'core/Database.php';
-     
+     require_once 'core/Session.php';

@@ -1,7 +1,7 @@
 <?php
      // Core App class
      // Create the url and loads base controller
-     // url format: /controller/method/params 
+     // url format: /controller/action/params 
      
      class App {
           protected $controller;

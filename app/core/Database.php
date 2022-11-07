@@ -35,26 +35,6 @@
                $this->stmt = self::$dbh->prepare($sql);
           }
 
-          // bind values to the query
-          // public function bind($param, $value, $type = null){
-          //      if($type == null){
-          //           if(is_int($value)){
-          //                $type = PDO::PARAM_INT;
-          //           }
-          //           else if(is_bool($value)){
-          //                $type = PDO::PARAM_BOOL;
-          //           }
-          //           else if(is_null($value)){
-          //                $type == PDO::PARAM_NULL;
-          //           }
-          //           else{
-          //                $type = PDO::PARAM_STR;
-          //           }
-          //      }
-
-          //      $this->stmt->bindValue($param, $value, $type);
-          // }
-
           // execute the query
           public function execute($params){
                return $this->stmt->execute($params);

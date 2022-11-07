@@ -25,7 +25,7 @@
                <img src="<?php echo URL_ROOT; ?>/images/login.jpg" alt="" class="login-img">
           </div>
           <div class="login-container">
-               <form class="form login-form" method="POST" id="login-form" action="<?php echo URL_ROOT ?>/User/login_doctor">
+               <form class="form login-form" method="POST" id="login-form" action="<?php echo URL_ROOT ?>/user/login_doctor">
                     <h2>Log In</h2>
                     <div class="form-group">
                          <div class="input-group">

@@ -14,13 +14,6 @@ class Home extends BaseController
           $this->view('pages/index', $data);
      }
 
-     public function doctor(){
-          $data = [
-               'title' => 'Ayumed'
-          ];
-          $this->view('pages/Doctor/index', $data);
-     }
-
      public function error(){
           $this->view('404');
      }

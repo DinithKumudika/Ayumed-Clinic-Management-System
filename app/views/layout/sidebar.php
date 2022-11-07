@@ -30,12 +30,14 @@
                          <span class="nav-item-text">Recommendation</span>
                     </a>
                </li>
-               <li class="side-nav-item">
-                    <a href="#" title="Settings">
-                         <span class="nav-item-icon"><i class="fa-solid fa-gear"></i></span>
-                         <span class="nav-item-text">Settings</span>
+               <form action="<?php echo URL_ROOT ?>/user/logout" method="post" id="logout">
+               <li class="side-nav-item" id="logout-btn">
+                    <a href="#" title="Log out">
+                         <span class="nav-item-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                         <span class="nav-item-text">Logout</span>
                     </a>
                </li>
+               </form>   
           </ul>
      </div>
      <script src="sidebar.js"></script>
