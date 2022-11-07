@@ -49,6 +49,7 @@ Bacnkend Language : `PHP`
   <li>Apache Server</li>
   <li>PHP 5.6+</li>
   <li>MySQL Database</li>
+  <li>Composer</li>
 </ul>
 
 
