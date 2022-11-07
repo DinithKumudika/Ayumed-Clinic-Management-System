@@ -39,7 +39,11 @@ Database : `MySQL`\
 Bacnkend Language : `PHP`
 
 ## Libraries
-[PHP dotenv](https://github.com/vlucas/phpdotenv)
+
+<ul>
+  <li>[PHP dotenv](https://github.com/vlucas/phpdotenv)</li>
+  <li>[Dompdf](https://github.com/dompdf/dompdf)</li>
+</ul>
 
 ## Getting Started
 
