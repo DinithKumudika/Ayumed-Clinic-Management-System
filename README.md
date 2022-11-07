@@ -38,6 +38,9 @@ Web Server : `Apache`\
 Database : `MySQL`\
 Bacnkend Language : `PHP`
 
+## Libraries
+[PHP dotenv](https://github.com/vlucas/phpdotenv)
+
 ## Getting Started
 
 ###Prerequisites
