@@ -51,7 +51,11 @@ Bacnkend Language : `PHP`
   <li>MySQL Database</li>
 </ul>
 
-Install [XAMPP](https://www.apachefriends.org/it/index.html) for an easy quickstart. Also something like [WAMP](https://sourceforge.net/projects/wampserver/) can be also used instead of XAMPP
+
+1. Download the files, either directly or by cloning the repo.
+2. Run composer update to install the project dependencies.
+3. Install [XAMPP](https://www.apachefriends.org/it/index.html) for an easy quickstart. Also something like [WAMP](https://sourceforge.net/projects/wampserver/) can be also used instead of XAMPP
+
 
 ### Config Files
 
