@@ -40,10 +40,10 @@ Bacnkend Language : `PHP`
 
 ## Libraries
 
-<ul>
-  <li>[PHP dotenv](https://github.com/vlucas/phpdotenv)</li>
-  <li>[Dompdf](https://github.com/dompdf/dompdf)</li>
-</ul>
+
+[PHP dotenv](https://github.com/vlucas/phpdotenv)
+[Dompdf](https://github.com/dompdf/dompdf)
+
 
 ## Getting Started
 
