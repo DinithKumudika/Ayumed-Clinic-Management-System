@@ -27,7 +27,7 @@
           // set a value of session variable
           public function setSessionVar($name,$value){
                if(!empty($name) && !empty($value)){
-                    $_SESSION[$name] = $_SESSION[$value];
+                    $_SESSION[$name] = $value;
                }
           }
      } 

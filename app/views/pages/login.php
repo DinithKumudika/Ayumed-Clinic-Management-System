@@ -1,4 +1,10 @@
-<?php require APP_ROOT . '/views/layout/header.php' ?>
+
+<!DOCTYPE html>
+<html lang="en">
+     <?php require APP_ROOT . '/views/layout/header.php' ?>
+     <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/login.css">
+     <title> Doctor Login</title>
+</head>
 <?php
      if(isset($data['error'])){
           echo "<script>
@@ -19,7 +25,7 @@
                <img src="<?php echo URL_ROOT; ?>/images/login.jpg" alt="" class="login-img">
           </div>
           <div class="login-container">
-               <form class="form login-form" method="POST" id="login-form" action="<?php echo URL_ROOT ?>/User/login">
+               <form class="form login-form" method="POST" id="login-form" action="<?php echo URL_ROOT ?>/User/login_doctor">
                     <h2>Log In</h2>
                     <div class="form-group">
                          <div class="input-group">
@@ -45,6 +51,7 @@
                </form>
           </div>
      </div>
-     <script src="<?php echo URL_ROOT; ?>/public/js/login.js"></script>
+     <?php require APP_ROOT . '/views/layout/footer.php' ?>
+     <script src="<?php echo URL_ROOT; ?>/js/login.js"></script>
 </body>
 </html>

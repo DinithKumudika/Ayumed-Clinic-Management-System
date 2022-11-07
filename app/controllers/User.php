@@ -9,10 +9,45 @@ class User extends BaseController{
           $this->userModel = $this->model('UserModel');
      }
 
-     public function login(){
+     public function login_doctor(){
 
           if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
                //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
+
+               $data = [
+                    'username'=>trim($_POST['username']),
+                    'password'=>trim($_POST['password']),
+                    'error'=> ''
+               ];
+
+               if(!empty($data['username']) && !empty($data['password'])){
+                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
+
+                    if($userLoggedIn){
+                         $this->createUserSession($userLoggedIn);
+                         header("Location: " .URL_ROOT. '/Home/doctor');
+                         //redirect('Home/doctor');  
+                    }
+                    else{
+                         $data['error'] = "invalid username or password";
+                         
+                    }
+               }
+          }
+          else{
+               $data = [
+                    'username'=>'',
+                    'password'=>'',
+                    'error'=> ''
+               ];
+          }
+
+          $this->view('pages/login', $data); 
+     }
+
+     public function login_pharmacist(){
+          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+               filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
 
                $data = [
                     'username'=>trim($_POST['username']),
@@ -41,7 +76,7 @@ class User extends BaseController{
                ];
           }
 
-          $this->view('pages/login', $data); 
+          $this->view('pages/pharmacistlogin', $data); 
      }
 
      public function createUserSession($user){
@@ -59,7 +94,7 @@ class User extends BaseController{
           session_unset($_SESSION['username']);
           session_unset($_SESSION['role_id']);
           session_destroy();
-          redirect('Users/login');
+          redirect('User/login');
      }
 
      public function error(){
