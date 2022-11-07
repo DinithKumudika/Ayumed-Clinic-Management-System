@@ -8,6 +8,12 @@
 </head>
 
 <body>
+     <?php
+     include('header.php');
+     ?>
+     <?php
+     include('sidebar.php');
+     ?>
 
 <div class="div-main">
 

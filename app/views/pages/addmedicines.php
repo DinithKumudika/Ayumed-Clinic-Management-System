@@ -8,10 +8,15 @@
 </head>
 
 <body>
+     <?php
+     include('header.php');
+     ?>
+     <?php
+     include('sidebar.php');
+     ?>
+<div class="div-main">
 
-<div class="form">
-
-          <form action="../includes/add_vacancy_inc.php" method="post">
+          <form action="addmedicine.php" method="post">
 
                <label for="medicine_name" >Name:</label>
                <input type="text" id="name" class="input" >
