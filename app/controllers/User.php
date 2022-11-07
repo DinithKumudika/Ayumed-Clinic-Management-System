@@ -79,6 +79,9 @@ class User extends BaseController{
           $this->view('pages/pharmacistlogin', $data); 
      }
 
+     
+
+
      public function createUserSession($user){
           $this->setSessionVar('user_id',$user->user_id);
           $this->setSessionVar('username',$user->username);
