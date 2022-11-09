@@ -1,0 +1,47 @@
+body {
+  font-family: "Poppins";
+}
+
+.div-main {
+  width: 500px;
+  padding: 20px 10px 10px 10px;
+  margin: 120px auto 0px 480px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 2px 2px;
+
+}
+
+.form-input {
+  width: 85%;
+  outline: none;
+  background: #eef8f3;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.button {
+  font-size:20px;
+  margin-top: 15px;
+  padding: 8px 0;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  width: 91%;
+  background: rgba(15, 161, 76, 0.8);
+  color: #fff;
+  cursor: pointer;
+}
+.button:hover {
+  background: rgba(42, 171, 102, 0.8);
+}
+
+.not-member {
+  font-size: 13px;
+  margin-top: 18px;
+}
+.not-member a {
+  color: rgba(24, 129, 95, 0.8);
+  text-decoration: none;
+}

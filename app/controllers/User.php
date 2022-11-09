@@ -79,6 +79,41 @@ class User extends BaseController{
           $this->view('pages/pharmacistlogin', $data); 
      }
 
+     public function addmedicine(){
+
+          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+               //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
+
+               $data = [
+                    'username'=>trim($_POST['username']),
+                    'password'=>trim($_POST['password']),
+                    'error'=> ''
+               ];
+
+               if(!empty($data['username']) && !empty($data['password'])){
+                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
+
+                    if($userLoggedIn){
+                         $this->createUserSession($userLoggedIn);
+                         redirect('Home/index');  
+                    }
+                    else{
+                         $data['error'] = "invalid username or password";
+                         
+                    }
+               }
+          }
+          else{
+               $data = [
+                    'username'=>'',
+                    'password'=>'',
+                    'error'=> ''
+               ];
+          }
+
+          $this->view('pages/addmedicine', $data); 
+     }
+
      
 
 

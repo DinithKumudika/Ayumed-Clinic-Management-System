@@ -3,21 +3,17 @@
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/css/medicines.css"> 
-    <title>login page</title>
+    <!-- <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/css/medicines.css"> -->
+    <link rel="stylesheet" href="medicines.css">
+    <title>add medicine page</title>
 </head>
 
 <body>
-     <?php
-     include('header.php');
-     ?>
-     <?php
-     include('sidebar.php');
-     ?>
-<div class="div-main">
+
+<div class="form">
 
           <form action="addmedicine.php" method="post">
-
+            <div id="form">
                <label for="medicine_name" >Name:</label>
                <input type="text" id="name" class="input" >
                
@@ -41,7 +37,7 @@
                     <option value="syrup">Syrup</option>
                </select>
                
-               <label for="quantity" >Quantity</label>
+               <label for="quantity" >Quantity:</label>
                <input type="text" id="quantity" class="input">
                
                <label for="availability" >Availability:</label>
@@ -53,6 +49,7 @@
               
                <input type="submit" value="submit" class="submit-btn" onclick="validate()" >
           </form>
+          </div>
      </div>
      
      <script src="../public/js/medicines.js"></script>

@@ -3,21 +3,17 @@
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/css/medicines.css"> 
-    <title>login page</title>
+    <!-- <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/css/medicines.css"> -->
+    <link rel="stylesheet" href="medicines.css">
+    <title>view medicine page</title>
 </head>
 
 <body>
-     <?php
-     include('header.php');
-     ?>
-     <?php
-     include('sidebar.php');
-     ?>
-
+<h2>Medicine List</h2>
+<hr>
 <div class="div-main">
 
-<table>
+<table class="medicine-table">
      <thead>
           <tr>
                <th>Name</th>
@@ -26,12 +22,13 @@
                <th>Category</th>
                <th>Quantity</th>
                <th>Availability</th>
+               <th>Action</th>
           </tr>
      </thead>
 
-     <?php foreach ($datas as $data) { ?>
+     <?php foreach ($datas as $data) ?>
           <tr>
-                <td class="td-1">
+               <td class="td-1">
                     <?= $data['name']; ?>
                </td>
                <td class="td-1">
@@ -49,8 +46,18 @@
                <td class="td-4">
                     <?= $data['availability']; ?>     
                </td>
+               <td class="td-5">
+                    <div class="btn-container">
+                         <button class="add-btn btn1">
+                             <a href="editmedicine.php">Update</a>
+                         </button>
+                         <button class="add-btn btn2">
+                             <a href="deletemedicine.php">Delete</a>
+                         </button>   
+                    </div>
+               </td>
           </tr>
-          <?php } ?>
+    
 </table>
 </div>
 
