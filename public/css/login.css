@@ -37,20 +37,16 @@
 }
 
 .login-form .input-group input:focus ~ h5{
-     transform: translateY(-25px);
+     transform: translateY(-20px);
      font-size: 20px;
      color: var(--green);
-}
-
-.login-form .input-group input:focus{
-     border-bottom: 2px solid var(--green);
 }
 
 .login-form .input-group h5{
      font-size: 25px;
      color: rgba(185, 185, 185, 0.452);
      position: absolute;
-     bottom: -30px;
+     bottom: -18px;
      pointer-events: none;
      transition: all 0.3s ease-in-out;
 }
@@ -64,6 +60,8 @@
      background: none;
      font-size: 25px;
 }
+
+
 
 .show-pwd-icon{
      color: var(--green);

@@ -6,7 +6,6 @@
      // Load helper functions
      require_once 'helpers/Url.php';
      require_once 'helpers/Request.php';
-     require_once 'helpers/session_helper.php';
 
      // Load all the core files
      require_once 'core/App.php';

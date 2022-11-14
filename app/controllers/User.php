@@ -13,6 +13,10 @@ class User extends BaseController{
           $this->view('pages/login');
      }
 
+     public function register(){
+          $this->view('pages/signup');
+     }
+
      public function login_doctor(){
 
           if(Request::isPost()){
@@ -103,7 +107,7 @@ class User extends BaseController{
      }
 
      public function register_patient(){
-
+          $this->view('pages/patientRegister');
      }
 
      public function logout(){

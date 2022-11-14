@@ -1,11 +1,10 @@
 <?php
 
 abstract class Session{
-     //start session
+     // start session
      public static function init(){
-          @session_start();
+          session_start();
      }
-
 
      // set a value of session variable
      public static function set($key,$value){
@@ -21,7 +20,7 @@ abstract class Session{
           }
      }
 
-     //check whether session variable is set or not
+     // check whether session variable is set or not
      public static function isSet($key){
           if(isset($_SESSION[$key])){
                return true;
@@ -32,15 +31,31 @@ abstract class Session{
      }
 
 
-     //unset session variables
+     // unset session variables
      public static function unset($key){
           if(!empty($key)){
                unset($_SESSION[$key]);
           }
      }
 
-     //destroy session
+     // destroy session
      public static function destroy(){
           session_destroy();
+     }
+
+     // show flash messages
+     public static function flashMessage($name='', $message = ''){
+          if(!empty($name)){
+               if(!empty($message) && empty($_SESSION[$name])){
+                    if(!empty($_SESSION[$name])){
+                         unset($_SESSION[$name]);
+                    }
+                    $_SESSION[$name] = $message;
+               }
+               else if(empty($message) && !empty($_SESSION[$name])){
+                    echo '<div>'.$_SESSION[$name].'</div>';
+                    unset($_SESSION[$name]);
+               }  
+          }
      }
 }

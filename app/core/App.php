@@ -29,6 +29,9 @@
                $this->params = $this->getParams($url);
 
                call_user_func_array([$this->controller,$this->action],$this->params);
+
+               //start session
+               Session::init();
      }
 
      private function getController($url){

@@ -27,14 +27,14 @@
                     <div class="form-group">
                          <div class="input-group">
                               <input type="text" name="username" id="input-uname" class="form-control">
-                              <h5 class="">Username</h5>   
+                              <h5 class="lbl-uname">Username</h5>   
                          </div>
                          <p class="err-uname err-login"></p>
                     </div>
                     <div class="form-group">
                          <div class="input-group">   
                               <input type="password" name="password" id="input-pwd" class="form-control">
-                              <h5 class="">Password</h5>
+                              <h5 class="lbl-pwd">Password</h5>
                               <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd"></i>
                          </div>
                          <p class="err-pwd err-login"></p>
