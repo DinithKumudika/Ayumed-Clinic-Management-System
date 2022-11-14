@@ -9,7 +9,7 @@
      <div class="container">
           <div class="grid-container">
                <div class="item1 grid-row">
-                    <form action="login.php" method="post" id="form" class="login-form grid-row">
+                    <form action="<?php echo URL_ROOT ?>/user/login_pharm" method="post" id="form" class="login-form grid-row">
                          <img src="<?php echo URL_ROOT; ?>/images/logo.png" alt="logo" class="logo">
                          <div class=" form-content">
                               <h1 class="topic">Pharmacist Login</h1>

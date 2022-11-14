@@ -9,10 +9,13 @@ class User extends BaseController{
           $this->userModel = $this->model('UserModel');
      }
 
+     public function login(){
+          $this->view('pages/login');
+     }
+
      public function login_doctor(){
 
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-               //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
+          if(Request::isPost()){
 
                foreach ($_POST as $key => $value) {
                     $_POST[$key] = strip_tags($value);
@@ -29,7 +32,7 @@ class User extends BaseController{
 
                     if($userLoggedIn){
                          $this->createUserSession($userLoggedIn);
-                         redirect('doctor/index');  
+                         Url::redirect('doctor/index');  
                     }
                     else{
                          $data['error'] = "invalid username or password";
@@ -45,10 +48,10 @@ class User extends BaseController{
                ];
           }
 
-          $this->view('pages/login', $data); 
+          $this->view('pages/doctorLogin', $data); 
      }
 
-     public function login_pharmacist(){
+     public function login_pharm(){
           if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
                filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -63,11 +66,10 @@ class User extends BaseController{
 
                     if($userLoggedIn){
                          $this->createUserSession($userLoggedIn);
-                         redirect('pharmacist/index');  
+                         Url::redirect('pharmacist/index');  
                     }
                     else{
                          $data['error'] = "invalid username or password";
-                         
                     }
                }
           }
@@ -79,7 +81,19 @@ class User extends BaseController{
                ];
           }
 
-          $this->view('pages/pharmacistlogin', $data); 
+          $this->view('pages/pharmacistLogin', $data); 
+     }
+
+     public function login_patient(){
+          
+     }
+
+     public function login_staff(){
+
+     }
+
+     public function login_admin(){
+          
      }
 
      public function createUserSession($user){
@@ -88,7 +102,7 @@ class User extends BaseController{
           Session::set('role_id',$user->role_id);
      }
 
-     public function register(){
+     public function register_patient(){
 
      }
 
@@ -99,7 +113,7 @@ class User extends BaseController{
                Session::unset('username');
                Session::unset('role_id');
                Session::destroy();
-               redirect('user/login_doctor');
+               Url::redirect('user/login_doctor');
           } 
      }
 

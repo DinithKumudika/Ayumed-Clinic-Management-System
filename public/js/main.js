@@ -13,3 +13,15 @@ const logoutBtn = document.getElementById("logout-btn");
 logoutBtn.addEventListener('click',function(){
      logout.submit();
 });
+
+
+//register service worker
+if(`serviceWorker` in navigator){
+     navigator.serviceWorker.register('../../sw.js')
+     .then(function(reg){
+          console.log("service worker registered", reg);
+     })
+     .catch(function(err){
+          console.log("error in registering service worker", err);
+     })
+}

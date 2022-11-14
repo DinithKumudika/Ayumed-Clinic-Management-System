@@ -7,10 +7,10 @@
 
           // connect to the database
           protected static function connect(){
-               $host = DB_HOST;
-               $username = DB_USER;
-               $password = DB_PASSWORD;
-               $dbname = DB_NAME;
+               $host = $_ENV['DB_HOST'];
+               $username = $_ENV['DB_USER'];
+               $password = $_ENV['DB_PASSWORD'];
+               $dbname = $_ENV['DB_NAME'];
 
                try {
                     // PDO instance
