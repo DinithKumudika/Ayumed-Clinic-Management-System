@@ -59,21 +59,14 @@ Bacnkend Language : `PHP`
 
 
 1. Download the files, either directly or by cloning the repo.
-2. Run composer update to install the project dependencies.
+2. Create database schema using sql dump file.
+3. Create `.env` file from `.env.example` file and adjust database configuration.
+2. Run `composer install` to install the project dependencies.
 3. Install [XAMPP](https://www.apachefriends.org/it/index.html) for an easy quickstart. Also something like [WAMP](https://sourceforge.net/projects/wampserver/) can be also used instead of XAMPP
 
 
 ### Config Files
 
-Modify the app/config/dbCredentials.php file according to configure the database you are using
-
-```
-// Database config
-define('DB_HOST', '<your db Host>');
-define('DB_USER', '<your db Username>');
-define('DB_PASS', '<your db Password>');
-define('DB_NAME', '<your db Name>');
-```
 Modify the URL_ROOT and SITE_NAME in the config.php to your project folder and name of the site name as you prefer
 
 ```
