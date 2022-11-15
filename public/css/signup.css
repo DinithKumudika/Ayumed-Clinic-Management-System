@@ -92,6 +92,15 @@
      border-radius: 10px;
      padding: 5px;
      background-color: rgba(232, 231, 231, 0.585);
+     font-family: 'Poppins', sans-serif;
+}
+
+.form-input::placeholder{
+     font-family: 'Poppins', sans-serif;
+}
+
+.form-input:-ms-input-placeholder{
+     font-family: 'Poppins', sans-serif;
 }
 
 input[type=date]{
@@ -110,7 +119,6 @@ input[type=date]{
      margin-left: 120px;
 }
 
-
 input[type=radio]{
      -ms-transform: scale(1.5); 
      -webkit-transform: scale(1.5);
@@ -119,6 +127,34 @@ input[type=radio]{
 
 input[type=radio]:nth-of-type(2){
      margin-left: 20px;
+}
+
+#radio-martial{
+     margin-left: 50px;
+}
+
+#input-address{
+     margin-left: 110px;
+}
+
+input[type=email]{
+     margin-left: 135px;
+}
+
+#input-phone{
+     margin-left: 95px;
+}
+
+#input-uname{
+     margin-left: 125px;
+}
+
+#input-pwd{
+     margin-left: 135px;
+}
+
+.form-group .password-group{
+     width: auto;
 }
 
 .next-btn{
@@ -156,9 +192,28 @@ input[type=radio]:nth-of-type(2){
      justify-content: space-between;
 }
 
-
 #second{
      display: none;
+}
+
+#third{
+     display: none;
+}
+
+.form-group i{
+     margin-left: -30px;
+     color: var(--green);
+}
+
+.error{
+     border: 2px solid var(--danger);
+}
+
+.err-signup{
+     text-align: left;
+     font-size: 15px;
+     color: var(--danger);
+     margin-top: -15px;
 }
 
 /* media query starts */
@@ -188,5 +243,68 @@ input[type=radio]:nth-of-type(2){
      .signup-form{
           width: 80vw;
           margin-left: 0px;
+     }
+
+     .form-group{
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          margin-top: 0px;
+     }
+
+     .form-input{
+          margin: auto;
+          width: 80vw;
+     }
+
+     input[type=date]{
+          margin: auto;
+     }
+
+     input[type=email]{
+          margin: auto;
+     }
+
+     #radio-martial{
+          margin: auto;
+     }
+     
+     #input-address{
+          margin: auto;
+     }
+     
+     input[type=email]{
+          margin:auto;
+     }
+     
+     #input-phone{
+          margin: auto;
+     }
+
+     #input-uname{
+          margin: auto;
+     }
+     
+     #input-pwd{
+          margin-left: auto;
+     }
+
+     .form-group i{
+          margin-left: 90%;
+          margin-top: -30px;
+     }
+
+     .input-group{
+          margin: auto;
+     }
+
+     .form-body{
+          margin-top: -40px;
+     }
+
+     .btn-group{
+          margin-top: 20px;
      }
 }

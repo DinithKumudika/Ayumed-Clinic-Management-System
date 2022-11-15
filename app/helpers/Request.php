@@ -12,7 +12,7 @@ abstract class Request{
      }
 
      public static function isGet(){
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+          if($_SERVER['REQUEST_METHOD'] == "GET" || $_SERVER['REQUEST_METHOD'] == "get"){
                return true;
           }
           else{
