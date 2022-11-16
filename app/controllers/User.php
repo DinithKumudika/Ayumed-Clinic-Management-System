@@ -107,6 +107,9 @@ class User extends BaseController{
      }
 
      public function register_patient(){
+          if(Request::isPost()){
+               
+          }
           $this->view('pages/patientRegister');
      }
 

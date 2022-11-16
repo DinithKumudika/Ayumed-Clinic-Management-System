@@ -23,13 +23,24 @@ const lastNameInput = document.getElementById('input-lname');
 const dobInput = document.getElementById('input-dob');
 const genderInput = document.querySelectorAll('.input-gender');
 const nicInput = document.getElementById('input-nic');
+const addressInput = document.getElementById('input-address');
+const emailInput = document.getElementById('input-email');
+const phoneNoInput = document.getElementById('input-phone');
+const usernameInput = document.getElementById('input-uname');
 const passwordInput = document.getElementById('input-pwd');
 const repeatPasswordInput = document.getElementById('input-pwd-repeat');
 
+// error elements
 const firstNameErr =  document.getElementById('err-fname');
 const lastNameErr = document.getElementById('err-lname');
 const dobErr = document.getElementById('err-dob');
 const nicErr = document.getElementById('err-nic');
+const addressErr = document.getElementById('err-address');
+const emailErr = document.getElementById('err-email');
+const phoneErr = document.getElementById('err-phone');
+const usernameErr = document.getElementById('err-uname');
+const passwordErr = document.getElementById('err-password');
+const passwordRepeatErr = document.getElementById('err-password-repeat');
 
 // prevent the form from submitting
 // signupForm.addEventListener('submit',function(e){
@@ -41,14 +52,7 @@ setCurrentDate();
 let progressCount = 1;
 progressBars[0].style.backgroundColor = "#19A627";
 
-// show 2nd step of form on click next
-firstNextBtn.addEventListener('click', function(){
-     if(isFirstFormValid()){
-          nextFormStep(first, second);
-     }
-});
-
-
+// first form step validation
 function isFirstFormValid(){
      const firstNameValid = Validate.isFirstNameValid(firstNameInput, firstNameErr);
      const lastNameValid = Validate.isLastNameValid(lastNameInput, lastNameErr);
@@ -75,9 +79,70 @@ function isFirstFormValid(){
      }
 }
 
+// second form step validation
+function isSecondFormValid(){
+     const addressValid =  Validate.isAddressValid(addressInput, addressErr);
+     const emailValid = Validate.isEmailValid(emailInput, emailErr);
+     const phoneNoValid = Validate.isPhoneNoValid(phoneNoInput, phoneErr);
+
+     if(!emailValid && !phoneNoValid && !addressValid){
+          return false;
+     }
+     else if(!addressValid){
+          return false;
+     }
+     else if(!emailValid){
+          return false;
+     }
+     else if(!phoneNoValid){
+          return false;
+     }
+     else{
+          return true;
+     }
+}
+
+function isThirdFormValid(){
+     const usernameValid = Validate.isUsernameValid(usernameInput, usernameErr);
+     const passwordValid = Validate.isPasswordValid(passwordInput, passwordErr);
+     const passwordMatch = Validate.isPasswordMatch(repeatPasswordInput, passwordInput, passwordRepeatErr);
+
+     if(!usernameValid && !passwordValid && !passwordMatch){
+          return false;
+     }
+     else if(!usernameValid){
+          return false;
+     }
+     else if(!passwordValid){
+          return false;
+     }
+     else if(!passwordMatch){
+          return false;
+     }
+     else{
+          return true;
+     }
+}
+
+// show 2nd step of form on click next
+firstNextBtn.addEventListener('click', function(){
+     if(isFirstFormValid()){
+          nextFormStep(first, second);
+     }
+});
+
 // show 3rd step of form on click next
 secondNextBtn.addEventListener('click', function(){
-     nextFormStep(second, third);
+     if(isSecondFormValid()){
+          nextFormStep(second, third);
+     }
+});
+
+// submit registration form
+signupBtn.addEventListener('click', function(){
+     if(isThirdFormValid()){
+          signupForm.submit();
+     }
 });
 
 //show 1st step of form on click back

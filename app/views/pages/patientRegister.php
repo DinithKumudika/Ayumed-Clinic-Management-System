@@ -40,7 +40,7 @@
                          <div class="step"></div>
                     </div>
                </div>
-               <form class="form signup-form" method="POST" id="signup-form" action="<?php echo URL_ROOT ?>/user/login_doctor">
+               <form class="form signup-form" method="POST" id="signup-form" action="<?php echo URL_ROOT ?>/user/register_patient">
                     <!-- first form step -->
                     <div class="form-body" id="first">
                          <div class="form-group">
@@ -81,7 +81,7 @@
                          <div class="form-group">
                               <h5>Martial Status</h5>
                               <div class="input-group" id="radio-martial">
-                                   <input type="radio" name="martial-status" value="Married">
+                                   <input type="radio" name="martial-status" value="Married" checked>
                                    <span>Married</span>
                                    <input type="radio" name="martial-status" value="not Married">
                                    <span>Single</span>
@@ -91,14 +91,17 @@
                               <h5>Address</h5>
                               <input type="text" id="input-address" name="address" class="form-input" placeholder="Ex: No.22/1, Gamunu road, Nugegoda">
                          </div>
+                         <p class="err-signup" id="err-address"></p>
                          <div class="form-group">
                               <h5>Email</h5>
                               <input type="email" id="input-email" name="email" class="form-input" placeholder="Ex: dinithkumudika@gmail.com">
                          </div>
+                         <p class="err-signup" id="err-email"></p>
                          <div class="form-group">
                               <h5>Phone no</h5>
-                              <input type="text" id="input-phone" name="phone" class="form-input" placeholder="Ex: 0729913456">
+                              <input type="tel" id="input-phone" name="phone" class="form-input" placeholder="Ex: 0729913456">
                          </div>
+                         <p class="err-signup" id="err-phone"></p>
                          <div class="btn-group">
                               <div class="btn back-btn" id="btn-back-1">Back</div>
                               <div class="btn next-btn" id="btn-next-2">Next</div>
@@ -110,18 +113,22 @@
                     <div class="form-body" id="third">
                          <div class="form-group">
                               <h5>Username</h5>
-                              <input type="text" id="input-uname" name="username" class="form-input" placeholder="Ex: dinith123">
+                              <input type="text" id="input-uname" name="username" class="form-input" placeholder="Ex: dinith123 or dinith_123">
                          </div>
+                         <p class="err-signup" id="err-uname"></p>
                          <div class="form-group">
                               <h5>Password</h5>
-                                   <input type="password" id="input-pwd" name="password" class="form-input" placeholder="Ex: Dinith@123">
-                                   <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd"></i>
+                              <input type="password" id="input-pwd" name="password" class="form-input" placeholder="Ex: Dinith@123">
+                              <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd"></i>
                          </div>
+                         <p class="err-signup" id="err-password"></p>
                          <div class="form-group">
                               <h5>Confirm Password</h5>
-                                   <input type="password" id="input-pwd-repeat" name="password-repeat" class="form-input" placeholder="Ex: Dinith@123">>
-                                   <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd-repeat"></i>
+                              <input type="password" id="input-pwd-repeat" name="password-repeat" class="form-input" placeholder="Ex: Dinith@123">
+                              <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd-repeat"></i>
                          </div>
+                         <p class="err-signup" id="err-password-repeat"></p>
+                         
                          <div class="btn-group">
                               <div class="btn back-btn" id="btn-back-2">Back</div>
                               <div class="btn next-btn" id="btn-signup">Signup</div>
