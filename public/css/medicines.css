@@ -31,12 +31,20 @@ table thead tr th{
 
 
 table thead tr th:nth-child(7){
+<<<<<<< Updated upstream
   width: 250px;
+=======
+  width: 300px;
+>>>>>>> Stashed changes
 }
 
 .input {
 margin-top: 1%;
+<<<<<<< Updated upstream
 margin-bottom: 2%;
+=======
+margin-bottom: 1%;
+>>>>>>> Stashed changes
 display: block;
 width: 60%;
 padding: 10px 0px;
@@ -61,11 +69,19 @@ input:hover{
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   margin-top: 2%;
+<<<<<<< Updated upstream
   margin-bottom: 23px;
 }
 
 .form{
   margin-top: 2.5%;
+=======
+  margin-bottom: 15px;
+}
+
+.form{
+  margin-top: 1%;
+>>>>>>> Stashed changes
   margin-left: 4%;
   background: rgb(189, 185, 185);
   width: 60%;
@@ -76,10 +92,17 @@ input:hover{
 }
 
 #form{
+<<<<<<< Updated upstream
   margin-top: 2.5%;
   margin-left: 5%;
   width: 1060px;
   height: 80%;  
+=======
+  margin-top: 2%;
+  margin-left: 5%;
+  width: 1060px;
+  height: 76%;  
+>>>>>>> Stashed changes
 }
 
 .btn-container{
@@ -89,16 +112,36 @@ input:hover{
   align-items: center;
 }
 
+<<<<<<< Updated upstream
 .add-btn{
   height: 40px;
   width: 100px;
+=======
+.add-btn-container{
+  margin-top: 30px;
+ margin-left: 1250px;
+
+}
+
+.add-btn{
+  background-color: green;
+  width: 200px;
+}
+
+.btn{
+  height: 40px;
+>>>>>>> Stashed changes
   font-size: 20px;
   border: 1px solid transparent;
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
 }
 
+<<<<<<< Updated upstream
 .add-btn:hover{
+=======
+.btn:hover{
+>>>>>>> Stashed changes
   cursor: pointer;
 }
 
@@ -110,15 +153,32 @@ a:link {
 h2{
   margin-left:40px;
   margin-bottom: 5px;
+<<<<<<< Updated upstream
 }
 
 hr{
   color: black;
   border: 1px solid green;
+=======
+  
+}
+
+.add-h2{
+  margin-left: 70px;
+}
+.list-text{
+  margin-top: 102px;
+}
+
+hr{
+
+  border: 0.1px solid green;
+>>>>>>> Stashed changes
   width: 94%;
   margin-left: 30px;
 }
 
+<<<<<<< Updated upstream
 .btn1{
  background-color:rgb(67, 67, 220) ;
 }
@@ -127,3 +187,81 @@ hr{
   background-color:rgb(224, 57, 57) ;
 }
 
+=======
+.edit-btn{
+ background-color:rgb(67, 67, 220) ;
+ width: 140px;
+}
+
+.delete-btn{
+  background-color:rgb(224, 57, 57) ;
+  width: 140px;
+}
+
+/* .serachbar{
+  margin-top: 2%;
+} */
+
+.search-input{
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 25%;
+  background: #f1f1f1;
+  border-radius: 0px 5px 5px 0px;
+}
+
+ .searchbtn {
+  float: left;
+  width: 3%;
+  padding: 10px;
+  background: green;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  margin-left: 50px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.fa-solid{
+  color: white;
+  font-size: 23px;
+}
+
+.selection-bar{
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  width: 15%;
+  background: #f1f1f1;
+  border-radius: 5px;
+} 
+ 
+h4{
+  margin-top: 0.8%;   
+  margin-left: 100px; 
+  float: left;
+} 
+
+#view-category{
+  margin-right: 70px;
+  float:right;
+}
+
+#view-unit{
+  margin-right: 40px;
+  float: right;
+}
+
+#view-availability{
+  margin-right: 40px;
+  float:right;
+} 
+
+.search{
+  margin-top: 2%;
+}
+>>>>>>> Stashed changes

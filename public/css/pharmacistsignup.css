@@ -1,21 +1,41 @@
 body {
+<<<<<<< Updated upstream
   font-family: "Poppins";
 }
 
 .div-main {
   width: 500px;
+=======
+  background-image: url("signup.jpg");
+  font-family: "Poppins";
+  background-size: 512px 753px;
+}
+
+.div-main {
+  width: 530px;
+>>>>>>> Stashed changes
   padding: 20px 10px 10px 10px;
   margin: 120px auto 0px 480px;
   border-radius: 10px;
   text-align: center;
   box-shadow: 2px 2px;
+<<<<<<< Updated upstream
 
+=======
+  background-color: white;
+  height: 510px;
+>>>>>>> Stashed changes
 }
 
 .form-input {
   width: 85%;
   outline: none;
+<<<<<<< Updated upstream
   background: #eef8f3;
+=======
+  border: none;
+  background: #a7d2bc;
+>>>>>>> Stashed changes
   padding: 12px 14px;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -29,12 +49,20 @@ body {
   outline: none;
   border: none;
   width: 91%;
+<<<<<<< Updated upstream
   background: rgba(15, 161, 76, 0.8);
+=======
+  background: rgba(14, 126, 61, 0.8);
+>>>>>>> Stashed changes
   color: #fff;
   cursor: pointer;
 }
 .button:hover {
+<<<<<<< Updated upstream
   background: rgba(42, 171, 102, 0.8);
+=======
+  background: green;
+>>>>>>> Stashed changes
 }
 
 .not-member {
