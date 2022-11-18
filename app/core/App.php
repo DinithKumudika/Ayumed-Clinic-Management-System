@@ -1,7 +1,7 @@
 <?php
      // Core App class
      // Create the url and loads base controller
-     // url format: /controller/method/params 
+     // url format: /controller/action/params 
      
      class App {
           protected $controller;
@@ -29,6 +29,9 @@
                $this->params = $this->getParams($url);
 
                call_user_func_array([$this->controller,$this->action],$this->params);
+
+               //start session
+               Session::init();
      }
 
      private function getController($url){

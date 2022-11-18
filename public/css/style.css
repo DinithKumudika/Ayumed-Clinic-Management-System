@@ -1,7 +1,7 @@
 /* fonts */
 
 /* poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:display=swap');
 
 /* color variables */
 :root {
@@ -18,11 +18,9 @@
      --info:#17A2B8;
 }
 
-
 body{
-     margin: 0;
-     padding: 0;
      box-sizing: border-box;
+     margin: 0;
      font-family: 'Poppins', sans-serif;
 }
 
@@ -67,112 +65,110 @@ body{
      align-items: center;
 }
 
-/* login page styles */
+/* login options page styles */
 
-.login-img{
-     height: 100%;
-     width: 40vw;
+.ayumed-logo img{
+     width: 100px;
+     position: absolute;
+     left: 0;
+     top: 0;
 }
 
-.login-container{
-     margin-top: auto;
-     margin-bottom: auto;
+.ayumed-logo span{
+     position: absolute;
+     font-size: 20px;
+     top: 0;
+     left: 0;
+     margin-left: 100px;
+     margin-top: 35px;
 }
 
-.login-form{
-     padding: 30px;
-     width: 40vw;
-     margin-left: auto;
-     margin-right: 50px;
-     border-radius: 10px;
-     box-shadow: 0px 0px 10px var(--dark-green);
-}
-
-.login-form h2{
+.title{
      font-size: 40px;
-     text-transform: uppercase;
+     padding-top: 100px;
+     padding-bottom: 20px;
 }
 
-.login-form .form-group{
-     margin-top: 50px;
-     margin-bottom: 20px;
-}
-
-.login-form .input-group{
-     height: 40px;
-     width: 80%;
+.login-option-container{
+     width: 60vw;
+     height: 50%;
+     display: grid;
+     grid-template-columns: repeat(5,1fr);
+     grid-gap: 15px;
+     justify-content: center;
+     align-content: center;
      margin: auto;
-     position: relative;
+     border-radius: 20px;
 }
 
-.login-form .input-group input:focus ~ h5{
-     transform: translateY(-25px);
-     font-size: 20px;
-     color: var(--green);
-}
-
-.login-form .input-group input:focus{
-     border-bottom: 2px solid var(--green);
-}
-
-.login-form .input-group h5{
-     font-size: 25px;
-     color: rgb(158, 156, 156);
-     position: absolute;
-     bottom: -30px;
-     pointer-events: none;
-     transition: all 0.3s ease-in-out;
-}
-
-.login-form .input-group input{
-     height: 100%;
-     width: 100%;
-     border: none;
-     border-bottom: 2px solid rgb(158, 156, 156);
-     outline: none;
-     background: none;
-     font-size: 25px;
-}
-
-.show-pwd-icon{
-     color: var(--green);
-     font-size: 25px;
-     position: absolute;
-     bottom: 10px;
-     margin-left: 45%;
-     cursor: pointer;
-}
-
-.forgot-pwd{
-     padding: 20px 0px 20px 0px;
+.login-opt{
      display: flex;
-     margin-left: 10%;
-}
-
-.login-form .login-btn{
-     margin-top: 20px;
-     background-color: var(--green);
-     color: var(--light);
-     font-size: 25px;
-     width: 50%;
-     margin: auto;
-     transition: all 0.2s ease-in-out;
-}
-
-.login-form .login-btn:hover{
+     flex-direction: column;
+     align-items: center;
+     padding: 10px;
+     justify-content: center;
+     width: 150px;
+     height: 150px;
      background-color: var(--dark-green);
+     border-radius: 10px;
+     margin: auto;
+     box-shadow: 0px 0px 10px 0px rgba(66, 66, 66, 0.56);
+     transition: all 0.5s ease-in-out;
 }
 
-.err-login{
-     text-align: left;
-     margin-left: 10%;
+.login-opt a{
+     text-decoration: none;
+}
+
+.login-opt:hover{
+     cursor: pointer;
+     transform: scale(1.05);
+     background-color: var(--light);
+     box-shadow: 0px 0px 20px 5px rgba(66, 66, 66, 0.56);
+}
+
+.login-opt .logo-container i{
+     font-size: 50px;
+     color: var(--light);
+}
+
+.login-opt:hover .logo-container i{
+     color: var(--dark-green);
+}
+
+.login-opt .opt-text h4{
      font-size: 20px;
-     font-weight: bold;
-     color: var(--danger);
+     color: var(--light);
 }
 
-/* login page styles end */
+.login-opt:hover .opt-text h4{
+     color: var(--dark-green);
+}
 
+/* media query starts */
+
+/* tablet devices */
+@media (max-width: 768px){
+     .login-option-container{
+          grid-template-columns: repeat(2,1fr);
+          grid-gap: 10px;
+     }
+}
+
+/* mobile phones */
+@media (max-width: 480px){
+     .login-option-container{
+          grid-template-columns: repeat(1, 1fr);
+          grid-gap: 25px;
+          height: 100%;
+     }
+
+     .title{
+          font-size: 30px;
+     }
+}
+
+/* login options page styles ends */
 
 /* 404 page styles */
 .img-404{
@@ -210,30 +206,3 @@ body{
 
 /* 404 page styles end */
 
-/* media query starts */
-
-/* tablet devices */
-@media (max-width: 768px){
-     .img-container{
-          display: none;
-     }
-
-     .login-form{
-          width: 80vw;
-          margin-left: 30px;
-     }
-}
-
-/* mobile phones */
-@media (max-width: 480px){
-     .img-container{
-          display: none;
-     }
-
-     .login-form{
-          width: 80vw;
-          margin-left: 15px;
-     }
-}
-
-/* media query ends */

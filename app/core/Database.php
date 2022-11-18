@@ -7,10 +7,10 @@
 
           // connect to the database
           protected static function connect(){
-               $host = DB_HOST;
-               $username = DB_USER;
-               $password = DB_PASSWORD;
-               $dbname = DB_NAME;
+               $host = $_ENV['DB_HOST'];
+               $username = $_ENV['DB_USER'];
+               $password = $_ENV['DB_PASSWORD'];
+               $dbname = $_ENV['DB_NAME'];
 
                try {
                     // PDO instance
@@ -34,26 +34,6 @@
           public function prepare($sql){
                $this->stmt = self::$dbh->prepare($sql);
           }
-
-          // bind values to the query
-          // public function bind($param, $value, $type = null){
-          //      if($type == null){
-          //           if(is_int($value)){
-          //                $type = PDO::PARAM_INT;
-          //           }
-          //           else if(is_bool($value)){
-          //                $type = PDO::PARAM_BOOL;
-          //           }
-          //           else if(is_null($value)){
-          //                $type == PDO::PARAM_NULL;
-          //           }
-          //           else{
-          //                $type = PDO::PARAM_STR;
-          //           }
-          //      }
-
-          //      $this->stmt->bindValue($param, $value, $type);
-          // }
 
           // execute the query
           public function execute($params){

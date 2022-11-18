@@ -1,0 +1,310 @@
+.signup-img{
+     height: 100%;
+     width: 40vw;
+}
+
+.signup-container{
+     margin-right: 20px;
+     margin-left: 10px;
+}
+
+.signup-container .login{
+     text-align: right;
+     padding-top: 20px;
+     margin-right: 50px;
+}
+
+.signup-container .login h3 a{
+     text-decoration: none;
+     color: var(--dark-green);
+}
+
+.signup-container .header{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+}
+
+.signup-container .header {
+     display: flex;
+     align-items: center;
+}
+
+.signup-container .header h1{
+     font-size: 30px;
+}
+
+.signup-container .header img{
+     width: 100px;
+}
+
+.signup-container .form-step{
+     text-align: left;
+     display: flex;
+     flex-direction: column;
+}
+
+.signup-container .form-step .step-boxes{
+     width: 100%;
+     display: flex;
+}
+
+.signup-container .form-step .step-boxes .step{
+     background-color: var(--secondary);
+     height: 8px;
+     width: 100px;
+     margin-right: 10px;
+}
+
+.signup-form{
+     display: flex;
+     flex-direction: column;
+     margin-top: 20px;
+     padding: 30px;
+     width: 50vw;
+     margin-left: auto;
+     margin-right: 50px;
+     border: 2px solid var(--green);
+     border-radius: 5px;
+}
+
+.form-group{
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     margin: auto;
+     justify-content: flex-start;
+     align-items: center;
+}
+
+.form-group h5{
+     font-size: 20px;
+     text-align: center;
+}
+
+.form-input{
+     margin-left: 50px;
+     font-size: 15px;
+     width: 50%;
+     height: 30px;
+     border: 2px solid var(--green);
+     border-radius: 10px;
+     padding: 5px;
+     background-color: rgba(232, 231, 231, 0.585);
+     font-family: 'Poppins', sans-serif;
+}
+
+.form-input::placeholder{
+     font-family: 'Poppins', sans-serif;
+}
+
+.form-input:-ms-input-placeholder{
+     font-family: 'Poppins', sans-serif;
+}
+
+input[type=date]{
+     margin-left: 30px;
+}
+
+.input-group{
+     margin-left: 80px;
+}
+
+.form-input:focus{
+     outline: none;
+}
+
+#input-nic{
+     margin-left: 120px;
+}
+
+input[type=radio]{
+     -ms-transform: scale(1.5); 
+     -webkit-transform: scale(1.5);
+     transform: scale(1.5);
+}
+
+input[type=radio]:nth-of-type(2){
+     margin-left: 20px;
+}
+
+#radio-martial{
+     margin-left: 50px;
+}
+
+#input-address{
+     margin-left: 110px;
+}
+
+input[type=email]{
+     margin-left: 135px;
+}
+
+#input-phone{
+     margin-left: 95px;
+}
+
+#input-uname{
+     margin-left: 125px;
+}
+
+#input-pwd{
+     margin-left: 135px;
+}
+
+.form-group .password-group{
+     width: auto;
+}
+
+.next-btn{
+     margin-top: 10px;
+     background-color: var(--green);
+     color: var(--light);
+     width: 150px;
+     font-size: 20px;
+     border-radius: 25px;
+     text-align: center;
+     right: 0;
+     transition: all 0.3s ease-in;
+}
+
+.next-btn:hover{
+     background-color: var(--dark-green);
+}
+
+
+.back-btn{
+     margin-top: 10px;
+     background-color: var(--secondary);
+     color: var(--light);
+     width: 150px;
+     font-size: 20px;
+     border-radius: 25px;
+     text-align: center;
+     right: 0;
+     transition: all 0.3s ease-in;
+}
+
+.btn-group{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+}
+
+#second{
+     display: none;
+}
+
+#third{
+     display: none;
+}
+
+.form-group i{
+     margin-left: -30px;
+     color: var(--green);
+}
+
+.error{
+     border: 2px solid var(--danger);
+}
+
+.err-signup{
+     text-align: left;
+     font-size: 15px;
+     color: var(--danger);
+     margin-top: -15px;
+}
+
+/* media query starts */
+
+/* tablet devices */
+@media (max-width: 768px){
+     .img-container{
+          display: none;
+     }
+
+     .signup-form{
+          width: 80vw;
+          margin-left: 30px;
+     }
+
+     .form-step{
+          margin-left: 5%;
+     }
+}
+
+/* mobile phones */
+@media (max-width: 480px){
+     .img-container{
+          display: none;
+     }
+
+     .signup-form{
+          width: 80vw;
+          margin-left: 0px;
+     }
+
+     .form-group{
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          margin-top: 0px;
+     }
+
+     .form-input{
+          margin: auto;
+          width: 80vw;
+     }
+
+     input[type=date]{
+          margin: auto;
+     }
+
+     input[type=email]{
+          margin: auto;
+     }
+
+     #radio-martial{
+          margin: auto;
+     }
+     
+     #input-address{
+          margin: auto;
+     }
+     
+     input[type=email]{
+          margin:auto;
+     }
+     
+     #input-phone{
+          margin: auto;
+     }
+
+     #input-uname{
+          margin: auto;
+     }
+     
+     #input-pwd{
+          margin-left: auto;
+     }
+
+     .form-group i{
+          margin-left: 90%;
+          margin-top: -30px;
+     }
+
+     .input-group{
+          margin: auto;
+     }
+
+     .form-body{
+          margin-top: -40px;
+     }
+
+     .btn-group{
+          margin-top: 20px;
+     }
+}

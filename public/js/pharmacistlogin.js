@@ -1,3 +1,4 @@
+
 //Validate Code for inputs
 
 const username = document.getElementById("username");
@@ -8,7 +9,7 @@ const passwordError = document.getElementById("password_error");
 const form = document.getElementById("form");
 const loginButton = document.getElementById("login-btn");
 
-form.addEventListener('submit', function(e){
+form.addEventListener('submit', function (e) {
      e.preventDefault();
 });
 
@@ -23,10 +24,10 @@ function validate() {
 }
 
 function myFunction() {
-    const x = document.getElementById("password");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  }
+     const x = document.getElementById("password");
+     if (x.type === "password") {
+          x.type = "text";
+     } else {
+          x.type = "password";
+     }
+}

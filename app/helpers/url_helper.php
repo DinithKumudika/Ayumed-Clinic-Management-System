@@ -1,7 +1,7 @@
 <?php
 
 function redirect($location){
-     header("location: " .URL_ROOT. '/' . $location);
+     header("Location: " .URL_ROOT. '/' . $location);
 }
 
 function redirectToHome($roleId){

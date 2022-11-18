@@ -16,18 +16,4 @@
                     require_once '../app/views/' . $view . '.php';
                }
           }
-
-          // get a value of session variable
-          public function getSessionVar($name){
-               if(!empty($name)){
-                    return $_SESSION[$name];
-               }
-          }
-
-          // set a value of session variable
-          public function setSessionVar($name,$value){
-               if(!empty($name) && !empty($value)){
-                    $_SESSION[$name] = $_SESSION[$value];
-               }
-          }
      } 

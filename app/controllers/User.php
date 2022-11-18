@@ -10,129 +10,118 @@ class User extends BaseController{
      }
 
      public function login(){
-
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-               //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
-
-               $data = [
-                    'username'=>trim($_POST['username']),
-                    'password'=>trim($_POST['password']),
-                    'error'=> ''
-               ];
-
-               if(!empty($data['username']) && !empty($data['password'])){
-                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
-
-                    if($userLoggedIn){
-                         $this->createUserSession($userLoggedIn);
-                         redirect('Home/index');  
-                    }
-                    else{
-                         $data['error'] = "invalid username or password";
-                         
-                    } 
-               }
-          }
-          else{
-               $data = [
-                    'username'=>'',
-                    'password'=>'',
-                    'error'=> ''
-               ];
-          }
-
-          $this->view('pages/login', $data); 
-     }
-
-     public function pharmacistlogin(){
-
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-               //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
-
-               $data = [
-                    'username'=>trim($_POST['username']),
-                    'password'=>trim($_POST['password']),
-                    'error'=> ''
-               ];
-
-               if(!empty($data['username']) && !empty($data['password'])){
-                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
-
-                    if($userLoggedIn){
-                         $this->createUserSession($userLoggedIn);
-                         redirect('Home/index');  
-                    }
-                    else{
-                         $data['error'] = "invalid username or password";
-                         
-                    }
-               }
-          }
-          else{
-               $data = [
-                    'username'=>'',
-                    'password'=>'',
-                    'error'=> ''
-               ];
-          }
-
-          $this->view('pages/pharmacistlogin', $data); 
-     }
-
-     public function addmedicine(){
-
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-               //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
-
-               $data = [
-                    'username'=>trim($_POST['username']),
-                    'password'=>trim($_POST['password']),
-                    'error'=> ''
-               ];
-
-               if(!empty($data['username']) && !empty($data['password'])){
-                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
-
-                    if($userLoggedIn){
-                         $this->createUserSession($userLoggedIn);
-                         redirect('Home/index');  
-                    }
-                    else{
-                         $data['error'] = "invalid username or password";
-                         
-                    }
-               }
-          }
-          else{
-               $data = [
-                    'username'=>'',
-                    'password'=>'',
-                    'error'=> ''
-               ];
-          }
-
-          $this->view('pages/addmedicine', $data); 
-     }
-
-     
-
-
-     public function createUserSession($user){
-          $this->setSessionVar('user_id',$user->user_id);
-          $this->setSessionVar('username',$user->username);
-          $this->setSessionVar('role_id',$user->role_id);
+          $this->view('pages/login');
      }
 
      public function register(){
+          $this->view('pages/signup');
+     }
+
+     public function login_doctor(){
+
+          if(Request::isPost()){
+
+               foreach ($_POST as $key => $value) {
+                    $_POST[$key] = strip_tags($value);
+               }
+
+               $data = [
+                    'username'=>trim($_POST['username']),
+                    'password'=>trim($_POST['password']),
+                    'error'=> ''
+               ];
+
+               if(!empty($data['username']) && !empty($data['password'])){
+                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
+
+                    if($userLoggedIn){
+                         $this->createUserSession($userLoggedIn);
+                         Url::redirect('doctor/index');  
+                    }
+                    else{
+                         $data['error'] = "invalid username or password";
+                         
+                    }
+               }
+          }
+          else{
+               $data = [
+                    'username'=>'',
+                    'password'=>'',
+                    'error'=> ''
+               ];
+          }
+
+          $this->view('pages/doctorLogin', $data); 
+     }
+
+     public function login_pharm(){
+          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+               filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
+
+               $data = [
+                    'username'=>trim($_POST['username']),
+                    'password'=>trim($_POST['password']),
+                    'error'=> ''
+               ];
+
+               if(!empty($data['username']) && !empty($data['password'])){
+                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
+
+                    if($userLoggedIn){
+                         $this->createUserSession($userLoggedIn);
+                         Url::redirect('pharmacist/index');  
+                    }
+                    else{
+                         $data['error'] = "invalid username or password";
+                    }
+               }
+          }
+          else{
+               $data = [
+                    'username'=>'',
+                    'password'=>'',
+                    'error'=> ''
+               ];
+          }
+
+          $this->view('pages/pharmacistLogin', $data); 
+     }
+
+     public function login_patient(){
+          
+     }
+
+     public function login_staff(){
 
      }
 
+     public function login_admin(){
+          
+     }
+
+     public function createUserSession($user){
+          Session::set('user_id',$user->user_id);
+          Session::set('username',$user->username);
+          Session::set('role_id',$user->role_id);
+     }
+
+     public function register_patient(){
+          if(Request::isPost()){
+               
+          }
+          $this->view('pages/patientRegister');
+     }
+
      public function logout(){
-          session_unset($_SESSION['user_id']);
-          session_unset($_SESSION['username']);
-          session_unset($_SESSION['role_id']);
-          session_destroy();
-          redirect('Users/login');
+
+          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+               Session::unset('user_id');
+               Session::unset('username');
+               Session::unset('role_id');
+               Session::destroy();
+               Url::redirect('user/login_doctor');
+          } 
      }
 
      public function error(){

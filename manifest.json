@@ -1,0 +1,47 @@
+{
+     "name": "Ayumed",
+     "short_name": "Ayumed",
+     "start_url": "http://localhost/ayumed/user/login.php",
+     "display": "standalone",
+     "background_color": "#28A745",
+     "theme_color":"#19A627",
+     "orientation": "portrait-primary",
+     "icons": [
+          {
+               "src": "/public/images/icons/72x72.png",
+               "type": "image/png",
+               "sizes": "72x72"
+          },
+          {
+               "src": "/public/images/icons/96x96.png",
+               "type": "image/png",
+               "sizes": "96x96"
+          },
+          {
+               "src": "/public/images/icons/128x128.png",
+               "type": "image/png",
+               "sizes": "128x128"
+          },
+          {
+               "src": "/public/images/icons/152x152.png",
+               "type": "image/png",
+               "sizes": "152x152"
+          },
+          {
+               "src": "/public/images/icons/192x192.png",
+               "type": "image/png",
+               "sizes": "192x192"
+          },
+          {
+               "src": "/public/images/icons/384x384.png",
+               "type": "image/png",
+               "sizes": "384x384"
+          },
+          {
+               "src": "/public/images/icons/512x512.png",
+               "type": "image/png",
+               "sizes": "512x512"
+          }
+          
+     ]
+}

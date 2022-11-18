@@ -1,5 +1,5 @@
-     <?php require APP_ROOT . '/views/layout/header.php' ?>
-     <title>Login</title>
+<?php require APP_ROOT . '/views/layout/header.php' ?>
+     <title>Signup</title>
 </head>
 <body>
      <div class="container">
@@ -7,10 +7,10 @@
                <img src="<?php echo URL_ROOT ?>/images/logo.png" alt="">
                <span>Clinic Management System</span>
           </div>
-          <div><h2 class="title">SELECT USER TYPE TO LOGIN</h2></div>
+          <div><h2 class="title">SELECT USER TYPE TO SIGNUP</h2></div>
           <div class="login-option-container">
                <div class="login-opt opt-patient">
-                    <a href="<?php echo URL_ROOT?>/user/login_patient">
+                    <a href="<?php echo URL_ROOT?>/user/register_patient">
                          <div class="logo-container">
                               <i class="fa-solid fa-hospital-user"></i>
                          </div>
@@ -18,7 +18,7 @@
                     </a>
                </div>
                <div class="login-opt opt-doctor">
-                    <a href="<?php echo URL_ROOT?>/user/login_doctor">
+                    <a href="#">
                          <div class="logo-container">
                               <i class="fa-solid fa-user-doctor"></i>
                          </div>
@@ -26,7 +26,7 @@
                     </a>
                </div>
                <div class="login-opt opt-pharm">
-                    <a href="<?php echo URL_ROOT?>/user/login_pharm">
+                    <a href="#">
                          <div class="logo-container">
                               <i class="fa-solid fa-prescription-bottle-medical"></i>
                          </div>
@@ -34,7 +34,7 @@
                     </a>
                </div>
                <div class="login-opt opt-staff">
-                    <a href="<?php echo URL_ROOT?>/user/login_staff">
+                    <a href="#">
                          <div class="logo-container">
                               <i class="fa-solid fa-user-nurse"></i>
                          </div>
@@ -42,7 +42,7 @@
                     </a>
                </div>
                <div class="login-opt opt-admin">
-                    <a href="<?php echo URL_ROOT?>/user/login_admin">
+                    <a href="#">
                          <div class="logo-container">
                               <i class="fa-solid fa-screwdriver-wrench"></i>
                          </div>
