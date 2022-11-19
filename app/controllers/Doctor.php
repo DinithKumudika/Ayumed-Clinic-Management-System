@@ -3,11 +3,12 @@
 class Doctor extends BaseController{
 
      public function index(){
-          if(!Session::isSet('user_id')){
-               Url::redirect('user/login_doctor');
+          if(Session::isSet('user_id')){
+               $this->view('pages/doctor/index');
+               
           }
           else{
-               $this->view('pages/doctor/index');
+               Url::redirect('User/login_doctor');
           } 
      }
 
