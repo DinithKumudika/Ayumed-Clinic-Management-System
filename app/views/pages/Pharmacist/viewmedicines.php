@@ -13,7 +13,7 @@
 <body>
      <div class="add-btn-container">
           <button class="add-btn btn">
-               <i class="fa-solid fa-plus"></i><a href="addmedicine.php">Add Medicines</a>
+               <i class="fa-solid fa-plus"></i><a href="<?php echo URL_ROOT?>/user/addmedicine">Add Medicines</a>
           </button>
      </div>
      <h2>Search Medicines</h2>

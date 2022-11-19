@@ -85,7 +85,7 @@ class User extends BaseController{
                ];
           }
 
-          $this->view('pages/pharmacistLogin', $data); 
+          $this->view('pages/pharmacistlogin', $data); 
      }
 
      public function login_patient(){
@@ -113,6 +113,13 @@ class User extends BaseController{
           $this->view('pages/patientRegister');
      }
 
+     public function register_pharm(){
+          if(Request::isPost()){
+               
+          }
+          $this->view('pages/pharmacistRegister');
+     }
+     
      public function logout(){
 
           if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){

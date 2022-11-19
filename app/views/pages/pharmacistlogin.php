@@ -3,44 +3,70 @@
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/css/pharmacistlogin.css">
+    <script src="https://kit.fontawesome.com/3a188ddf79.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/pharmacistlogin.css">
+    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/style.css">
     <title>login page</title>
 </head>
+
+<?php
+     if(isset($data['error'])){
+          echo "<script>
+          document.getElementById('username').style.borderBottom = '2px solid #DC3545';
+          document.getElementById('password').style.borderBottom = '2px solid #DC3545'
+          </script>";
+     }
+     else{
+          echo "<script>
+          document.getElementById('username').style.borderBottom = '2px solid #28A745';
+          document.getElementById('password').style.borderBottom = '2px solid #28A745'
+          </script>";
+     }
+?>
 
 <body>
     <div class="container">
         <div class="grid-container">
-            <div class="item1 grid-row">
-                <form action="<?php echo URL_ROOT; ?>/user/pharmacistlogin" method="post" id="form" class="login-form grid-row">
+           
+            <div class="item1">
+                <form action="<?php echo URL_ROOT; ?>/user/login_pharm" method="post" id="form" class="login-form ">
                     <img src="../images/logo.png" alt="logo" class="logo">
+                    <h1 class="topic">Pharmacist Login</h1>
+                    <hr>
                     <div class=" form-content">
-                        <h1 class="topic">Pharmacist Login</h1>
                         <h4>Username</h4>
                         <input type="text" id="username" name="username" class="form-input" placeholder="username" />
-                        <p id="username_error"></p>
+                        <p class="username_error"></p>
                     </div>
-                    <div class=" form-content">
+                    <div class="form-content">
                         <h4>Password</h4>
                         <input type="password" id="password" name="password" class="form-input" placeholder="password" />
-                        <p id="password_error"></p>
+                        <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd"></i> 
+                        <p class="password_error"></p>   
                     </div>
 
-                    <div class="checkbox">
-                        <input type="checkbox" id="rememebr_me" value="remember" /><label>Remember me</label> <input
-                            type="checkbox" id="show_password" onclick="myFunction()" value="show" /><label>Show
-                            password</label>
-                    </div>
+                    <!-- <div class="checkbox">
+                      <input type="checkbox" id="show_password" onclick="myFunction()" value="show" /><label>Show password</label>
+                    </div>  -->
 
-                    <div>
+                    <!-- <div>
                        <input type="submit" class="login-btn" value="Log in" id="login-btn"  onclick="validate()" />
-                    </div>
-                    <div class="link forgot-password"><a href="reset password">Forgot password?</a></div>
-                    <div class="link sign-up">Not a member?<a href="signup.php">Sign up</a></div>
+                    </div> -->
+                    <p class="password_error username_error"><?php echo $data['error'] ?></p>
+                    <div class="login-btn" id="btn-login">Login</div>
+                    <!-- <div class="forgot-password"><a href="reset password">Forgot password?</a></div> -->
+                    <div class="sign-up">Not a member?<a href="<?php echo URL_ROOT?>/user/pharmacistRegister">Sign up</a></div>
+                   
+                <!-- <div class="back-btn-container">
+                <button class="back-btn">
+                <i class="fa-solid fa-backward back-icon"></i></i><a class="back-link" href="<?php echo URL_ROOT?>/user/login">Back</a>
+                </button> -->
+            </div> 
                 </form>
             </div>
         </div>
     </div>
-    <script src="login.js"></script>
+    <script src="<?php echo URL_ROOT; ?>/js/pharmacistlogin.js"></script>
 </body>
 
 </html>

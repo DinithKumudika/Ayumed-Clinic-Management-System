@@ -1,10 +1,10 @@
 body {
-  background-image: url("../images/pharmacist.jpg"); 
+  background-image: url("../images/pharmacist.png");  
   padding: 0;              
   font-family: "Poppins";
-  background-repeat: no-repeat;
-  background-size: 100% 110%;
- 
+  background-repeat: no-repeat; 
+  background-size: 52% 91%;
+  overflow: hidden;
 }
 
 .container {
@@ -16,40 +16,88 @@ body {
 }
 
 .topic {
-  text-align: center;
-  font-size: 38px;
+  font-size: 36px;
   font-weight: bold;
   margin-top: 0%;
+  margin-bottom: 1px;
+}
+
+ /* .back-btn-container{
+  margin-top: 30px;
+  margin-left:350px;
+} 
+
+.back-btn{
+  background-color: white;
+ width: 100px;
+  height: 30px; 
+   font-size: 16px; 
+  border: 1px solid transparent;
+   padding: 5px 10px 5px 10px; 
+ 
+}
+
+.back-link{
+  color: var(--green);
+}  
+
+.back-link:link{
+ text-decoration: none;
+} 
+
+.back-icon{
+   color: var(--green); 
+  font-size: 15px;
+} */
+
+.show-pwd-icon{
+  color: var(--green);
+  font-size: 15px;
+  position: absolute;
+  margin-left: 9px;
+  margin-top: 13px;
+  cursor: pointer;
 }
 
 .item1 {
-  opacity: 0.97;
+  /* opacity: 0.97; */
   width: 34vw;
-  background: #abbeab;
-  height: 87vh;
-  box-shadow: 4px 4px;
+  background-color: rgb(255, 255, 255);
+  height: 80vh;
+  box-shadow: 1px 1px 1px 3px var( --dark-green) ;
+  border-radius: 30px;
+  margin-left: 520px;
+  margin-top: 13px;
 }
+
+ /* .checkbox {
+  margin-top: 21px;
+  font-size: 13px;
+}  */
 
 .logo {
   width: 150px;
   height: 150px;
+  /* margin-bottom: 0px; */
 }
 
 .login-btn {
   border-radius: 5px;
-  width: 100px;
-  background-color: #bee3d3;
+  width: 120px;
+  background-color: var(--green);
+  color: white;
   font-weight: bold;
-  font-size: 20px;
-  text-align: center;
-  margin-top: 25px;
+  font-size: 21px; 
+  margin-top: 30px;
   transition: 0.5s;
   font-family: "Poppins";
+  cursor: pointer;
+  margin-left: 200px; 
 }
 
-.login-form .login-btn:hover {
+/* .login-form .login-btn:hover {
   background: #40a981;
-}
+} */
 
 .form-input {
   border-radius: 5px;
@@ -57,10 +105,10 @@ body {
   height: 10px;
   width: 60%;
   border: 2px solid green;
-  background: #d9e2dd;
+  background: #e7e7e7;
   padding: 12px 14px;
   margin-bottom: 4px;
-
+ 
 }
 
 .grid-container {
@@ -68,10 +116,10 @@ body {
   grid-template-columns: repeat(2, 1fr);
   margin-left: 25%;
 }
-
+/* 
 .grid-row {
   border-radius: 30px;
-}
+} */
 
 .pharmacist {
   width: 37vw;
@@ -82,38 +130,40 @@ body {
   font-size: 17px;
 }
 
-.checkbox {
-  margin-top: 24px;
-  font-size: 13px;
-}
-
 .sign-up {
   margin-top: 10px;
 }
 
-.forgot-password {
-  margin-top: 22px;
-}
+.sign-up {
+  margin-top: 20px;
+  font-size: 13px;
+} 
 
 a:link {
   color: black;
 }
 
-.link {
-  font-size: 13px;
-}
 
 h4 {
-  margin-top: 10px;
-}
-
-#username_error,
-#password_error {
-  color: #bd2d17;
   margin-top: 3px;
-  text-align: center;
+  font-weight: lighter;
+  /* text-align: left;
+  margin-left: 18%; */
+  margin-bottom: 6px;
 }
 
-#show_password {
-  margin-left: 5%;
+.username_error,
+.password_error {
+  color: #bd2d17; 
+  margin-top: 2px;
+  text-align: center;
+  font-size: 14px;
+ 
+}
+
+hr{
+  border: 0.1px solid black;
+  width: 65%;
+  margin-left: 88px;
+  margin-bottom: 35px;
 }
