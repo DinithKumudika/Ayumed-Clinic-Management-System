@@ -26,49 +26,7 @@ class UserModel extends Database{
           }
      }
 
-     public function register($data, $roleId){
-          $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`role_id`) 
-                    VALUES (
-                         :first_name, 
-                         :last_name,
-                         :email, 
-                         :username,
-                         :password, 
-                         :role_id
-                    )";
-
-          $this->prepare($sql);
-
-          $params = [
-               'first_name'=>$data['first_name'],
-               'last_name'=>$data['last_name'],
-               'email'=>$data['email'],
-               'username'=>$data['username'],
-               'password'=>$data['password'],
-               'role_id'=>$roleId
-          ];
-
-          return $this->execute($params);
-     }
-
-     public function isUserExists($username, $password){
-          $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
-
-          $this->prepare($sql);
-
-          $params = [
-               'user'=>$username,
-          ];
-
-          $user = $this->result($params);
-
-          if(Crypto::verifyHash($user->password, $password)){
-               return true;
-          }
-          else{
-               return false;
-          }
-     }
+    
 
      public function registerPatient($data, $age, $regNo, $code){
           $sql = "INSERT INTO `tbl_patients`(`NIC`,`DOB`,`age`,`gender`,`phone_no`,`address`,`martial_status`,`reg_no`, 
@@ -102,9 +60,6 @@ class UserModel extends Database{
           ];
      }
 
-     public function verifyRegistration(){
-          
-     }
 
      public function registerStaffMem(){
 
@@ -125,4 +80,5 @@ class UserModel extends Database{
           $user = $this->result($params);
           return $user->user_id;
      }
+
 }

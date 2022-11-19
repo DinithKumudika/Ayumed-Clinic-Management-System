@@ -44,8 +44,6 @@ Bacnkend Language : `PHP`
 [PHP dotenv](https://github.com/vlucas/phpdotenv)
 <br>
 [Dompdf](https://github.com/dompdf/dompdf)
-<br>
-[PHPMailer](https://github.com/PHPMailer/PHPMailer)
 
 
 ## Getting Started

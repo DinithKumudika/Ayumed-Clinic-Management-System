@@ -30,11 +30,6 @@
                }
           }
 
-          public function query($sql){
-               $this->stmt = self::$dbh->query($sql);
-               return $this->stmt->fetch();
-          }
-
           // prepare sql query
           public function prepare($sql){
                $this->stmt = self::$dbh->prepare($sql);
