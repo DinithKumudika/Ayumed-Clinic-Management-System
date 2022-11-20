@@ -31,11 +31,7 @@
                call_user_func_array([$this->controller,$this->action],$this->params);
 
                //start session
-<<<<<<< HEAD
-               Session::init();
-=======
                // Session::init();
->>>>>>> main
      }
 
      private function getController($url){

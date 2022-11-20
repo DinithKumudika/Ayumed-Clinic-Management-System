@@ -1,14 +1,9 @@
 <?php require APP_ROOT . '/views/layout/header.php' ?>
-<<<<<<< HEAD
-<link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/signup.css">
-<title> Doctor SignUp</title>
-=======
 <title>Doctor SignUp</title>
 <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/signup.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
->>>>>>> main
 </head>
 <?php
 // if(isset($data['error'])){
@@ -121,11 +116,7 @@
                     <div class="form-body" id="third">
                          <div class="form-group">
                               <h5>Username</h5>
-<<<<<<< HEAD
-                              <input type="text" id="input-uname" name="username" class="form-input" placeholder="Ex: dinith123 or dinith_123">
-=======
                               <input type="text" id="input-uname" name="username" class="form-input" placeholder="Ex: dinith123">
->>>>>>> main
                          </div>
                          <p class="err-signup" id="err-uname"></p>
                          <div class="form-group">
@@ -140,14 +131,10 @@
                               <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd-repeat"></i>
                          </div>
                          <p class="err-signup" id="err-password-repeat"></p>
-<<<<<<< HEAD
-                         
-=======
                          <p class="err-signup"><?php echo $data['error'] ?></p>
                          <div class="form-group">
                              <div class="g-recaptcha" data-siteky="<?php echo $_ENV['SITE_KEY']; ?>"></div>
                          </div>
->>>>>>> main
                          <div class="btn-group">
                               <div class="btn back-btn" id="btn-back-2">Back</div>
                               <div class="btn next-btn" id="btn-signup">Signup</div>
@@ -157,18 +144,9 @@
                </form>
           </div>
      </div>
-<<<<<<< HEAD
-     <?php require APP_ROOT . '/views/layout/footer.php' ?>
-     <script src="<?php echo URL_ROOT; ?>/js/Validate.js"></script>
-     <script src="<?php echo URL_ROOT; ?>/js/signup.js"></script>
-</body>
-
-</html>
-=======
      <?php require APP_ROOT . '/views/layout/footer.php' ?>  
      <script src="<?php echo URL_ROOT; ?>/js/Validate.js"></script>
      <script src="<?php echo URL_ROOT; ?>/js/signup.js"></script>   
 </body>
 
 </html>
->>>>>>> main

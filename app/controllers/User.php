@@ -20,12 +20,6 @@ class User extends BaseController{
      public function login_doctor(){
 
           if(Request::isPost()){
-<<<<<<< HEAD
-
-               foreach ($_POST as $key => $value) {
-                    $_POST[$key] = strip_tags($value);
-               }
-=======
                //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
                Request::removeTags();
 
@@ -61,7 +55,6 @@ class User extends BaseController{
           if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
                
                Request::removeTags();
->>>>>>> main
 
                $data = [
                     'username'=>trim($_POST['username']),
@@ -74,11 +67,7 @@ class User extends BaseController{
 
                     if($userLoggedIn){
                          $this->createUserSession($userLoggedIn);
-<<<<<<< HEAD
-                         Url::redirect('doctor/index');  
-=======
                          Url::redirect('Pharmacist/index');  
->>>>>>> main
                     }
                     else{
                          $data['error'] = "invalid username or password";
@@ -93,49 +82,6 @@ class User extends BaseController{
                ];
           }
 
-<<<<<<< HEAD
-          $this->view('pages/doctorLogin', $data); 
-     }
-
-     public function login_pharm(){
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-               filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
-
-               $data = [
-                    'username'=>trim($_POST['username']),
-                    'password'=>trim($_POST['password']),
-                    'error'=> ''
-               ];
-
-               if(!empty($data['username']) && !empty($data['password'])){
-                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
-
-                    if($userLoggedIn){
-                         $this->createUserSession($userLoggedIn);
-                         Url::redirect('pharmacist/index');  
-                    }
-                    else{
-                         $data['error'] = "invalid username or password";
-                    }
-               }
-          }
-          else{
-               $data = [
-                    'username'=>'',
-                    'password'=>'',
-                    'error'=> ''
-               ];
-          }
-
-          $this->view('pages/pharmacistlogin', $data); 
-     }
-
-     public function login_patient(){
-          
-     }
-
-     public function login_staff(){
-=======
           $this->view('pages/pharmacistLogin', $data); 
      }
 
@@ -146,7 +92,6 @@ class User extends BaseController{
      public function login_staff(){
 
      }
->>>>>>> main
 
      public function login_admin(){
           
@@ -216,22 +161,6 @@ class User extends BaseController{
           Session::set('role_id',$user->role_id);
      }
 
-     public function login_admin(){
-          
-     }
-
-     public function createUserSession($user){
-          Session::set('user_id',$user->user_id);
-          Session::set('username',$user->username);
-          Session::set('role_id',$user->role_id);
-     }
-
-     public function register_patient(){
-          if(Request::isPost()){
-               
-          }
-          $this->view('pages/patientRegister');
-     }
 
      public function register_pharm(){
           if(Request::isPost()){
@@ -241,25 +170,17 @@ class User extends BaseController{
      }
      
      public function logout(){
-<<<<<<< HEAD
-
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-=======
           if(Request::isPost()){
->>>>>>> main
                Session::unset('user_id');
                Session::unset('username');
                Session::unset('role_id');
                Session::destroy();
                Url::redirect('user/login_doctor');
           } 
-<<<<<<< HEAD
-=======
      }
 
      public function verify(){
           $this->view('pages/signupVerification');
->>>>>>> main
      }
 
      public function error(){

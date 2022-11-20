@@ -19,20 +19,6 @@ abstract class Request{
                return false;
           }
      }
-<<<<<<< HEAD
-     
-     public static function inputPost($input){
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-               return trim(strip_tags($_POST[$input]));
-          }   
-     }
-     
-     public static function inputGet($input){
-          if($_SERVER['REQUEST_METHOD'] == "GET" || $_SERVER['REQUEST_METHOD'] == "get"){
-               return trim(strip_tags($_GET[$input]));
-          }
-     }
-=======
 
      public static function removeTags(){
           foreach ($_POST as $key => $value) {
@@ -51,7 +37,6 @@ abstract class Request{
      //           return trim(strip_tags($_GET[$input]));
      //      }
      // }
->>>>>>> main
 }
 
 

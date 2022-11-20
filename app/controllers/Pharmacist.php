@@ -14,8 +14,4 @@ class Pharmacist extends BaseController{
      public function error(){
           $this->view('404');
      }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main
