@@ -1,0 +1,127 @@
+/* login page styles */
+
+.login-img{
+     height: 100%;
+     width: 40vw;
+}
+
+.login-container{
+     margin-top: auto;
+     margin-bottom: auto;
+}
+
+.login-form{
+     padding: 30px;
+     width: 40vw;
+     margin-left: auto;
+     margin-right: 50px;
+     border-radius: 10px;
+     box-shadow: 0px 0px 10px var(--dark-green);
+}
+
+.login-form h2{
+     font-size: 40px;
+     text-transform: uppercase;
+}
+
+.login-form .form-group{
+     margin-top: 50px;
+     margin-bottom: 20px;
+}
+
+.login-form .input-group{
+     height: 40px;
+     width: 80%;
+     margin: auto;
+     position: relative;
+}
+
+.login-form .input-group input:focus ~ h5{
+     transform: translateY(-20px);
+     font-size: 20px;
+     color: var(--green);
+}
+
+.login-form .input-group h5{
+     font-size: 25px;
+     color: rgba(185, 185, 185, 0.452);
+     position: absolute;
+     bottom: -18px;
+     pointer-events: none;
+     transition: all 0.3s ease-in-out;
+}
+
+.login-form .input-group input{
+     height: 100%;
+     width: 100%;
+     border: none;
+     border-bottom: 2px solid rgb(158, 156, 156);
+     outline: none;
+     background: none;
+     font-size: 25px;
+}
+
+
+
+.show-pwd-icon{
+     color: var(--green);
+     font-size: 25px;
+     position: absolute;
+     bottom: 10px;
+     margin-left: 45%;
+     cursor: pointer;
+}
+
+.forgot-pwd{
+     padding: 20px 0px 20px 0px;
+     display: flex;
+     margin-left: 10%;
+}
+
+.login-form .login-btn{
+     margin-top: 20px;
+     background-color: var(--green);
+     color: var(--light);
+     font-size: 25px;
+     width: 50%;
+     margin: auto;
+     transition: all 0.2s ease-in-out;
+}
+
+.login-form .login-btn:hover{
+     background-color: var(--dark-green);
+}
+
+.err-login{
+     text-align: left;
+     margin-left: 10%;
+     font-size: 20px;
+     font-weight: bold;
+     color: var(--danger);
+}
+
+/* media query starts */
+
+/* tablet devices */
+@media (max-width: 768px){
+     .img-container{
+          display: none;
+     }
+
+     .login-form{
+          width: 80vw;
+          margin-left: 30px;
+     }
+}
+
+/* mobile phones */
+@media (max-width: 480px){
+     .img-container{
+          display: none;
+     }
+
+     .login-form{
+          width: 80vw;
+          margin-left: 15px;
+     }
+}

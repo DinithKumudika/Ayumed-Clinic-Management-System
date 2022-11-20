@@ -1,0 +1,94 @@
+body {
+  /* background-image:  url("../images/Pharmacistregister.png");  */
+  font-family: "Poppins";
+  /* background-size: 672px 713px;  */
+  /* background-repeat: no-repeat; */
+  overflow: hidden; 
+  /* padding: 0px 0px 0px 30px;  */
+
+}
+
+.signup-img{
+  width:672px;
+  height:713px;
+  float: left; 
+  margin:20px 20px 10px 60px;
+} 
+
+.form-container{
+  width:550px;
+  height:680px;
+  float: right;
+  padding: 10px 10px 10px 10px;
+  margin: 8px 90px 0px 100px;  
+  border-radius: 10px;
+  text-align: center;
+  box-shadow:  1px 2px 3px black;
+}  
+
+.div-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+ /* width: 550px; 
+  padding: 10px 10px 10px 10px;
+  margin: 39px 130px 0px 0px;  
+  border-radius: 10px;
+  text-align: center;
+  box-shadow:  1px 2px 3px black;
+  /* background-color: white;  */
+  /* height: 680px; */
+  /* margin-right: 130px;  */
+ /* float: right;*/
+} 
+
+.logo {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 0px; 
+}
+
+h1{
+  margin-bottom: 7px;
+  margin-top: -20px;
+}
+
+hr{
+  border: 0.1px solid black;
+  width: 65%;
+  margin-left: 98px;
+  margin-bottom: 35px;
+}
+
+.form-input {
+  width: 80%;
+  outline: none;
+  border: none;
+  background: #a7d2bc;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 2px solid green;
+}
+
+.button {
+  font-size:20px;
+  margin-top: 15px;
+  padding: 8px 0;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  width: 41%;
+  background-color: var(--green);
+  color: #fff;
+  cursor: pointer;
+}
+
+.not-member {
+  font-size: 13px;
+  margin-top: 18px;
+}
+.not-member a {
+  color: rgba(24, 129, 95, 0.8);
+  text-decoration: none;
+}
