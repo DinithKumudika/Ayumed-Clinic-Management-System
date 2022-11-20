@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "0f523db843ec0288de1511bd97f1b26d",
-=======
     "content-hash": "d93075239dd3426ad81a86080d9e9d7a",
->>>>>>> main
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -73,8 +69,6 @@
             "time": "2022-07-30T15:56:11+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "phpmailer/phpmailer",
             "version": "v6.6.5",
             "source": {
@@ -153,7 +147,6 @@
             "time": "2022-10-07T12:23:10+00:00"
         },
         {
->>>>>>> main
             "name": "phpoption/phpoption",
             "version": "1.9.0",
             "source": {
