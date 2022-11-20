@@ -26,10 +26,6 @@ class UserModel extends Database{
           }
      }
 
-<<<<<<< HEAD
-    
-
-=======
      public function register($data, $roleId){
           $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`role_id`) 
                     VALUES (
@@ -74,7 +70,6 @@ class UserModel extends Database{
           }
      }
 
->>>>>>> main
      public function registerPatient($data, $age, $regNo, $code){
           $sql = "INSERT INTO `tbl_patients`(`NIC`,`DOB`,`age`,`gender`,`phone_no`,`address`,`martial_status`,`reg_no`, 
                     `otp_code`, `verification_status`) 
@@ -105,13 +100,10 @@ class UserModel extends Database{
                'otp_code'=>$code,
                'verification_status'=>false
           ];
-<<<<<<< HEAD
-=======
      }
 
      public function verifyRegistration(){
           
->>>>>>> main
      }
 
 
@@ -134,8 +126,4 @@ class UserModel extends Database{
           $user = $this->result($params);
           return $user->user_id;
      }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 }
