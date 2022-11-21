@@ -14,8 +14,4 @@ abstract class Crypto{
                return false;
           }
      }
-
-     public function accVerification(){
-
-     }
 }

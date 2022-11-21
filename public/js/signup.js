@@ -137,9 +137,6 @@ secondNextBtn.addEventListener('click', function () {
 signupBtn.addEventListener('click', function () {
      if (isThirdFormValid()) {
           signupForm.submit();
-          Swal.fire(
-               
-          );
      }
 });
 

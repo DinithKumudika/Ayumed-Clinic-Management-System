@@ -29,12 +29,12 @@ class UserModel extends Database{
      public function register($data, $roleId){
           $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`role_id`) 
                     VALUES (
-                         :first_name, 
-                         :last_name,
-                         :email, 
-                         :username,
-                         :password, 
-                         :role_id
+                        :first_name, 
+                        :last_name, 
+                        :email, 
+                        :username, 
+                        :password, 
+                        :role_id
                     )";
 
           $this->prepare($sql);
@@ -48,10 +48,15 @@ class UserModel extends Database{
                'role_id'=>$roleId
           ];
 
-          return $this->execute($params);
+          if($this->execute($params)){
+              return true;
+          }
+          else{
+              return  false;
+          }
      }
 
-     public function isUserExists($username, $password){
+     public function isUserExists($username){
           $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
 
           $this->prepare($sql);
@@ -62,11 +67,11 @@ class UserModel extends Database{
 
           $user = $this->result($params);
 
-          if(Crypto::verifyHash($user->password, $password)){
-               return true;
+          if($this->rowCount()>0){
+             return true;
           }
           else{
-               return false;
+              return false;
           }
      }
 
@@ -100,10 +105,13 @@ class UserModel extends Database{
                'otp_code'=>$code,
                'verification_status'=>false
           ];
-     }
 
-     public function verifyRegistration(){
-          
+          if($this->execute($params)){
+              return true;
+          }
+          else{
+              return  false;
+          }
      }
 
      public function registerStaffMem(){
@@ -114,12 +122,12 @@ class UserModel extends Database{
 
      }
 
-     public function getUserId($role_id){
+     public function getUserId(){
           $sql = "SELECT * FROM `tbl_users` WHERE `role_id` = :role_id ORDER BY `user_id` DESC LIMIT 1";
           $this->prepare($sql);
 
           $params = [
-               'role_id'=>$role_id,
+               'role_id'=>1,
           ];
 
           $user = $this->result($params);

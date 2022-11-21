@@ -5,8 +5,7 @@
 		// generate current date
 		public static function currentDate(){
 			date_default_timezone_set('Asia/Colombo');
-			$date = date("Y-m-d");
-			return $date;
+			return date("Y-m-d");
 		}
 
 		// generate patient registration number
@@ -17,13 +16,13 @@
 
 		// create age of the patient from dob
 		public static function age($dob){
-			$today = date("Y-m-d");
-          	$diff = date_diff(date_create($dob), date_create($today));
-          	return $diff->format('%y');
+			$today = self::currentDate();
+			$diff = date_diff(date_create($dob), date_create($today));
+			return $diff->format('%y');
 		}
 
 		public static function otpCode(){
-			
+			return rand(11111,99999);
 		}
 
 		// create verification code for account verification
