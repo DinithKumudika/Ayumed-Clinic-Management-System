@@ -237,6 +237,17 @@ class Validate{
           }
      }
 
+     static isOTPValid(inputField, messageEl){
+          if(this.isRequired(inputField)){
+               this.error(inputField, messageEl, "*OTP is required");
+               return false;
+          }
+          else{
+               this.success(inputField, messageEl);
+               return true;
+          }
+     }
+
      static success(inputField, element){
           inputField.style.border = "2px solid #28A745";
           element.innerHTML = "";

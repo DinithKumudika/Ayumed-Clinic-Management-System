@@ -3,13 +3,15 @@
 class User extends BaseController{
 
      public $userModel;
+     public $verificationModel;
 
      public function __construct()
      {
           $this->userModel = $this->model('UserModel');
+          $this->verificationModel = $this->model('VerificationModel');
      }
 
-     public function login(){
+     public function index(){
           $this->view('pages/login');
      }
 
@@ -36,8 +38,7 @@ class User extends BaseController{
                     Url::redirect('Doctor/index');  
                }
                else{
-                    $data['error'] = "invalid username or password";
-                         
+                    $data['error'] = "invalid username or password";    
                }
           }
           else{
@@ -117,21 +118,26 @@ class User extends BaseController{
                     'error'=> ''
                ];
 
-               $isExistingUser = $this->userModel->isUserExists($data['username'],$data['password']);
+               $userExists = $this->userModel->isUserExists($data['username']);
 
-               if($isExistingUser){
-                    $data['error'] = 'user already exists';
+               if($userExists){
+                    $data['error'] = 'username is already taken';
                }
                else{
                     $data['password'] = Crypto::createHash($data['password']);
+
                     if($this->userModel->register($data, 1)){
                          $age = Generate::age($data['dob']);
-                         $OTPCode = Generate::verificationCode($data['email']);
-
-                         $userId = $this->userModel->getUserId(1);
+                         $OTPCode = Generate::otpCode();
+                         $userId = $this->userModel->getUserId();
                          $regNo = Generate::regNo($userId);
-                         $this->userModel->registerPatient($data, $age, $regNo, $OTPCode);
-                         Url::redirect('user/verify');
+
+                         if($this->userModel->registerPatient($data, $age, $regNo, $OTPCode)){
+                             $email = new Email($data['email']);
+                             $email->sendVerificationEmail($data['first_name'], $OTPCode);
+                             // redirect to OTP verification view
+                             Url::redirect('user/verify');
+                         }
                     }
                }
           }
@@ -154,25 +160,68 @@ class User extends BaseController{
           $this->view('pages/patientRegister',$data);
      }
 
+     public function verify(){ 
+          if(Request::isPost()){
+               Request::removeTags();
+
+               $data = [
+                    'otp'=>trim($_POST['otp']),
+                    'error'=>''
+               ];
+
+               $verifiedUser = $this->verificationModel->verifyOTP($data['otp']);
+
+               if($verifiedUser){
+                    $this->verificationModel->verify($verifiedUser->id);
+                    Url::redirect('patient/index');
+               }
+               else{
+                    $data['error'] = "Invalid OTP";
+               }
+          }
+          else{
+               $data = [
+                    'otp'=>'',
+                    'error'=>''
+               ];
+          }
+          $this->view('pages/signupVerification', $data);
+     }
+
      public function createUserSession($user){
-          Session::init();
           Session::set('user_id',$user->user_id);
           Session::set('username',$user->username);
           Session::set('role_id',$user->role_id);
      }
 
-     public function logout(){
+     public function logout($role_id){
           if(Request::isPost()){
                Session::unset('user_id');
                Session::unset('username');
                Session::unset('role_id');
                Session::destroy();
-               Url::redirect('user/login_doctor');
-          } 
-     }
 
-     public function verify(){
-          $this->view('pages/signupVerification');
+               switch ($role_id) {
+                    case 1:
+                         Url::redirect('user/login_patient');
+                         break;
+                    case 2:
+                         Url::redirect('user/login_doctor');
+                         break;
+                    case 3:
+                         Url::redirect('user/login_staff');
+                         break;
+                    case 4:
+                         Url::redirect('user/login_pharm');
+                         break;
+                    case 5:
+                         Url::redirect('user/login_admin');
+                         break;
+                    default:
+                         Url::redirect('user/index');
+                         break;
+               }
+          } 
      }
 
      public function error(){
