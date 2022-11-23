@@ -1,5 +1,4 @@
 <?php
-
 class User extends BaseController{
 
      public $userModel;
@@ -129,10 +128,11 @@ class User extends BaseController{
                     if($this->userModel->register($data, 1)){
                          $age = Generate::age($data['dob']);
                          $OTPCode = Generate::otpCode();
-                         $userId = $this->userModel->getUserId();
+                         $userId = $this->userModel->getUserId(1);
                          $regNo = Generate::regNo($userId);
 
-                         if($this->userModel->registerPatient($data, $age, $regNo, $OTPCode)){
+                         if($this->userModel->registerPatient($data, $age, $regNo, $OTPCode, $userId)){
+                             //TODO:fix email class not found
                              $email = new Email($data['email']);
                              $email->sendVerificationEmail($data['first_name'], $OTPCode);
                              // redirect to OTP verification view
@@ -166,14 +166,16 @@ class User extends BaseController{
 
                $data = [
                     'otp'=>trim($_POST['otp']),
-                    'error'=>''
+                    'error'=>'',
+                    'status'=> ''
                ];
 
-               $verifiedUser = $this->verificationModel->verifyOTP($data['otp']);
+               $verifiedPatient = $this->verificationModel->verifyOTP($data['otp']);
 
-               if($verifiedUser){
-                    $this->verificationModel->verify($verifiedUser->id);
-                    Url::redirect('patient/index');
+               if($verifiedPatient){
+                    if($this->verificationModel->verify($verifiedPatient->id)){
+                        Url::redirect('user/login_patient');
+                    }
                }
                else{
                     $data['error'] = "Invalid OTP";
@@ -182,7 +184,8 @@ class User extends BaseController{
           else{
                $data = [
                     'otp'=>'',
-                    'error'=>''
+                    'error'=>'',
+                    'status'=>''
                ];
           }
           $this->view('pages/signupVerification', $data);

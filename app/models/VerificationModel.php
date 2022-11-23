@@ -14,9 +14,9 @@ class VerificationModel extends Database{
           $params = [
                'otp'=>$otp
           ];
-          $user = $this->result($params);
+          $patient = $this->result($params);
           if($this->rowCount()>0){
-               return $user;
+               return $patient;
           }
           else{
                return false;
@@ -27,11 +27,16 @@ class VerificationModel extends Database{
           $sql = "UPDATE `tbl_patients` SET `otp_code` = :otp AND `verification_status` = :status WHERE `id` = :id";
           $this->prepare($sql);
           $params = [
-               'otp'=>NULL,
-               'status'=>true,
+               'otp'=>'NULL',
+               'status'=>1,
                'id'=>$patient_id
           ];
 
-          $this->result($params);
+          if($this->execute($params)){
+              return true;
+          }
+          else{
+              return false;
+          }
      }
 }

@@ -75,9 +75,9 @@ class UserModel extends Database{
           }
      }
 
-     public function registerPatient($data, $age, $regNo, $code){
+     public function registerPatient($data, $age, $regNo, $code, $user_id){
           $sql = "INSERT INTO `tbl_patients`(`NIC`,`DOB`,`age`,`gender`,`phone_no`,`address`,`martial_status`,`reg_no`, 
-                    `otp_code`, `verification_status`) 
+                    `otp_code`, `verification_status`, `user_id`) 
                     VALUES (
                          :nic,
                          :dob,
@@ -88,7 +88,8 @@ class UserModel extends Database{
                          :martial_status,
                          :reg_no,
                          :otp_code,
-                         :verification_status
+                         :verification_status,
+                         :user_id
                     )";
 
           $this->prepare($sql);
@@ -103,7 +104,8 @@ class UserModel extends Database{
                'martial_status'=>$data['martial-status'],
                'reg_no'=> $regNo,
                'otp_code'=>$code,
-               'verification_status'=>false
+               'verification_status'=>false,
+              'user_id'=>$user_id
           ];
 
           if($this->execute($params)){
@@ -122,15 +124,21 @@ class UserModel extends Database{
 
      }
 
-     public function getUserId(){
+     public function getUserId($role_id){
           $sql = "SELECT * FROM `tbl_users` WHERE `role_id` = :role_id ORDER BY `user_id` DESC LIMIT 1";
           $this->prepare($sql);
 
           $params = [
-               'role_id'=>1,
+               'role_id'=>$role_id,
           ];
 
           $user = $this->result($params);
-          return $user->user_id;
+
+          if($this->rowCount()>0){
+              return $user->user_id;
+          }
+          else{
+              return  false;
+          }
      }
 }

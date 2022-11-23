@@ -24,10 +24,11 @@
                               and enter the OTP code you received below
                          </h3>
                          <p class="err" id="otp-err"></p>
-                         <form action="" method="POST" id="otp-form">
+                         <form action="<?php echo URL_ROOT?>/user/verify" method="POST" id="otp-form">
                               <input type="text" name="otp" id="otp-input">
                               <div class="btn otp-btn" id="otp-btn">Verify</div>
                          </form>
+                        <p class="err"><?php echo $data['error']; ?></p>
                     </div>
                </div>
           </div>
