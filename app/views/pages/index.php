@@ -42,24 +42,28 @@
         <div class="h-line"></div>
         <div class="wrapper">
             <div class="service service-1">
-                <img src="" alt="" class="service-img">
+                <div>
+                    <img src="<?php echo URL_ROOT ?>/images/service-1.jpg" alt="" class="service-img">
+                </div>
                 <div class="service-detail">
                     <div class="service-name">Channel Doctor</div>
-                    <div class="service-desc">Rs. 650</div>
+                    <div class="service-desc">make an appointment with the doctor in a lightning speed</div>
                 </div>
             </div>
             <div class="service service-2">
-                <img src="" alt="" class="service-img">
+                <div>
+                    <img src="<?php echo URL_ROOT ?>/images/service-2.jpg" alt="" class="service-img">
+                </div>
                 <div class="service-detail">
                     <div class="service-name">SMS Alerts</div>
-                    <div class="service-desc">Rs. 750</div>
+                    <div class="service-desc">Get alerts via SMS about your appointments, clinic dates and many more</div>
                 </div>
             </div>
             <div class="service service-3">
                 <img src="" alt="" class="service-img">
                 <div class="service-detail">
                     <div class="service-name">Electronic Report Management</div>
-                    <div class="service-desc">Rs. 750</div>
+                    <div class="service-desc"></div>
                 </div>
             </div>
             <div class="service service-4">

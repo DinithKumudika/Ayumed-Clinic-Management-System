@@ -9,7 +9,34 @@
      <?php require APP_ROOT . '/views/layout/sidebar.php' ?>
      <div class="main-container">
           <?php require APP_ROOT . '/views/layout/navbar.php' ?>
-
+         <div id="modal" class="modal">
+             <div class="modal-content">
+                 <span class="close"><i class="fa-solid fa-xmark"></i></span>
+                 <h2>New Appointment</h2>
+                 <hr>
+                 <form action="" method="post" class="form appointment-form">
+                     <div class="form-group">
+                         <h5>Date</h5>
+                         <input type="date" id="input-date" name="date" class="form-input">
+                     </div>
+                     <p class="err" id="err-date"></p>
+                     <div class="form-group">
+                         <h5>Time</h5>
+                         <input type="time" id="input-time" name="time" min="09:00" max="18:00" class="form-input">
+                     </div>
+                     <p class="err" id="err-time"></p>
+                     <div class="form-group">
+                         <h5>Reason</h5>
+                         <textarea name="input-reason" id="input-reason" cols="30" rows="40"  placeholder="Medical reason"></textarea>
+                     </div>
+                     <p class="err" id="err-reason"></p>
+                     <div class="btn appointment-btn">
+                         <i class="fa-solid fa-check-double"></i>
+                         <span>Done</span>
+                     </div>
+                 </form>
+             </div>
+         </div>
           <div class="home-container">
               <?php require APP_ROOT . '/views/layout/modal.php' ?>
                <div class="btn-container">

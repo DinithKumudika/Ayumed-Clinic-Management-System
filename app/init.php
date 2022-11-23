@@ -7,6 +7,7 @@
      require_once 'helpers/Url.php';
      require_once 'helpers/Request.php';
      require_once 'helpers/Generate.php';
+     require_once 'helpers/Email.php';
 
      // Load all the core files
      require_once 'core/App.php';

@@ -43,14 +43,14 @@ class Email{
                if(file_exists($this->template)){
                     $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello ". $receiverName . ",</h1>" .file_get_contents($this->template). 
                     "<br>
-                    <h4 style='text-align: center;'>The verification code is : <b>${$OTPCode}<b></h4>";
+                    <h4 style='text-align: center;'>The verification code is : <b>" . $OTPCode ."<b></h4>";
                }
                else{
                     $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello ". $receiverName . ",</h1>
                     <h2 style='color: #19A627;'>Welcome To Ayumed</h2>
                     <h4>Before using our service there is one more little thing to do. Please use the below OTP to verify your account.</h4>
                     <h3 style='color: #19A627;'>Thank You!</h3>
-                    <h4 style='text-align: center;'>The verification code is : <b>${$OTPCode}<b></h4>";
+                    <h4 style='text-align: center;'>The verification code is : <b>" .$OTPCode. "<b></h4>";
                }
                $this->mail->send();
           }
