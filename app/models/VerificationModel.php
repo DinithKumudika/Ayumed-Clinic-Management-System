@@ -24,11 +24,11 @@ class VerificationModel extends Database{
      }
 
      public function verify($patient_id){
-          $sql = "UPDATE `tbl_patients` SET `otp_code` = :otp AND `verification_status` = :status WHERE `id` = :id";
+          $sql = "UPDATE `tbl_patients` SET `verification_status` = :status, `otp_code` = :otp WHERE `id` = :id";
           $this->prepare($sql);
           $params = [
-               'otp'=>'NULL',
                'status'=>1,
+                'otp'=>NULL,
                'id'=>$patient_id
           ];
 
