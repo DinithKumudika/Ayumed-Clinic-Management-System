@@ -1,5 +1,8 @@
 <?php
 
+use helpers\Session;
+use utils\Url;
+
 class Pharmacist extends BaseController{
 
      public function index(){

@@ -1,5 +1,8 @@
 <?php
-     require_once '../app/init.php';
+
+use helpers\Session;
+
+require_once '../app/init.php';
 
      /* composer autoload */
      require_once __DIR__ .'/../vendor/autoload.php';

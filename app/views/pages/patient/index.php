@@ -10,11 +10,11 @@
      <div class="main-container">
           <?php require APP_ROOT . '/views/layout/navbar.php' ?>
          <div id="modal" class="modal">
-             <div class="modal-content">
+             <div class="modal-content new-appoint-modal">
                  <span class="close"><i class="fa-solid fa-xmark"></i></span>
                  <h2>New Appointment</h2>
                  <hr>
-                 <form action="" method="post" class="form appointment-form">
+                 <form action="<?php echo URL_ROOT ?>/patient/index" method="post" class="form appointment-form" id="new-appoint-form">
                      <div class="form-group">
                          <h5>Date</h5>
                          <input type="date" id="input-date" name="date" class="form-input">
@@ -27,10 +27,10 @@
                      <p class="err" id="err-time"></p>
                      <div class="form-group">
                          <h5>Reason</h5>
-                         <textarea name="input-reason" id="input-reason" cols="30" rows="40"  placeholder="Medical reason"></textarea>
+                         <textarea name="reason" id="input-reason" cols="30" rows="40"  placeholder="Medical reason"></textarea>
                      </div>
                      <p class="err" id="err-reason"></p>
-                     <div class="btn appointment-btn">
+                     <div class="btn appointment-btn" id="new-appoint-btn">
                          <i class="fa-solid fa-check-double"></i>
                          <span>Done</span>
                      </div>
@@ -77,6 +77,7 @@
                                    <th>Ref No</th>
                                    <th>Date</th>
                                    <th>Time</th>
+                                   <th>Status</th>
                               </tr>
                          </thead>
                          <tbody>
@@ -84,29 +85,34 @@
                                    <td data-label="Ref No">4567</td>
                                    <td data-label="Date">Dinesh</td>
                                    <td data-label="Time">34</td>
+                                   <td data-label="Status">Visited</td>
                               </tr>
 
                               <tr>
                                    <td data-label="Ref No">4568</td>
                                    <td data-label="Date">Kamal</td>
                                    <td data-label="Time">23</td>
+                                   <td data-label="Status">Not Visited</td>
                               </tr>
 
                               <tr>
                                    <td data-label="Ref No">4569</td>
                                    <td data-label="Date">Neha</td>
                                    <td data-label="Time">20</td>
+                                  <td data-label="Status">Visited</td>
                               </tr>
 
                               <tr>
                                    <td data-label="Ref No">4570</td>
                                    <td data-label="Date">Priya</td>
                                    <td data-label="Time">30</td>
+                                  <td data-label="Status">Visited</td>
                               </tr>
                               <tr>
                                    <td data-label="Ref No">4571</td>
                                    <td data-label="Date">Priya</td>
                                    <td data-label="Time">30</td>
+                                  <td data-label="Status">Not Visited</td>
                               </tr>
                          </tbody>
                     </table>
@@ -132,6 +138,8 @@
           sideNavItems[0].classList.add("active-item");
      </script>
      <?php require APP_ROOT . '/views/layout/footer.php' ?>
+     <script src="<?php echo URL_ROOT; ?>/js/Validate.js"></script>
+     <script src="<?php echo URL_ROOT; ?>/js/patient.js"></script>
 </body>
 
 </html>
