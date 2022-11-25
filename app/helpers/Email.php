@@ -1,8 +1,9 @@
 <?php
 // Email class interacting with PHPMailer to send email
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
+namespace helpers;
+
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class Email{
 

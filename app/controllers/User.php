@@ -1,4 +1,12 @@
 <?php
+
+use helpers\Crypto;
+use helpers\Session;
+use helpers\Email;
+use utils\Request;
+use utils\Generate;
+use utils\Url;
+
 class User extends BaseController{
 
      public $userModel;
@@ -132,7 +140,6 @@ class User extends BaseController{
                          $regNo = Generate::regNo($userId);
 
                          if($this->userModel->registerPatient($data, $age, $regNo, $OTPCode, $userId)){
-                             //TODO:fix email class not found
                              $email = new Email($data['email']);
                              $email->sendVerificationEmail($data['first_name'], $OTPCode);
                              // redirect to OTP verification view

@@ -1,5 +1,8 @@
 <?php
 
+use helpers\Session;
+use utils\Url;
+
 class Doctor extends BaseController{
 
      public function __construct()

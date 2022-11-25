@@ -2,25 +2,31 @@ const navigation = {
     "Patient" :{
         "home" : {
             "name" : "Home",
-            "icon" : "fa-home"
+            "icon" : "fa-home",
+            "link" : "patient/index"
         },
         "clinic_date" : {
             "name" : "Clinic Date",
-            "icon" : ""
+            "icon" : "",
+            "link" : "patient/clinic_dates"
         },
         "treatment_log" : {
             "name" : "Treatment Log",
-            "icon" : ""
+            "icon" : "",
+            "link" : "patient/treatment_log"
         },
         "prescription" : {
             "name" : "Prescription",
             "icon" : "",
+            "link" : "patient/prescription"
         },
         "recommendation" : {
             "name" : "Recommendation",
-            "icon" : ""
+            "icon" : "",
+            "link" : "patient/recommend"
         }
     },
+
     "Doctor" : {
         "home" : {
             "name" : "Home",
