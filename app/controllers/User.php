@@ -1,11 +1,12 @@
 <?php
 
-use helpers\Crypto;
 use helpers\Session;
 use helpers\Email;
+use utils\Crypto;
 use utils\Request;
 use utils\Generate;
 use utils\Url;
+use utils\Flash;
 
 class User extends BaseController{
 
@@ -94,7 +95,7 @@ class User extends BaseController{
      }
 
      public function login_patient(){
-          
+          $this->view('pages/patientLogin');
      }
 
      public function login_staff(){
@@ -181,7 +182,16 @@ class User extends BaseController{
 
                if($verifiedPatient){
                     if($this->verificationModel->verify($verifiedPatient->id)){
+                        // set verification successful flash message
+                        Flash::setFlash("verify","Your account has been verified",Flash::FLASH_SUCCESS);
+                        // redirect to the login of patient
                         Url::redirect('user/login_patient');
+                    }
+                    else{
+                        // set verification failed flash message
+                        Flash::setFlash("verify","Account verification failed!",Flash::FLASH_DANGER);
+                        // redirect to the signup of patient
+                        Url::redirect('user/register_patient');
                     }
                }
                else{

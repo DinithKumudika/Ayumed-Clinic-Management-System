@@ -1,6 +1,6 @@
 <?php
 
-namespace helpers;
+namespace utils;
 
 abstract class Crypto
 {
