@@ -1,12 +1,13 @@
 <?php
 
 namespace helpers;
+
 abstract class Session
 {
-    const FLASH_ERROR = 'error';
-    const FLASH_WARNING = 'warning';
-    const FLASH_INFO = 'info';
-    const FLASH_SUCCESS = 'success';
+    private static $flashError = "error";
+    private static $flashWarning = "warning";
+    private static $flashInfo = "info";
+    private static $flashSuccess = "success";
 
     // start session
     public static function init()
@@ -20,6 +21,7 @@ abstract class Session
         if (!empty($key) && !empty($value)) {
             $_SESSION[$key] = $value;
         }
+
     }
 
     // get a value of session variable
@@ -74,7 +76,7 @@ abstract class Session
                 }
                 $_SESSION[$name] = $message;
             } else if (empty($message) && !empty($_SESSION[$name])) {
-                echo '<div>' . $_SESSION[$name] . '</div>';
+                echo '<div class="flash">' . $_SESSION[$name] . '</div>';
                 unset($_SESSION[$name]);
             }
         }

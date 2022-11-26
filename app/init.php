@@ -12,6 +12,7 @@
     require_once 'utils/Request.php';
     require_once 'utils/Crypto.php';
     require_once 'utils/Generate.php';
+    require_once 'utils/Flash.php';
 
      // Load all the core files
     require_once 'core/App.php';
