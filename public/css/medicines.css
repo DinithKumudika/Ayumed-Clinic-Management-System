@@ -8,7 +8,7 @@ table{
   font-size: 20px;
   margin-top: 40px;
   color: black;
-  margin-left: 30px;
+  margin-left: 160px;
   width: 80%;
 }
 
@@ -173,6 +173,10 @@ hr{
   cursor: pointer;
   margin-left: 50px;
   border-radius: 5px 0px 0px 5px;
+}
+
+.searchbar{
+  height: 39px;
 }
 
 .fa-solid{

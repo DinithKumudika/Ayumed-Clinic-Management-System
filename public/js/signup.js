@@ -30,6 +30,7 @@ const usernameInput = document.getElementById('input-uname');
 const passwordInput = document.getElementById('input-pwd');
 const repeatPasswordInput = document.getElementById('input-pwd-repeat');
 
+
 // error elements
 const firstNameErr = document.getElementById('err-fname');
 const lastNameErr = document.getElementById('err-lname');

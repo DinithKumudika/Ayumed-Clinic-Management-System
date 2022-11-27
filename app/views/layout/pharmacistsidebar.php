@@ -13,24 +13,18 @@
                     </a>
                </li>
                <li class="side-nav-item">
-                    <a href="#" title="Prescription">
+                    <a href="#" title="Orders">
                          <span class="nav-item-icon"><i class="fa-solid fa-file-lines"></i></span>
-                         <span class="nav-item-text">Prescription</span>
+                         <span class="nav-item-text">Orders</span>
                     </a>
                </li>
                <li class="side-nav-item">
-                    <a href="#" title="Appointment">
-                         <span class="nav-item-icon"><i class="fa-solid fa-address-card"></i></i></i></span>
-                         <span class="nav-item-text">Appointment</span>
+                    <a href="#" title="Medicines">
+                         <span class="nav-item-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></span>
+                         <span class="nav-item-text">Medicines</span>
                     </a>
                </li>
-               <li class="side-nav-item">
-                    <a href="#" title="Recommendation">
-                         <span class="nav-item-icon"><i class="fa-solid fa-user-pen"></i></span>
-                         <span class="nav-item-text">Recommendation</span>
-                    </a>
-               </li>
-               <form action="<?php echo URL_ROOT ?>/user/logout" method="post" id="logout">
+               <form action="<?php echo URL_ROOT ?>/user/logout_pharm" method="post" id="logout">
                <li class="side-nav-item" id="logout-btn">
                     <a href="#" title="Log out">
                          <span class="nav-item-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
@@ -41,4 +35,3 @@
           </ul>
      </div>
      <script src="sidebar.js"></script>
-     

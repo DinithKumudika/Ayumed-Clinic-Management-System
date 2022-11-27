@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2022 at 09:57 AM
+-- Generation Time: Nov 21, 2022 at 11:25 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -20,6 +20,56 @@ SET time_zone = "+00:00";
 --
 -- Database: `ayumed_clinic_mgt_system`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_allergy`
+--
+
+CREATE TABLE `tbl_allergy` (
+  `allergy` varchar(255) NOT NULL,
+  `patient_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_appointments`
+--
+
+CREATE TABLE `tbl_appointments` (
+  `appointment_id` int(11) NOT NULL,
+  `ref_no` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `status` tinyint(1) NOT NULL COMMENT 'visited = 1,\r\nnot visited= 0',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `patient_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_patients`
+--
+
+CREATE TABLE `tbl_patients` (
+  `id` int(11) NOT NULL,
+  `NIC` varchar(12) NOT NULL,
+  `DOB` date NOT NULL,
+  `age` int(11) NOT NULL,
+  `gender` varchar(6) NOT NULL,
+  `phone_no` int(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `martial_status` varchar(20) NOT NULL,
+  `weight` double(5,2) DEFAULT NULL COMMENT 'in kg',
+  `height` double(6,2) DEFAULT NULL COMMENT 'in cm',
+  `blood_group` varchar(2) DEFAULT NULL,
+  `reg_no` varchar(255) NOT NULL,
+  `otp_code` int(11) DEFAULT NULL,
+  `verification_status` tinyint(1) NOT NULL COMMENT '1= verified\r\n0 = not verified'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -52,7 +102,8 @@ INSERT INTO `tbl_roles` (`role_id`, `role_name`, `description`) VALUES
 
 CREATE TABLE `tbl_users` (
   `user_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -64,12 +115,32 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`user_id`, `name`, `email`, `username`, `password`, `created_at`, `role_id`) VALUES
-(1, 'L.H.S Umayangani', 'umayangani@gmail.com', 'umayangani123', 'umayangani@123a', '2022-11-03 08:56:38', 2);
+INSERT INTO `tbl_users` (`user_id`, `first_name`, `last_name`, `email`, `username`, `password`, `created_at`, `role_id`) VALUES
+(4, 'john', 'doe', 'john123@gmail.com', 'johnD123', 'John123', '2022-11-17 15:19:33', 2);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tbl_allergy`
+--
+ALTER TABLE `tbl_allergy`
+  ADD PRIMARY KEY (`allergy`,`patient_id`),
+  ADD KEY `patient_allergy` (`patient_id`);
+
+--
+-- Indexes for table `tbl_appointments`
+--
+ALTER TABLE `tbl_appointments`
+  ADD PRIMARY KEY (`appointment_id`),
+  ADD KEY `patient-appointment` (`patient_id`);
+
+--
+-- Indexes for table `tbl_patients`
+--
+ALTER TABLE `tbl_patients`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_roles`
@@ -89,6 +160,18 @@ ALTER TABLE `tbl_users`
 --
 
 --
+-- AUTO_INCREMENT for table `tbl_appointments`
+--
+ALTER TABLE `tbl_appointments`
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_patients`
+--
+ALTER TABLE `tbl_patients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tbl_roles`
 --
 ALTER TABLE `tbl_roles`
@@ -98,11 +181,29 @@ ALTER TABLE `tbl_roles`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tbl_allergy`
+--
+ALTER TABLE `tbl_allergy`
+  ADD CONSTRAINT `patient_allergy` FOREIGN KEY (`patient_id`) REFERENCES `tbl_patients` (`id`);
+
+--
+-- Constraints for table `tbl_appointments`
+--
+ALTER TABLE `tbl_appointments`
+  ADD CONSTRAINT `patient-appointment` FOREIGN KEY (`patient_id`) REFERENCES `tbl_patients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_patients`
+--
+ALTER TABLE `tbl_patients`
+  ADD CONSTRAINT `patient id` FOREIGN KEY (`id`) REFERENCES `tbl_users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_users`

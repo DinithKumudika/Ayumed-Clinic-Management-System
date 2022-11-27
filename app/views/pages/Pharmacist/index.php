@@ -3,7 +3,7 @@
      <?php require APP_ROOT . '/views/layout/header.php' ?>
      <title>Pharmacist Home</title>
 <body>
-     <?php require APP_ROOT . '/views/layout/sidebar.php' ?>
+     <?php require APP_ROOT . '/views/layout/pharmacistsidebar.php' ?>
      <div class="main-container">
           <h1>This is the Home Page of the pharmacist</h1>
      </div>

@@ -21,15 +21,15 @@ body {
   width:752px;
   height:791px;
   float: left; 
-  margin:-30px 0px 0px -120px;
+  margin:-30px 0px 0px -20px;
 } 
 
 .form-container{
   width:500px;
-  height:580px;
+  height:560px;
   float: right;
   padding: 10px 10px 10px 10px;
-  margin: 10px 125px 0px 60px;  
+  margin: 3px 25px 0px 60px;  
   border-radius: 10px;
   text-align: center;
   align-items: center;
@@ -142,7 +142,7 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin-left: 25%;
+  margin-left: 80px;
 }
 /* 
 .grid-row {

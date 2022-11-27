@@ -103,35 +103,16 @@ class UserModel extends Database{
      }
 
      public function registerPharmacist(){
-          $sql = "INSERT INTO `tbl_patients`(`NIC`,`DOB`,`age`,`gender`,`phone_no`,`address`,`martial_status`,`reg_no`, 
-          `otp_code`, `verification_status`) 
+          $sql = "INSERT INTO `tbl_pharmasits`(`Phone_No`) 
           VALUES (
-               :nic,
-               :dob,
-               :age,
-               :gender,
-               :phone_no,
-               :address,
-               :martial_status,
-               :reg_no,
-               :otp_code,
-               :verification_status
+               :Phone_No
           )";
 
           $this->prepare($sql);
 
           $params = [
-               'nic'=>$data['nic'],
-               'dob'=>$data['dob'],
-               'age'=> $age,
-               'gender'=>$data['gender'],
                'phone_no'=>$data['phone'],
-               'address'=>$data['address'],
-               'martial_status'=>$data['martial-status'],
-               'reg_no'=> $regNo,
-               'otp_code'=>$code,
-               'verification_status'=>false
-];
+          ];
      }
 
      public function verifyRegistration(){

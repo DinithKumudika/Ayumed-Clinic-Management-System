@@ -155,7 +155,6 @@ class User extends BaseController{
      }
 
      public function createUserSession($user){
-          Session::init();
           Session::set('user_id',$user->user_id);
           Session::set('username',$user->username);
           Session::set('role_id',$user->role_id);
@@ -185,15 +184,15 @@ class User extends BaseController{
                }
                else{
                     $data['password'] = Crypto::createHash($data['password']);
-                    if($this->userModel->register($data, 1)){
-                         $age = Generate::age($data['dob']);
-                         $OTPCode = Generate::verificationCode($data['email']);
+                    // if($this->userModel->register($data, 1)){
+                         // $age = Generate::age($data['dob']);
+                         // $OTPCode = Generate::verificationCode($data['email']);
 
-                         $userId = $this->userModel->getUserId(1);
-                         $regNo = Generate::regNo($userId);
-                         $this->userModel->registerPharmacist($data, $age, $regNo, $OTPCode);
-                         Url::redirect('user/verify');
-                    }
+                         // $userId = $this->userModel->getUserId(1);
+                         // $regNo = Generate::regNo($userId);
+                         // $this->userModel->registerPharmacist($data, $age, $regNo, $OTPCode);
+                         // Url::redirect('user/verify');
+                    // }
                }
           }
           else{
@@ -220,6 +219,17 @@ class User extends BaseController{
                Url::redirect('user/login_doctor');
           } 
      }
+
+     public function logout_pharm(){
+          if(Request::isPost()){
+               Session::unset('user_id');
+               Session::unset('username');
+               Session::unset('role_id');
+               Session::destroy();
+               Url::redirect('user/login_pharm');
+          } 
+     }
+
 
      public function verify(){
           $this->view('pages/signupVerification');

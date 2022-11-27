@@ -8,5 +8,6 @@
      $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
      $dotenv->load();
 
+     Session::init();
      /* initialize app class */
      $app = new App();
