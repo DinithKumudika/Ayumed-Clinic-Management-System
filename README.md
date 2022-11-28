@@ -40,6 +40,7 @@ Bacnkend Language : `PHP`
 
 ## Libraries
 
+### PHP
 
 [PHP dotenv](https://github.com/vlucas/phpdotenv)
 <br>
@@ -47,6 +48,10 @@ Bacnkend Language : `PHP`
 <br>
 [PHPMailer](https://github.com/PHPMailer/PHPMailer)
 
+### JavaScript
+
+[SweetAlert2](https://sweetalert2.github.io/)
+<br>
 
 ## Getting Started
 
