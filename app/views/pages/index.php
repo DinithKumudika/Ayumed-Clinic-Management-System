@@ -60,33 +60,51 @@
                 </div>
             </div>
             <div class="service service-3">
-                <img src="" alt="" class="service-img">
+                <img src="<?php echo URL_ROOT ?>/images/service-3.jpg" alt="" class="service-img">
                 <div class="service-detail">
                     <div class="service-name">Electronic Report Management</div>
-                    <div class="service-desc"></div>
+                    <div class="service-desc">Manage your health records electronically using our clinic management system</div>
                 </div>
             </div>
             <div class="service service-4">
-                <img src="" alt="" class="service-img">
+                <img src="<?php echo URL_ROOT ?>/images/service-4.jpg" alt="" class="service-img">
                 <div class="service-detail">
-                    <div class="service-name">Cafe Latte</div>
-                    <div class="service-desc">Rs. 850</div>
+                    <div class="service-name"></div>
+                    <div class="service-desc"></div>
                 </div>
             </div>
         </div>
     </div>
     <div class="section about" id="about">
-        <div class="section-title">Our Menu</div>
+        <div class="section-title">About</div>
         <div class="h-line"></div>
         <div class="wrapper">
-
+            <div class="doc-img-frame">
+                <div class="img-outline"></div>
+                <div class="doctor-image">
+                    <img src="<?php echo URL_ROOT ?>/images/doctor.jpg" alt="" class="img-doctor">
+                </div>
+            </div>
+            <div class="doctor-details">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dapibus urna a enim ultricies lacinia. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dapibus urna a enim ultricies lacinia. Nulla facilisi.</p>
+            </div>
         </div>
     </div>
-    <div class="section testimonials" id="location">
-        <div class="section-title">Our Testimonials</div>
+    <div class="section location" id="location">
+        <div class="section-title">Location</div>
         <div class="h-line"></div>
         <div class="wrapper">
-
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7921.655869073303!2d79.888675!3d6.911167!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8d59cfd3fff76041!2sNational%20Ayurvedic%20Teaching%20Hospital%20-%20Borella!5e0!3m2!1sen!2slk!4v1669479085386!5m2!1sen!2slk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="address">
+                <div>
+                    <h3>Address</h3>
+                    <h5>No.325,</h5>
+                    <h5>Dr.N.M.Perera Mawatha,</h5>
+                    <h5>Colombo 08</h5>
+                </div>
+            </div>
         </div>
     </div>
     <div class="section contact" id="contact">
@@ -151,14 +169,14 @@
             <div class="footer-col">
                 <h4>Follow us</h4>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
-        <p class="copyright">&copy;2022 - Hela Chai | All Rights Reserved | Developed by Dinith Kumudika</p>
+        <p class="copyright">&copy;2022 - Ayumed | All Rights Reserved | Developed by Group 17 - IS</p>
     </div>
 </footer>
      <?php require APP_ROOT . '/views/layout/footer.php' ?>

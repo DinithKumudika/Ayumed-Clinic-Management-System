@@ -25,18 +25,6 @@ abstract class Request{
                $_POST[$key] = strip_tags($value);
           }
      }
-     
-     // public static function inputPost($input){
-     //      if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-     //           return trim(strip_tags($_POST[$input]));
-     //      }   
-     // }
-     
-     // public static function inputGet($input){
-     //      if($_SERVER['REQUEST_METHOD'] == "GET" || $_SERVER['REQUEST_METHOD'] == "get"){
-     //           return trim(strip_tags($_GET[$input]));
-     //      }
-     // }
 }
 
 

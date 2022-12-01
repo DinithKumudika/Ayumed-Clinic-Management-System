@@ -39,8 +39,6 @@ abstract class Flash
         unset($_SESSION[self::FLASH][$key]);
 
         // display flash message
-        //return "<div class='flash flash-". $flash_message['type'] ."'>". $flash_message['message'] ."</div>";
-
         return "<script type='text/javascript'>
             Swal.fire({
                 position: 'top-end',

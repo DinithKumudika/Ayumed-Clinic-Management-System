@@ -77,6 +77,14 @@ body{
      color: var(--danger);
 }
 
+.err-fill {
+     color: var(--light);
+     background-color: var(--danger);
+     font-size: 20px;
+     padding: 5px 10px;
+     text-align: center;
+}
+
 /* login options page styles */
 
 .ayumed-logo img{

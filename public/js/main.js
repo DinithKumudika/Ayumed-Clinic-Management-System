@@ -26,18 +26,17 @@ if(`serviceWorker` in navigator){
      })
 }
 
-
+// modal
 const modal = document.getElementById("modal");
-const btn = document.getElementById("myBtn");
+const openModalBtn = document.querySelector(".modal-active");
 const span = document.getElementsByClassName("close")[0];
 
-btn.addEventListener('click',function (){
+openModalBtn.addEventListener('click',function (){
      modal.style.display = "block";
 });
 
 span.addEventListener('click',function () {
      modal.style.display = "none";
-     location.reload();
 });
 
 window.addEventListener('click',function (e) {
@@ -45,4 +44,23 @@ window.addEventListener('click',function (e) {
           modal.style.display = "none";
      }
 });
+
+
+function sendXHR(method, url){
+     // initialize XMLHttpRequest object
+     const xhr = new XMLHttpRequest();
+
+     // establish connection with the server
+     xhr.open(method, url);
+
+     // callback
+     xhr.onreadystatechange = function () {
+          if(this.readyState === 4 && this.status === 200){
+
+          }
+     }
+
+     // send request
+     xhr.send();
+}
 

@@ -30,24 +30,24 @@ class User extends BaseController{
      public function login_doctor(){
 
           if(Request::isPost()){
-               //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
-               Request::removeTags();
 
+               Request::removeTags();
                $data = [
                     'username'=>trim($_POST['username']),
                     'password'=>trim($_POST['password']),
                     'error'=> ''
                ];
 
-               $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
+              $isValidUser = $this->userModel->login($data['username'], $data['password']);
 
-               if($userLoggedIn){
-                    $this->createUserSession($userLoggedIn);
-                    Url::redirect('Doctor/index');  
-               }
-               else{
-                    $data['error'] = "invalid username or password";    
-               }
+              if($isValidUser){
+                  $userLoggedIn = $this->userModel->getUser($data['username']);
+                  $this->createUserSession($userLoggedIn);
+                  Url::redirect('doctor/index');
+              }
+              else{
+                  $data['error'] = "invalid username or password";
+              }
           }
           else{
                $data = [
@@ -95,7 +95,39 @@ class User extends BaseController{
      }
 
      public function login_patient(){
-          $this->view('pages/patientLogin');
+
+         if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+
+             filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
+
+             $data = [
+                 'username'=>trim($_POST['userName']),
+                 'password'=>trim($_POST['password']),
+                 'error'=> ''
+             ];
+
+             if(!empty($data['username']) && !empty($data['password'])){
+                 $isValidUser = $this->userModel->login($data['username'], $data['password']);
+
+                 if($isValidUser){
+                     $userLoggedIn = $this->userModel->getUser($data['username']);
+                     $this->createUserSession($userLoggedIn);
+                     Url::redirect('patient/index');
+                 }
+                 else{
+                     $data['error'] = "invalid username or password";
+                 }
+             }
+         }
+         else{
+             $data = [
+                 'username'=>'',
+                 'password'=>'',
+                 'error'=> ''
+             ];
+         }
+
+         $this->view('pages/patientLogin', $data);
      }
 
      public function login_staff(){
@@ -213,13 +245,14 @@ class User extends BaseController{
           Session::set('username',$user->username);
           Session::set('role_id',$user->role_id);
      }
-
+     //TODO: fix not redirecting to login page
      public function logout($role_id){
           if(Request::isPost()){
+               Flash::setFlash("logout","Logout success!",Flash::FLASH_INFO);
+
                Session::unset('user_id');
                Session::unset('username');
                Session::unset('role_id');
-               Session::destroy();
 
                switch ($role_id) {
                     case 1:

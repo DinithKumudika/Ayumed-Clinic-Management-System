@@ -9,16 +9,16 @@ class PatientModel extends Database
         $this->db = Database::connect();
     }
 
-    private function getPatientId($userId){
-        $sql = "SELECT `id` FROM `tbl_patients` WHERE `user_id` = : id";
+    public function getPatientId($userId){
+        $sql = "SELECT * FROM `tbl_patients` WHERE `user_id` = :id";
         $this->prepare($sql);
         $params = [
             'id'=>$userId
         ];
-        $patientId = $this->result($params);
+        $row = $this->result($params);
 
         if($this->rowCount()>0){
-            return $patientId;
+            return $row->id;
         }
         else{
             return false;
