@@ -1,4 +1,5 @@
 <?php
+use utils\Crypto;
 
 class UserModel extends Database{
      private $db;
@@ -9,21 +10,27 @@ class UserModel extends Database{
      }
 
      public function login($username, $password){
-          $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user AND `password` = :pass";
-          
-          $this->prepare($sql);
-          $params = [
-               'user'=>$username,
-               'pass'=>$password
-          ];
-          $user = $this->result($params);
+         if($this->isUserExists($username)){
+             $sql = "SELECT `password` FROM `tbl_users` WHERE `username` = :user";
 
-          if($this->rowCount()>0){
-               return $user;
-          }
-          else{
-               return false;
-          }
+             $this->prepare($sql);
+
+             $params = [
+                 'user'=>$username,
+             ];
+
+             $row = $this->result($params);
+
+             if(Crypto::verifyHash($row->password, $password)){
+                 return true;
+             }
+             else{
+                 return false;
+             }
+         }
+         else {
+             return false;
+         }
      }
 
      public function register($data, $roleId){
@@ -54,6 +61,25 @@ class UserModel extends Database{
           else{
               return  false;
           }
+     }
+
+     public function getUser($username){
+         $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
+
+         $this->prepare($sql);
+
+         $params = [
+             'user'=>$username,
+         ];
+
+         $user = $this->result($params);
+
+         if($this->rowCount()>0){
+             return $user;
+         }
+         else{
+             return false;
+         }
      }
 
      public function isUserExists($username){

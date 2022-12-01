@@ -14,9 +14,16 @@ const bannerBtn2 = document.getElementById("banner-btn-login");
 
 
 document.addEventListener('scroll', function(){
-    nav.style.backgroundColor = "green";
+    nav.style.backgroundColor = "var(--light)";
+    nav.style.boxShadow = "0px 3px 15px -3px rgba(0,0,0,0.75)";
     navLinks.forEach(function (navLink){
-        navLink.style.color = "var(--light)";
+        navLink.style.color = "var(--dark)";
+        navLink.addEventListener('mouseenter',function () {
+            navLink.style.color = "var(--green)";
+        });
+        navLink.addEventListener('mouseleave',function () {
+            navLink.style.color = "var(--dark)";
+        });
     })
 });
 

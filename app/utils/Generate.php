@@ -2,6 +2,9 @@
 namespace utils;
 	abstract class Generate{
 
+        public const TIME_FORMAT_24 = "24";
+        public const TIME_FORMAT_12 = "12";
+
 		// generate current date
 		public static function currentDate(){
 			date_default_timezone_set('Asia/Colombo');
@@ -17,6 +20,17 @@ namespace utils;
         public static function currentDateTime(){
             date_default_timezone_set('Asia/Colombo');
             return date("Y-m-d H:i:s");
+        }
+
+        // change time format (12 hours/ 24 hours)
+        public static function changeTimeFormat($time, $format){
+            date_default_timezone_set('Asia/Colombo');
+            if($format == self::TIME_FORMAT_12){
+                return date("g:i a", strtotime($time));
+            }
+            else if($format == self::TIME_FORMAT_24){
+                return date("G:i", strtotime($time));
+            }
         }
 
 		// generate patient registration number
@@ -44,6 +58,8 @@ namespace utils;
         // create appointment no
         public static function refNo($patientId){
             $today = self::currentDate();
-            return $today . "-" . $patientId;
+            $time = self::currentTime();
+            $arr = explode(":", $time);
+            return $today . "-" . $arr[0] . $arr[1] . $patientId;
         }
 	}

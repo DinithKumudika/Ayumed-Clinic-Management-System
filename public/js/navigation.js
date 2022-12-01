@@ -1,52 +1,62 @@
 const navigation = {
-    "Patient" :{
-        "home" : {
-            "name" : "Home",
-            "icon" : "fa-home",
-            "link" : "patient/index"
+    Patient :{
+        home : {
+            text : "Home",
+            icon : "fa-house",
+            link : "patient/index"
         },
-        "clinic_date" : {
-            "name" : "Clinic Date",
-            "icon" : "",
-            "link" : "patient/clinic_dates"
+        clinic_date : {
+            text : "Clinic date",
+            icon : "fa-calendar-plus",
+            link : "patient/clinic_dates"
         },
-        "treatment_log" : {
-            "name" : "Treatment Log",
-            "icon" : "",
-            "link" : "patient/treatment_log"
+        treatment_log : {
+            text : "Treatment Log",
+            icon : "fa-book-medical",
+            link : "patient/treatment_log"
         },
-        "prescription" : {
-            "name" : "Prescription",
-            "icon" : "",
-            "link" : "patient/prescription"
+        prescription : {
+            text : "Prescription",
+            icon : "fa-notes-medical",
+            link : "patient/prescription"
         },
-        "recommendation" : {
-            "name" : "Recommendation",
-            "icon" : "",
-            "link" : "patient/recommend"
+        recommendation : {
+            text : "Recommendation",
+            icon : "fa-user-pen",
+            link : "patient/recommend"
         }
     },
 
-    "Doctor" : {
-        "home" : {
-            "name" : "Home",
-            "icon" : "fa-home"
+    Doctor : {
+        home : {
+            text : "Home",
+            icon : "fa-home"
         },
-        "prescription" : {
-            "name" : "Prescription",
-            "icon" : ""
+        prescription : {
+            text : "Prescription",
+            icon : ""
         },
-        "appointment" : {
-            "name" : "Appointment",
-            "icon" : ""
+        appointment : {
+            text : "Appointment",
+            icon : ""
         },
-        "clinic_date" : {
-            "name" : "Clinic Date",
-            "icon" : ""
+        clinic_date : {
+            text : "Clinic Date",
+            icon : ""
         },
-        "recommendation" : {
-            "name" : "Recommendation",
-            "icon" : ""
+        recommendation : {
+            text : "Recommendation",
+            icon : "fa-user-doctor-message"
         }
     }
+}
+
+const patientNav = navigation.Patient;
+const doctorNav = navigation.Doctor;
+
+// set side navbar items
+function setNavItem(element, link, icon, text){
+    element.href = "<?php echo URL_ROOT?>/" + link;
+    element.querySelector(".nav-item-icon i").classList.add(icon);
+    element.querySelector(".nav-item-text").innerHTML = text;
 }

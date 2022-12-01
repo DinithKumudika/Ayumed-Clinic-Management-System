@@ -59,12 +59,6 @@ body{
      margin-bottom: 25px;
 }
 
-.side-nav-container .side-nav-list .side-nav-item:last-child{
-     position: absolute;
-     width: 53%;
-     bottom: 0;
-}
-
 .side-nav-container .side-nav-list .side-nav-item a{
      display: flex;
      align-items: center;
@@ -109,7 +103,7 @@ body{
 .side-nav-container .side-nav-list .side-nav-item a .nav-item-text{
      font-size: 20px;
      margin-left: 10px;
-     opacity: 0;
+     display: none;
      pointer-events: none;
      transition: all  0.5s ease-in-out;
 }
@@ -139,13 +133,9 @@ body{
 }
 
 .side-nav-container.active .side-nav-list .side-nav-item a .nav-item-text{
-     opacity: 1;
+     display: inline-block;
      pointer-events: auto;
      transition: none;
-}
-
-.side-nav-container.active .side-nav-list .side-nav-item:last-child{
-     width: 87.5%;
 }
 
 .side-nav-container.active ~ .main-container{

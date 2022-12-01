@@ -4,10 +4,6 @@ namespace helpers;
 
 abstract class Session
 {
-    private static $flashError = "error";
-    private static $flashWarning = "warning";
-    private static $flashInfo = "info";
-    private static $flashSuccess = "success";
 
     // start session
     public static function init()
@@ -64,21 +60,5 @@ abstract class Session
     public static function destroy()
     {
         session_destroy();
-    }
-
-    // show flash messages
-    public static function flash($name = '', $message = '')
-    {
-        if (!empty($name)) {
-            if (!empty($message) && empty($_SESSION[$name])) {
-                if (!empty($_SESSION[$name])) {
-                    unset($_SESSION[$name]);
-                }
-                $_SESSION[$name] = $message;
-            } else if (empty($message) && !empty($_SESSION[$name])) {
-                echo '<div class="flash">' . $_SESSION[$name] . '</div>';
-                unset($_SESSION[$name]);
-            }
-        }
     }
 }
