@@ -1,21 +1,15 @@
 <?php
-use helpers\Session;
-use utils\Url;
 
 class Medicine extends BaseController{
-     // public $medicineModel;
-
-     public function __construct(){
-     }
- 
+     public $medicineModel;
 
      public function index(){
-          $this->view('pages/pharmacist/index');
+          $this->view('pages/pharmacist/medicines');
      }
 
-     // public function add(){
-     //      $this->view('pages/pharmacist/addMedicines');
-     // }
+     public function add(){
+          $this->view('pages/pharmacist/addMedicines');
+     }
 
      public function error(){
           $this->view('404');

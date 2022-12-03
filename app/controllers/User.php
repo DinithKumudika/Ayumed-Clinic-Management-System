@@ -1,22 +1,12 @@
 <?php
-use helpers\Session;
-use helpers\Email;
-use utils\Crypto;
-use utils\Request;
-use utils\Generate;
-use utils\Url;
-use utils\Flash;
 
 class User extends BaseController{
 
      public $userModel;
-     public $verificationModel;
-
 
      public function __construct()
      {
           $this->userModel = $this->model('UserModel');
-          $this->verificationModel = $this->model('VerificationModel');
      }
 
      public function login(){
@@ -39,28 +29,28 @@ class User extends BaseController{
                     'error'=> ''
                ];
 
-               $isValidUser = $this->userModel->login($data['username'], $data['password']);
+               $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
 
-               if($isValidUser){
-                   $userLoggedIn = $this->userModel->getUser($data['username']);
-                   $this->createUserSession($userLoggedIn);
-                   Url::redirect('doctor/index');
+               if($userLoggedIn){
+                    $this->createUserSession($userLoggedIn);
+                    Url::redirect('Doctor/index');  
                }
                else{
-                   $data['error'] = "invalid username or password";
+                    $data['error'] = "invalid username or password";
+                         
                }
-           }
-           else{
-                $data = [
-                     'username'=>'',
-                     'password'=>'',
-                     'error'=> ''
-                ];
-           }
- 
-           $this->view('pages/doctorLogin', $data); 
-      }
-      
+          }
+          else{
+               $data = [
+                    'username'=>'',
+                    'password'=>'',
+                    'error'=> ''
+               ];
+          }
+
+          $this->view('pages/doctorLogin', $data); 
+     }
+
      public function login_pharm(){
           if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
                
