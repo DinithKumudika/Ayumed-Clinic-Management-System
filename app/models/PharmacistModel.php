@@ -19,4 +19,20 @@ class PharmacistModel extends Database{
      public function deletemedicine(){
           
      }
+
+     public function getPatientId($userId){
+          $sql = "SELECT * FROM `tbl_pharmacists` WHERE `user_id` = :id";
+          $this->prepare($sql);
+          $params = [
+              'id'=>$userId
+          ];
+          $row = $this->result($params);
+  
+          if($this->rowCount()>0){
+              return $row->id;
+          }
+          else{
+              return false;
+          }
+      }
 }

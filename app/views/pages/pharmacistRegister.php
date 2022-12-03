@@ -17,7 +17,7 @@
             <img src="../images/logo.png" alt="logo" class="logo">
             </div>
             <div>
-            <h1>Sign up</h1>
+            <h2>Create An Account</h2>
             <hr>
             <div>
             <input type="text" placeholder="First name" class="form-input" name="f-name" id="f-name">
@@ -45,12 +45,13 @@
             </div>
             <p class="err-reg" id="err-password"></p>
             <div>
-            <input type="password" placeholder="confirm password"  class="form-input" name="confirm_password"  id="confirm_password" />
+            <input type="password" placeholder="Confirm password"  class="form-input" name="confirm_password"  id="confirm_password" />
             <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd-repeat"></i>    
             </div>
             <p class="err-reg" id="err-confirmpassword"></p>
-
-            <input type="submit" value="Sign up" class="signup_button" name="signup" id="signup-btn">
+ 
+           <!-- <input type="submit" value="Sign up" class="signup_button" name="signup" id="signup-btn"> -->
+            <div class="signup_button" id="signup-btn">Register</div>
             </div>
            
         

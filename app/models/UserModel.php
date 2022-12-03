@@ -1,4 +1,5 @@
 <?php
+use utils\Crypto;
 
 class UserModel extends Database{
      private $db;
@@ -102,7 +103,7 @@ class UserModel extends Database{
           ];
      }
 
-     public function registerPharmacist(){
+     public function registerPharmacist($data, ){
           $sql = "INSERT INTO `tbl_pharmasits`(`Phone_No`) 
           VALUES (
                :Phone_No
@@ -111,7 +112,7 @@ class UserModel extends Database{
           $this->prepare($sql);
 
           $params = [
-               'phone_no'=>$data['phone'],
+               'Phone_No'=>$data['phone'],
           ];
      }
 
@@ -124,7 +125,24 @@ class UserModel extends Database{
 
      }
 
-     
+     public function getUser($username){
+          $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
+ 
+          $this->prepare($sql);
+ 
+          $params = [
+              'user'=>$username,
+          ];
+ 
+          $user = $this->result($params);
+ 
+          if($this->rowCount()>0){
+              return $user;
+          }
+          else{
+              return false;
+          }
+      }
 
      public function getUserId($role_id){
           $sql = "SELECT * FROM `tbl_users` WHERE `role_id` = :role_id ORDER BY `user_id` DESC LIMIT 1";

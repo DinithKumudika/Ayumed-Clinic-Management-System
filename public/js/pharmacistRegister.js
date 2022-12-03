@@ -31,8 +31,9 @@ function isFormValid() {
     const phoneNoValid = Validate.isPhoneNoValid(phoneNoInput, phoneErr);
     const usernameValid = Validate.isUsernameValid(usernameInput, usernameErr);
     const passwordValid = Validate.isPasswordValid(passwordInput, passwordErr);
+    const passwordMatch = Validate.isPasswordMatch(repeatPasswordInput, passwordInput, passwordRepeatErr);
 
-    if (!firstNameValid && !lastNameValid && !emailValid && !phoneNoValid && !usernameValid && !passwordValid) {
+    if (!firstNameValid && !lastNameValid && !emailValid && !phoneNoValid && !usernameValid && !passwordValid && !passwordMatch) {
          return false;
     }
     else if (!firstNameValid) {
@@ -49,6 +50,9 @@ function isFormValid() {
     }
     else if (!usernameValid) {
         return false;
+   }
+   else if (!passwordValid){
+     return false; 
    }
     else {
          return true;

@@ -7,13 +7,15 @@
      <link rel="stylesheet" href="medicines.css">
      <script src="https://kit.fontawesome.com/3a188ddf79.js" crossorigin="anonymous"></script>
      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+     <?php require APP_ROOT . '/views/layout/header.php' ?>
      <title>view medicine page</title>
 </head>
 
 <body>
+<?php require APP_ROOT . '/views/layout/pharmacistsidebar.php' ?>
      <div class="add-btn-container">
           <button class="add-btn btn">
-               <i class="fa-solid fa-plus"></i><a href="<?php echo URL_ROOT?>/user/addmedicine">Add Medicines</a>
+               <i class="fa-solid fa-plus"></i><a class="a-tag" href="<?php echo URL_ROOT?>/user/addmedicine">Add Medicines</a>
           </button>
      </div>
      <h2>Search Medicines</h2>
@@ -83,10 +85,10 @@
                     <td class="td-5">
                          <div class="btn-container">
                               <button class="edit-btn btn ">
-                                   <i class="fa-solid fa-pen-to-square"></i><a href="editmedicine.php">Update</a>
+                                   <i class="fa-solid fa-pen-to-square"></i><a class="a-tag" href="editmedicine.php">Update</a>
                               </button>
                               <button class="delete-btn btn">
-                                   <i class="fa-solid fa-trash-can"></i><a href="deletemedicine.php">Delete</a>
+                                   <i class="fa-solid fa-trash-can"></i><a class="a-tag" href="deletemedicine.php">Delete</a>
                               </button>
                          </div>
                     </td>
@@ -94,7 +96,7 @@
 
           </table>
      </div>
-
+     <?php require APP_ROOT . '/views/layout/footer.php' ?>   
      <script src="../public/js/medicines.js"></script>
 </body>
 

@@ -1,0 +1,134 @@
+body{
+    margin: 0;
+}
+
+/*.side_image{
+    width: 100%;
+
+}*/
+
+.leftSide {
+    float: left;
+    width: 30%;
+    box-sizing: border-box;
+    background-image: url("../images/side_image.svg");
+    background-position: center top;
+
+}
+
+.rightSide{
+    padding: 5% 5% 5% 10%;
+    float: right;
+    width: 70%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+.newUserGuide{
+    position: absolute;
+    right: 15%;
+    font-family:'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.newUserGuide a{
+    color: #19A627;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ayuLogo{
+    width: 8em;
+    height: 8em;
+}
+
+.login{
+    width: 15%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    position: absolute;
+    left: 23%;
+    top: 18%;
+}
+
+
+/*.logoBox, .headingBox{
+    float: left;
+}
+
+.clear{
+    float: none;
+}*/
+
+.formOuterGroup{
+    width: 50%;
+    border: solid 3px #19A627;
+    border-radius: 10px;
+    padding: 4% 8%;
+    position: relative;
+}
+
+.formInnerGroup{
+    padding-bottom: 4%;
+    padding-top: 4%;
+}
+
+.formOuterGroup .label1{
+    /*margin-left: 10%; */
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-right: 4%;
+}
+
+.formOuterGroup .label2{
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+#userName, #password{
+    padding: 2%;
+    border: solid 3px #19A627;
+    border-radius: 6px;
+    width: 60%;
+}
+
+#password{
+    margin-left: 1.5%;
+}
+
+.login_btn{
+    padding: 1% 3%;
+    border-radius: 15px;
+    border: 2px solid #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 90%;
+    background-color: #19A627;
+    font-weight: 500;
+    color: #fff;
+    width: 25%;
+}
+
+.login_btn:hover{
+    padding: 1% 3%;
+    border-radius: 15px;
+    border: 2px solid #19A627;
+    font-family: 'Poppins', sans-serif;
+    font-size: 90%;
+    background-color: #fff;
+    font-weight: 500;
+    color: #19A627;
+}
+
+.passwordGuide{
+    margin-top: 1%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #19A627;
+    position: absolute;
+    right: 10%;
+
+}
