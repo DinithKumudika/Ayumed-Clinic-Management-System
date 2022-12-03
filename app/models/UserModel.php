@@ -10,32 +10,38 @@ class UserModel extends Database{
      }
 
      public function login($username, $password){
-          $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user AND `password` = :pass";
-          
-          $this->prepare($sql);
-          $params = [
-               'user'=>$username,
-               'pass'=>$password
-          ];
-          $user = $this->result($params);
+         if($this->isUserExists($username)){
+             $sql = "SELECT `password` FROM `tbl_users` WHERE `username` = :user";
 
-          if($this->rowCount()>0){
-               return $user;
-          }
-          else{
-               return false;
-          }
+             $this->prepare($sql);
+
+             $params = [
+                 'user'=>$username,
+             ];
+
+             $row = $this->result($params);
+
+             if(Crypto::verifyHash($row->password, $password)){
+                 return true;
+             }
+             else{
+                 return false;
+             }
+         }
+         else {
+             return false;
+         }
      }
 
      public function register($data, $roleId){
           $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`role_id`) 
                     VALUES (
-                         :first_name, 
-                         :last_name,
-                         :email, 
-                         :username,
-                         :password, 
-                         :role_id
+                        :first_name, 
+                        :last_name, 
+                        :email, 
+                        :username, 
+                        :password, 
+                        :role_id
                     )";
 
           $this->prepare($sql);
@@ -49,10 +55,34 @@ class UserModel extends Database{
                'role_id'=>$roleId
           ];
 
-          return $this->execute($params);
+          if($this->execute($params)){
+              return true;
+          }
+          else{
+              return  false;
+          }
      }
 
-     public function isUserExists($username, $password){
+     public function getUser($username){
+         $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
+
+         $this->prepare($sql);
+
+         $params = [
+             'user'=>$username,
+         ];
+
+         $user = $this->result($params);
+
+         if($this->rowCount()>0){
+             return $user;
+         }
+         else{
+             return false;
+         }
+     }
+
+     public function isUserExists($username){
           $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
 
           $this->prepare($sql);
@@ -63,17 +93,17 @@ class UserModel extends Database{
 
           $user = $this->result($params);
 
-          if(Crypto::verifyHash($user->password, $password)){
-               return true;
+          if($this->rowCount()>0){
+             return true;
           }
           else{
-               return false;
+              return false;
           }
      }
 
-     public function registerPatient($data, $age, $regNo, $code){
+     public function registerPatient($data, $age, $regNo, $code, $user_id){
           $sql = "INSERT INTO `tbl_patients`(`NIC`,`DOB`,`age`,`gender`,`phone_no`,`address`,`martial_status`,`reg_no`, 
-                    `otp_code`, `verification_status`) 
+                    `otp_code`, `verification_status`, `user_id`) 
                     VALUES (
                          :nic,
                          :dob,
@@ -84,7 +114,8 @@ class UserModel extends Database{
                          :martial_status,
                          :reg_no,
                          :otp_code,
-                         :verification_status
+                         :verification_status,
+                         :user_id
                     )";
 
           $this->prepare($sql);
@@ -99,8 +130,16 @@ class UserModel extends Database{
                'martial_status'=>$data['martial-status'],
                'reg_no'=> $regNo,
                'otp_code'=>$code,
-               'verification_status'=>false
+               'verification_status'=>false,
+              'user_id'=>$user_id
           ];
+
+          if($this->execute($params)){
+            return true;
+        }
+        else{
+            return  false;
+        }
      }
 
      public function registerPharmacist($data, ){
@@ -153,6 +192,12 @@ class UserModel extends Database{
           ];
 
           $user = $this->result($params);
-          return $user->user_id;
+
+          if($this->rowCount()>0){
+              return $user->user_id;
+          }
+          else{
+              return  false;
+          }
      }
 }

@@ -2,8 +2,10 @@
 <html>
 
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <!-- <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/css/medicines.css"> -->
+    <script src="https://kit.fontawesome.com/3a188ddf79.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/style.css">
     <link rel="stylesheet" href="medicines.css">
     <title>add medicine page</title>
     <?php require APP_ROOT . '/views/layout/header.php' ?>
@@ -11,6 +13,11 @@
 
 <body>
 <?php require APP_ROOT . '/views/layout/pharmacistsidebar.php' ?>
+<div class="back-btn-container">
+          <button class="back-btn">
+          <i class="fa-solid fa-backward back-icon"></i></i><a class="back-link" href="<?php echo URL_ROOT?>/Pharmacist/index">Back</a>
+          </button> 
+     </div>
      <h2 class="add-h2">Add Medicines</h2>
      <hr>   
 <div class="form">

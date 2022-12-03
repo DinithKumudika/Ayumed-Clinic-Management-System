@@ -1,15 +1,20 @@
 <?php
      
      // Load config
-     require_once 'conf/config.php';
+    require_once 'conf/config.php';
 
-     // Load helper functions
-     require_once 'helpers/Url.php';
-     require_once 'helpers/Request.php';
+     // Load helper classes
+    require_once 'helpers/Session.php';
+    require_once 'helpers/Email.php';
+
+     // Load utility classes
+    require_once 'utils/Url.php';
+    require_once 'utils/Request.php';
+    require_once 'utils/Crypto.php';
+    require_once 'utils/Generate.php';
+    require_once 'utils/Flash.php';
 
      // Load all the core files
-     require_once 'core/App.php';
-     require_once 'core/BaseController.php';
-     require_once 'core/Database.php';
-     require_once 'core/Session.php';
-     require_once 'core/Crypto.php';
+    require_once 'core/App.php';
+    require_once 'core/BaseController.php';
+    require_once 'core/Database.php';

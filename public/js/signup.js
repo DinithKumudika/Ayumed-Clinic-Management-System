@@ -138,9 +138,6 @@ secondNextBtn.addEventListener('click', function () {
 signupBtn.addEventListener('click', function () {
      if (isThirdFormValid()) {
           signupForm.submit();
-          Swal.fire(
-               
-          );
      }
 });
 
@@ -220,6 +217,5 @@ function setCurrentDate() {
      dobInput.setAttribute("max", year + "-" + month + "-" + date);
 }
 
-//TODO: finish back end of patient registration
 //TODO: add margin top to errors for mobile view
 //TODO: fix nic validation

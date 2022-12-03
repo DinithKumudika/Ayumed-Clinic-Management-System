@@ -96,7 +96,7 @@ class Validate{
                this.success(inputField, messageEl);
                return true;
           }
-          else if(nic.length === 10 && !isNaN(nic.substr(0,9)) && isNaN(nic.substr(9,1).toUpperCase()) && ['X','Y'].includes(nic.substr(9,1).toUpperCase())){
+          else if(nic.length === 10 && !isNaN(nic.substring(0,9)) && isNaN(nic.substring(9,1).toUpperCase()) && ['X','Y'].includes(nic.substring(9,1).toUpperCase())){
                this.success(inputField, messageEl)
                return true;
           }
@@ -170,7 +170,7 @@ class Validate{
      static isUsernameValid(inputField, messageEl){
           /*
                validation rule:
-               must be between 8 to 30 characters
+               must be between 8 and 30 characters
                can only contain alphanumeric characters
            */
           const usernameRegex = /^[a-zA-Z][a-zA-Z0-9]{7,29}$/;
@@ -233,6 +233,39 @@ class Validate{
           else{
                this.success(inputField, messageEl);
                document.getElementById('show-pwd-repeat').style.color = '#28A745';
+               return true;
+          }
+     }
+
+     static isOTPValid(inputField, messageEl){
+          if(this.isRequired(inputField)){
+               this.error(inputField, messageEl, "*OTP is required");
+               return false;
+          }
+          else{
+               this.success(inputField, messageEl);
+               return true;
+          }
+     }
+
+     static isDateValid(inputField, messageEl){
+          if(this.isRequired(inputField)){
+               this.error(inputField, messageEl,"*Date is required");
+               return false;
+          }
+          else{
+               this.success(inputField, messageEl);
+               return true;
+          }
+     }
+
+     static isTimeValid(inputField, messageEl){
+          if(this.isRequired(inputField)){
+               this.error(inputField, messageEl,"*Time is required");
+               return false;
+          }
+          else{
+               this.success(inputField, messageEl);
                return true;
           }
      }

@@ -36,6 +36,7 @@ body{
      color: white;
      transform: translate(-50%);
      left: 50%;
+     cursor: pointer;
 }
 
 .side-nav-container .logo-container .logo img{
@@ -58,24 +59,32 @@ body{
      margin-bottom: 25px;
 }
 
-.side-nav-container .side-nav-list .side-nav-item:last-child{
-     position: absolute;
-     width: 53%;
-     bottom: 0;
-}
-
 .side-nav-container .side-nav-list .side-nav-item a{
      display: flex;
-     color: white;
      align-items: center;
      text-decoration: none;
      transition: all 0.3s ease-in-out;
      border-top-left-radius: 10px;
      border-bottom-left-radius: 10px;
      text-align: center;
-     background-color: green;
+
      margin-right: -15px;
      margin-left: -5px; 
+}
+
+.non-active-item{
+     color: white;
+     background-color: green;
+}
+
+.active-item{
+     color: green;
+     background-color: white;
+}
+
+.logout{
+     color: white;
+     background-color: green;
 }
 
 .side-nav-container .side-nav-list .side-nav-item a:hover{
@@ -94,7 +103,7 @@ body{
 .side-nav-container .side-nav-list .side-nav-item a .nav-item-text{
      font-size: 20px;
      margin-left: 10px;
-     opacity: 0;
+     display: none;
      pointer-events: none;
      transition: all  0.5s ease-in-out;
 }
@@ -106,6 +115,7 @@ body{
      width: calc(100% - 65px);
      left: 65px;
      transition: all  0.5s ease-in-out;
+     padding-left: 10px;
 }
 
 /* styles when side bar is active */
@@ -123,18 +133,21 @@ body{
 }
 
 .side-nav-container.active .side-nav-list .side-nav-item a .nav-item-text{
-     opacity: 1;
+     display: inline-block;
      pointer-events: auto;
      transition: none;
-}
-
-.side-nav-container.active .side-nav-list .side-nav-item:last-child{
-     width: 87.5%;
 }
 
 .side-nav-container.active ~ .main-container{
      width: calc(100% - 270px);
      left: 270px;
+}
+
+/* mobile phones */
+@media (max-width: 480px) {
+     .side-nav-container .logo-container .menu-btn{
+          display: none;
+     }
 }
 
 

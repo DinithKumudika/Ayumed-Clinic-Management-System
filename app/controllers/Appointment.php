@@ -23,4 +23,3 @@ class Appointment extends BaseController{
         $this->view('404');
     }
 }
-

@@ -1,8 +1,7 @@
 <?php require APP_ROOT . '/views/layout/header.php' ?>
-<title>Doctor SignUp</title>
+<title>SignUp</title>
 <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/signup.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <?php
@@ -132,9 +131,6 @@
                          </div>
                          <p class="err-signup" id="err-password-repeat"></p>
                          <p class="err-signup"><?php echo $data['error'] ?></p>
-                         <div class="form-group">
-                             <div class="g-recaptcha" data-siteky="<?php echo $_ENV['SITE_KEY']; ?>"></div>
-                         </div>
                          <div class="btn-group">
                               <div class="btn back-btn" id="btn-back-2">Back</div>
                               <div class="btn next-btn" id="btn-signup">Signup</div>

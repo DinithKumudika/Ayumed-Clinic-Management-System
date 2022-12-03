@@ -1,15 +1,25 @@
 <?php
 
+use helpers\Session;
+use helpers\Email;
+use utils\Crypto;
+use utils\Request;
+use utils\Generate;
+use utils\Url;
+use utils\Flash;
+
 class User extends BaseController{
 
      public $userModel;
+     public $verificationModel;
 
      public function __construct()
      {
           $this->userModel = $this->model('UserModel');
+          $this->verificationModel = $this->model('VerificationModel');
      }
 
-     public function login(){
+     public function index(){
           $this->view('pages/login');
      }
 
@@ -20,25 +30,24 @@ class User extends BaseController{
      public function login_doctor(){
 
           if(Request::isPost()){
-               //filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
-               Request::removeTags();
 
+               Request::removeTags();
                $data = [
                     'username'=>trim($_POST['username']),
                     'password'=>trim($_POST['password']),
                     'error'=> ''
                ];
 
-               $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
+              $isValidUser = $this->userModel->login($data['username'], $data['password']);
 
-               if($userLoggedIn){
-                    $this->createUserSession($userLoggedIn);
-                    Url::redirect('Doctor/index');  
-               }
-               else{
-                    $data['error'] = "invalid username or password";
-                         
-               }
+              if($isValidUser){
+                  $userLoggedIn = $this->userModel->getUser($data['username']);
+                  $this->createUserSession($userLoggedIn);
+                  Url::redirect('doctor/index');
+              }
+              else{
+                  $data['error'] = "invalid username or password";
+              }
           }
           else{
                $data = [
@@ -86,7 +95,39 @@ class User extends BaseController{
      }
 
      public function login_patient(){
-          
+
+         if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+
+             filter_input_array(INPUT_POST,FILTER_SANITIZE_SPECIAL_CHARS);
+
+             $data = [
+                 'username'=>trim($_POST['userName']),
+                 'password'=>trim($_POST['password']),
+                 'error'=> ''
+             ];
+
+             if(!empty($data['username']) && !empty($data['password'])){
+                 $isValidUser = $this->userModel->login($data['username'], $data['password']);
+
+                 if($isValidUser){
+                     $userLoggedIn = $this->userModel->getUser($data['username']);
+                     $this->createUserSession($userLoggedIn);
+                     Url::redirect('patient/index');
+                 }
+                 else{
+                     $data['error'] = "invalid username or password";
+                 }
+             }
+         }
+         else{
+             $data = [
+                 'username'=>'',
+                 'password'=>'',
+                 'error'=> ''
+             ];
+         }
+
+         $this->view('pages/patientLogin', $data);
      }
 
      public function login_staff(){
@@ -117,21 +158,26 @@ class User extends BaseController{
                     'error'=> ''
                ];
 
-               $isExistingUser = $this->userModel->isUserExists($data['username'],$data['password']);
+               $userExists = $this->userModel->isUserExists($data['username']);
 
-               if($isExistingUser){
-                    $data['error'] = 'user already exists';
+               if($userExists){
+                    $data['error'] = 'username is already taken';
                }
                else{
                     $data['password'] = Crypto::createHash($data['password']);
+
                     if($this->userModel->register($data, 1)){
                          $age = Generate::age($data['dob']);
-                         $OTPCode = Generate::verificationCode($data['email']);
-
+                         $OTPCode = Generate::otpCode();
                          $userId = $this->userModel->getUserId(1);
                          $regNo = Generate::regNo($userId);
-                         $this->userModel->registerPatient($data, $age, $regNo, $OTPCode);
-                         Url::redirect('user/verify');
+
+                         if($this->userModel->registerPatient($data, $age, $regNo, $OTPCode, $userId)){
+                             $email = new Email($data['email']);
+                             $email->sendVerificationEmail($data['first_name'], $OTPCode);
+                             // redirect to OTP verification view
+                             Url::redirect('user/verify');
+                         }
                     }
                }
           }
@@ -152,6 +198,46 @@ class User extends BaseController{
                ];
           }
           $this->view('pages/patientRegister',$data);
+     }
+
+     public function verify(){ 
+          if(Request::isPost()){
+               Request::removeTags();
+
+               $data = [
+                    'otp'=>trim($_POST['otp']),
+                    'error'=>'',
+                    'status'=> ''
+               ];
+
+               $verifiedPatient = $this->verificationModel->verifyOTP($data['otp']);
+
+               if($verifiedPatient){
+                    if($this->verificationModel->verify($verifiedPatient->id)){
+                        // set verification successful flash message
+                        Flash::setFlash("verify","Your account has been verified",Flash::FLASH_SUCCESS);
+                        // redirect to the login of patient
+                        Url::redirect('user/login_patient');
+                    }
+                    else{
+                        // set verification failed flash message
+                        Flash::setFlash("verify","Account verification failed!",Flash::FLASH_DANGER);
+                        // redirect to the signup of patient
+                        Url::redirect('user/register_patient');
+                    }
+               }
+               else{
+                    $data['error'] = "Invalid OTP";
+               }
+          }
+          else{
+               $data = [
+                    'otp'=>'',
+                    'error'=>'',
+                    'status'=>''
+               ];
+          }
+          $this->view('pages/signupVerification', $data);
      }
 
      public function createUserSession($user){
@@ -212,27 +298,33 @@ class User extends BaseController{
      
      public function logout(){
           if(Request::isPost()){
+               Flash::setFlash("logout","Logout success!",Flash::FLASH_INFO);
+
                Session::unset('user_id');
                Session::unset('username');
                Session::unset('role_id');
-               Session::destroy();
-               Url::redirect('user/login_doctor');
+
+               switch ($role_id) {
+                    case 1:
+                         Url::redirect('user/login_patient');
+                         break;
+                    case 2:
+                         Url::redirect('user/login_doctor');
+                         break;
+                    case 3:
+                         Url::redirect('user/login_staff');
+                         break;
+                    case 4:
+                         Url::redirect('user/login_pharm');
+                         break;
+                    case 5:
+                         Url::redirect('user/login_admin');
+                         break;
+                    default:
+                         Url::redirect('user/index');
+                         break;
+               }
           } 
-     }
-
-     public function logout_pharm(){
-          if(Request::isPost()){
-               Session::unset('user_id');
-               Session::unset('username');
-               Session::unset('role_id');
-               Session::destroy();
-               Url::redirect('user/login_pharm');
-          } 
-     }
-
-
-     public function verify(){
-          $this->view('pages/signupVerification');
      }
 
      public function error(){

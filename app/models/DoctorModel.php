@@ -11,12 +11,4 @@ class DoctorModel extends Database{
      public function getAppointments(){
 
      }
-
-     public function addAppointment(){
-
-     }
-
-     public function cancelAppointment(){
-          
-     }
 }

@@ -30,6 +30,15 @@ abstract class Session{
           }
      }
 
+     public static function isLoggedIn(){
+          if(self::isSet('user_id')){
+               return true;
+          }
+          else{
+               return false;
+          }
+     }
+
 
      // unset session variables
      public static function unset($key){

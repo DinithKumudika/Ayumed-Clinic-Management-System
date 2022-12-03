@@ -54,24 +54,25 @@ input:hover{
 .submit-btn{
   background-color: rgb(21, 163, 56); 
   color: white;
-  height: 50px;
-  width: 60%;
+  height: 40px;
+  width: 14%;
   font-size: 20px;
   border: 1px solid transparent;
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   margin-top: 2%;
   margin-bottom: 15px;
+  margin-left: 45%;
 }
 
 .form{
   margin-top: 1%;
-  margin-left: 4%;
+  margin-left: 23%;
   background: rgb(189, 185, 185);
-  width: 60%;
+  width: 50%;
   height: 90%; 
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px 10px 15px 30px;
   border: 2px solid green;
 }
 
@@ -112,9 +113,9 @@ input:hover{
   cursor: pointer;
 }
 
-a:link {
+.a-tag {
   text-decoration: none;
-  color: white;
+   color: white; 
 }
 
 h2{
@@ -125,6 +126,7 @@ h2{
 
 .add-h2{
   margin-left: 70px;
+  margin-bottom: -10px;
 }
 .list-text{
   margin-top: 102px;
@@ -216,4 +218,34 @@ h4{
 
 .search{
   margin-top: 2%;
+}
+
+.back-btn-container{
+  margin-top: 10px;
+  margin-left:1300px;
+  margin-bottom:-39px ;
+
+} 
+
+.back-btn{
+  background-color: var(--green);
+ width: 100px;
+  height: 30px; 
+  font-size: 16px; 
+  border: 1px solid transparent;
+  padding: 5px 10px 5px 10px; 
+ 
+}
+
+.back-link{
+  color: var(--green);
+}  
+
+.back-link:link{
+ text-decoration: none;
+} 
+
+.back-icon{
+  color: var(--green); 
+  font-size: 19px;
 }

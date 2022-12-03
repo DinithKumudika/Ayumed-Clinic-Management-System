@@ -25,3 +25,42 @@ if(`serviceWorker` in navigator){
           console.log("error in registering service worker", err);
      })
 }
+
+// modal
+const modal = document.getElementById("modal");
+const openModalBtn = document.querySelector(".modal-active");
+const span = document.getElementsByClassName("close")[0];
+
+openModalBtn.addEventListener('click',function (){
+     modal.style.display = "block";
+});
+
+span.addEventListener('click',function () {
+     modal.style.display = "none";
+});
+
+window.addEventListener('click',function (e) {
+     if (e.target == modal) {
+          modal.style.display = "none";
+     }
+});
+
+
+function sendXHR(method, url){
+     // initialize XMLHttpRequest object
+     const xhr = new XMLHttpRequest();
+
+     // establish connection with the server
+     xhr.open(method, url);
+
+     // callback
+     xhr.onreadystatechange = function () {
+          if(this.readyState === 4 && this.status === 200){
+
+          }
+     }
+
+     // send request
+     xhr.send();
+}
+
