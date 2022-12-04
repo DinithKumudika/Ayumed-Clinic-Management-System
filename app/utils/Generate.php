@@ -51,10 +51,6 @@ namespace utils;
 			return rand(11111,99999);
 		}
 
-		public static function authToken(){
-
-        }
-
         // create appointment no
         public static function refNo($patientId){
             $today = self::currentDate();

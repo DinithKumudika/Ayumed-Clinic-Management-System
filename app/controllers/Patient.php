@@ -15,6 +15,7 @@ class Patient extends BaseController
     public function __construct()
     {
         if(!Session::isLoggedIn()){
+            Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
             Url::redirect('user/login_patient');
         }
 
