@@ -18,12 +18,16 @@
 ?>
 <body>
      <div class="container col-2">
+         <?php echo \utils\Flash::flash("login_first") ?>
           <div class="img-container">
                <img src="<?php echo URL_ROOT; ?>/images/login.jpg" alt="" class="login-img">
           </div>
           <div class="login-container">
                <form class="form login-form" method="POST" id="login-form" action="<?php echo URL_ROOT ?>/user/login_doctor">
-                    <h2>Log In</h2>
+                   <div class="login-form-header">
+                       <img src="<?php echo URL_ROOT ?>/images/logo.png" alt="logo" id="logo">
+                       <h2>Log In</h2>
+                   </div>
                     <div class="form-group">
                          <div class="input-group">
                               <input type="text" name="username" id="input-uname" class="form-control">
@@ -39,6 +43,10 @@
                          </div>
                          <p class="err-pwd err-login"></p>
                     </div>
+                   <div class="remember-me">
+                       <input type= "checkbox" name="remember_me" id="remember_me_check">
+                       <span>Remember Me</span>
+                   </div>
                     <div class="forgot-pwd">
                          <a href="">Forgot Password?</a>
                     </div>

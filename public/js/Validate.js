@@ -67,6 +67,7 @@ class Validate{
           }
      }
 
+     // dob validation
      static isDOBValid(inputField, messageEl){
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl, "*date of birth is required");
@@ -110,6 +111,7 @@ class Validate{
           }
      }
 
+     // address validation
      static isAddressValid(inputField, messageEl){
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl, "*address is required");
@@ -248,6 +250,7 @@ class Validate{
           }
      }
 
+     // appointment date validation
      static isDateValid(inputField, messageEl){
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl,"*Date is required");
@@ -259,6 +262,7 @@ class Validate{
           }
      }
 
+     // appointment time validation
      static isTimeValid(inputField, messageEl){
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl,"*Time is required");

@@ -35,6 +35,7 @@ class User extends BaseController{
                $data = [
                     'username'=>trim($_POST['username']),
                     'password'=>trim($_POST['password']),
+                    'remember_me' => trim($_POST['remember_me']),
                     'error'=> ''
                ];
 
@@ -53,6 +54,7 @@ class User extends BaseController{
                $data = [
                     'username'=>'',
                     'password'=>'',
+                    'remember_me' => '',
                     'error'=> ''
                ];
           }
@@ -238,6 +240,36 @@ class User extends BaseController{
                ];
           }
           $this->view('pages/signupVerification', $data);
+     }
+
+     public function forgotPassword(){
+         if(Request::isPost()){
+             Request::removeTags();
+
+             $data = [
+                 'username' => trim($_POST['username']),
+                 'email' => trim($_POST['email']),
+                 'error' => ''
+             ];
+
+             $userExists = $this->userModel->isUserExists($data['username']);
+
+             if($userExists){
+                 $email = new Email($data['email']);
+                 $email->changePasswordEmail();
+             }
+             else{
+                 $data['error'] = 'invalid username';
+             }
+         }
+         else{
+             $data = [
+                 'username' => '',
+                 'email' => '',
+                 'error' => ''
+             ];
+         }
+         $this->view('pages/forgotPassword', $data);
      }
 
      public function createUserSession($user){

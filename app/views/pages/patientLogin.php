@@ -5,6 +5,7 @@
 <body>
 <?php echo \utils\Flash::flash('verify'); ?>
 <?php echo \utils\Flash::flash('logout'); ?>
+<?php echo \utils\Flash::flash("login_first") ?>
 <div class="leftSide">
 <!--    <img class="side_image" src="--><?php //echo URL_ROOT ?><!--/images/side_image.svg" alt="Side Image">-->
 </div>
