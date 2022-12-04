@@ -72,7 +72,7 @@
             <div class="card appointment-details">
                 <?php
 
-                if(isset($data['upcoming'])){
+                if($data['upcoming']){
                     echo "<h3>Appointment No : " . $data['upcoming']->ref_no . "</h3>
                            <h3>Date : " . $data['upcoming']->date . "</h3>
                            <h3>Time : " . $data['upcoming']->time . "</h3>

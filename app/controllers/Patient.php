@@ -86,7 +86,7 @@ class Patient extends BaseController
             $data['upcoming'] = $upcoming;
         }
         else{
-            $data['upcoming'] = "No Appointments";
+            $data['upcoming'] = false;
         }
 
 

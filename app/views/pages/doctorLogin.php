@@ -19,6 +19,7 @@
 <body>
      <div class="container col-2">
          <?php echo \utils\Flash::flash("login_first") ?>
+         <?php echo \utils\Flash::flash("logout") ?>
           <div class="img-container">
                <img src="<?php echo URL_ROOT; ?>/images/login.jpg" alt="" class="login-img">
           </div>
