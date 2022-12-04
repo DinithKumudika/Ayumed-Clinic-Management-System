@@ -35,7 +35,6 @@ class User extends BaseController{
                $data = [
                     'username'=>trim($_POST['username']),
                     'password'=>trim($_POST['password']),
-                    'remember_me' => trim($_POST['remember_me']),
                     'error'=> ''
                ];
 
@@ -44,6 +43,12 @@ class User extends BaseController{
               if($isValidUser){
                   $userLoggedIn = $this->userModel->getUser($data['username']);
                   $this->createUserSession($userLoggedIn);
+
+                  if(isset($_POST['remember_me'])){
+
+                  }
+                  
+                  Flash::setFlash('login_success', 'Login successful', Flash::FLASH_SUCCESS);
                   Url::redirect('doctor/index');
               }
               else{
@@ -54,7 +59,6 @@ class User extends BaseController{
                $data = [
                     'username'=>'',
                     'password'=>'',
-                    'remember_me' => '',
                     'error'=> ''
                ];
           }
@@ -277,11 +281,11 @@ class User extends BaseController{
           Session::set('username',$user->username);
           Session::set('role_id',$user->role_id);
      }
-     //TODO: fix not redirecting to login page
-     public function logout($role_id){
-          if(Request::isPost()){
-               Flash::setFlash("logout","Logout success!",Flash::FLASH_INFO);
 
+     public function logout(){
+
+               $role_id = Session::get('role_id');
+               Flash::setFlash("logout","Logout success!",Flash::FLASH_SUCCESS);
                Session::unset('user_id');
                Session::unset('username');
                Session::unset('role_id');
@@ -306,7 +310,6 @@ class User extends BaseController{
                          Url::redirect('user/index');
                          break;
                }
-          } 
      }
 
      public function error(){

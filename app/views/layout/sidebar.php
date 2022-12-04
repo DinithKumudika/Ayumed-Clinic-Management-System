@@ -36,13 +36,11 @@
                       <span class="nav-item-text"></span>
                   </a>
               </li>
-               <form action="<?php echo URL_ROOT ?>/user/logout/<?php echo \helpers\Session::get('user_id') ?>" method="post" id="logout">
-               <li class="side-nav-item" id="logout-btn">
-                    <a href="" title="Log out" class="non-active-item logout">
-                         <span class="nav-item-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
-                         <span class="nav-item-text">Logout</span>
-                    </a>
-               </li>
-               </form>   
+              <li class="side-nav-item" id="logout-btn">
+                  <a href="<?php echo URL_ROOT ?>/user/logout" title="Log out" class="non-active-item logout">
+                      <span class="nav-item-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                      <span class="nav-item-text">Logout</span>
+                  </a>
+              </li>
           </ul>
      </div>
