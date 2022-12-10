@@ -18,9 +18,10 @@ class Patient extends BaseController
             Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
             Url::redirect('user/login_patient');
         }
-
-        $this->patientModel = $this->model('PatientModel');
-        $this->appointmentModel = $this->model('AppointmentModel');
+        else{
+            $this->patientModel = $this->model('PatientModel');
+            $this->appointmentModel = $this->model('AppointmentModel');
+        }
     }
 
     public function index()

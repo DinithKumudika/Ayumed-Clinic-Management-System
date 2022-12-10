@@ -13,6 +13,7 @@
     require_once 'utils/Crypto.php';
     require_once 'utils/Generate.php';
     require_once 'utils/Flash.php';
+    require_once 'utils/Token.php';
 
      // Load all the core files
     require_once 'core/App.php';

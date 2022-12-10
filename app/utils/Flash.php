@@ -45,7 +45,7 @@ abstract class Flash
                 icon: '".$flash_message['type']."',
                 title: '".$flash_message['message']."',
                 showConfirmButton: false,
-                time: 2000
+                timer: 1500
             });
         </script>";
     }

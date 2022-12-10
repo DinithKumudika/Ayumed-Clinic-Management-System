@@ -1,5 +1,6 @@
 <?php
 use utils\Crypto;
+use utils\Token;
 
 class UserModel extends Database{
      private $db;
