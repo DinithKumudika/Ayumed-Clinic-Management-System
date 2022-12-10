@@ -33,6 +33,33 @@ namespace utils;
             }
         }
 
+        public static function changeDOBFormat($dob){
+            $arr = explode('-', $dob);
+
+            $month_arr = [
+                '01' => 'Jan',
+                '02' => 'Feb',
+                '03' => 'Mar',
+                '04' => 'Apr',
+                '05' => 'May',
+                '06' => 'Jun',
+                '07' => 'Jul',
+                '08' => 'Aug',
+                '09' => 'Sep',
+                '10' => 'Oct',
+                '11' => 'Nov',
+                '12' => 'Dec'
+            ];
+
+            $year = $arr[0];
+            $month = $arr[1];
+            $date = $arr[2];
+
+            $month = $month_arr[$month];
+
+           return $year . ' ' . $month . ' ' . $date;
+        }
+
 		// generate patient registration number
 		public static function regNo($user_id){
 			$today = self::currentDate();

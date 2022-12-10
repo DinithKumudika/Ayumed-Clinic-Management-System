@@ -31,8 +31,8 @@
                    </div>
                     <div class="form-group">
                          <div class="input-group">
-                              <input type="text" name="username" id="input-uname" class="form-control">
-                              <h5 class="lbl-uname">Username</h5>   
+                             <input type="text" name="username" id="input-uname" class="form-control">
+                             <h5 class="lbl-uname">Username</h5>
                          </div>
                          <p class="err-uname err-login"></p>
                     </div>
@@ -45,7 +45,11 @@
                          <p class="err-pwd err-login"></p>
                     </div>
                    <div class="remember-me">
-                       <input type= "checkbox" name="remember_me" id="remember_me_check">
+                       <?php if(isset($_POST['remember_me'])){ ?>
+                           <input type= "checkbox" name="remember_me" id="remember_me_check" checked>
+                       <?php } else { ?>
+                           <input type= "checkbox" name="remember_me" id="remember_me_check">
+                       <?php } ?>
                        <span>Remember Me</span>
                    </div>
                     <div class="forgot-pwd">
@@ -53,7 +57,6 @@
                     </div>
                     <p class="err-login"><?php echo $data['error'] ?></p>
                     <div class="btn login-btn" id="btn-login">login</div>
-                    <!-- <input type="submit" class="btn login-btn" value="login" id="btn-login" onsubmit="return isValidated()"> -->
                </form>
           </div>
      </div>

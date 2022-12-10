@@ -21,6 +21,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+
 }
 
 @keyframes show-text-1 {
@@ -691,7 +692,6 @@ ul {
 }
 
 @media(max-width: 574px) {
-
     .services .wrapper {
         height: 50vh;
     }

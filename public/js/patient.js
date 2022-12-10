@@ -68,7 +68,7 @@ window.addEventListener('DOMContentLoaded',function () {
     //
     //         // establish connection with the server
     //         xhr.open(method, url);
-    //         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //         xhr.setRequestHeader("Content-type", "application/json");
     //
     //         // callback
     //         xhr.onload = function () {
