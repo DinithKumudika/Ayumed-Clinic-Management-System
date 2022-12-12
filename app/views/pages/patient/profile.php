@@ -15,7 +15,16 @@
                 <h3 id="back"><i class="fa-solid fa-backward"></i>Go Back</h3>
             </div>
             <hr>
-            <div class="profile-container col-2">
+            <div class="profile-container">
+                <div class="profile-col-2">
+                    <div class="img-container">
+                        <input type="file" hidden id="avatar-upload">
+                        <img src="<?php echo URL_ROOT?>/images/profile.jpg" alt="" id="avatar">
+                    </div>
+                    <div class="username">
+                        <h5><?php echo \helpers\Session::get('username')?></h5>
+                    </div>
+                </div>
                 <div class="profile-col-1">
                     <form action="" class="profile-form">
                         <div class="form-group">
@@ -40,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             <h5>Phone</h5>
-                            <input type="text" readonly value="<?php echo $data['patient']->phone_no ?>">
+                            <input type="text" readonly value="<?php echo "0" . $data['patient']->phone_no ?>">
                         </div>
                         <div class="form-group">
                             <a href="<?php echo  URL_ROOT?>/profile/edit/<?php echo \helpers\Session::get('user_id') ?>">
@@ -51,15 +60,6 @@
                             </a>
                         </div>
                     </form>
-                </div>
-                <div class="profile-col-2">
-                    <div class="img-container">
-                        <input type="file" hidden id="avatar-upload">
-                        <img src="<?php echo URL_ROOT?>/images/profile.jpg" alt="" id="avatar">
-                    </div>
-                    <div class="username">
-                        <h5><?php echo \helpers\Session::get('username')?></h5>
-                    </div>
                 </div>
             </div>
         </div>

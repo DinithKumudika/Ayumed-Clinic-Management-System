@@ -35,13 +35,14 @@ class UserModel extends Database{
      }
 
      public function register($data, $roleId){
-          $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`role_id`) 
+          $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`avatar`,`role_id`) 
                     VALUES (
                         :first_name, 
                         :last_name, 
                         :email, 
                         :username, 
-                        :password, 
+                        :password,
+                        :avatar_url,
                         :role_id
                     )";
 
@@ -53,6 +54,7 @@ class UserModel extends Database{
                'email'=>$data['email'],
                'username'=>$data['username'],
                'password'=>$data['password'],
+               'avatar_url'=>URL_ROOT. "/images/profile.jpg",
                'role_id'=>$roleId
           ];
 
@@ -167,5 +169,23 @@ class UserModel extends Database{
           else{
               return  false;
           }
+     }
+
+     public function getAvatar($user_id){
+         $sql = "SELECT `avatar` FROM `tbl_users` WHERE `user_id` = :id";
+         $this->prepare($sql);
+
+         $params = [
+             'id'=>$user_id
+         ];
+
+         $avatar_url = $this->result($params);
+
+         if($this->rowCount()>0){
+             return $avatar_url->avatar;
+         }
+         else{
+             return false;
+         }
      }
 }
