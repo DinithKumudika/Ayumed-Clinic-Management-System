@@ -48,7 +48,7 @@ class Profile extends BaseController
         if($roleId == 1){
             $patient = $this->patientModel->getPatient($userId);
             $data['patient'] = $patient;
-            $this->view('pages/patient/editProfile');
+            $this->view('pages/patient/editProfile',$data);
         }
     }
 

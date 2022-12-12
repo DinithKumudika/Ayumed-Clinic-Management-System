@@ -296,6 +296,7 @@ class User extends BaseController
         Session::set('user_id', $user->user_id);
         Session::set('username', $user->username);
         Session::set('role_id', $user->role_id);
+        Session::set('avatar_url', $user->avatar);
     }
 
     public function logout()
