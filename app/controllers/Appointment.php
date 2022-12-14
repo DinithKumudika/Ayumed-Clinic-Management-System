@@ -2,7 +2,8 @@
 use helpers\Session;
 use utils\Url;
 
-class Appointment extends BaseController{
+class
+Appointment extends BaseController{
 
     public function __construct()
     {

@@ -30,7 +30,7 @@
                }
           }
 
-          public function query($sql){
+           public function query($sql){
                $this->stmt = self::$dbh->query($sql);
                return $this->stmt->fetch();
           }

@@ -17,7 +17,7 @@ class UserModel extends Database{
              $this->prepare($sql);
 
              $params = [
-                 'user'=>$username,
+                 'user'=>$username
              ];
 
              $row = $this->result($params);
@@ -144,6 +144,31 @@ class UserModel extends Database{
               return  false;
           }
      }
+
+    //A temporary table. Just for the interim presentation.
+    public function registerDoctor($data, $user_id)
+    {
+        $sql = "INSERT INTO `tbl_doctors`(`NIC`,`phone_no`,`user_id`) 
+        VALUES (
+             :nic,
+             :phone_no,
+             :user_id
+        )";
+
+        $this->prepare($sql);
+
+        $params = [
+            'nic' => $data['nic'],
+            'phone_no' => $data['phone'],
+            'user_id' => $user_id
+        ];
+
+        if ($this->execute($params)) {
+            return true;
+        } else {
+            return  false;
+        }
+    }
 
      public function registerStaffMem(){
 

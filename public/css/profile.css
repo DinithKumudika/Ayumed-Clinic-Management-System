@@ -5,6 +5,13 @@
     flex-direction: column;
     display: flex;
 }
+
+.home-container .section-h{
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .home-container .section-h div {
     display: flex;
     align-items: center;
@@ -41,15 +48,39 @@
     grid-template-columns: repeat(2, 1fr);
     margin: auto;
     align-items: center;
-    justify-content: center;
-    width: 80vw;
-    grid-column-gap: 20px;
+    justify-content: space-evenly;
+    height: 80vh;
+    grid-column-gap: 10px;
+    background-color: rgba(208, 207, 207, 0.47);
+    border-radius: 10px;
+    padding-left: 20px;
 }
 
 .profile-container .profile-col-1 {
-    padding: 10px 20px 10px 20px;
-    width: 80vw;
-    height: 80vh;
+    padding: 10px 20px 20px 20px;
+    height: auto;
+    margin-right: 50px;
+    background: rgba(255, 255, 255, 0.26);
+    border-radius: 16px;
+    box-shadow: 5px 10px 30px rgba(61, 61, 61, 0.46);
+    backdrop-filter: blur(7.7px);
+    -webkit-backdrop-filter: blur(7.7px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.profile-container .profile-col-1 .profile-form{
+    margin: 0px 50px 0px 50px;
+}
+
+
+.profile-container .profile-col-1 .profile-form .form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-container .profile-col-1 .profile-form .form-group:last-of-type {
+    justify-content: center;
+    align-items: center;
 }
 
 .profile-container .profile-col-1 .profile-form .form-group h5{
@@ -99,9 +130,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: -180px;
+    margin-top: -200px;
+    margin-left: 20px;
     padding: 30px 20px 30px 20px;
-    width: 20vw;
+    width: 80%;
+    background: rgba(45, 198, 40, 0.7);
+    border-radius: 16px;
+    box-shadow: 5px 10px 30px rgba(61, 61, 61, 0.46);
+    backdrop-filter: blur(7.7px);
+    -webkit-backdrop-filter: blur(7.7px);
+    border: 1px solid rgba(45, 198, 40, 0.3);
 }
 
 .profile-container .profile-col-2 .img-container {
@@ -140,10 +178,12 @@
     font-size: 40px;
     color: var(--light);
     transition: all 0.3s ease-in-out;
+    position: relative;
+    top: 40%;
 }
 
 .profile-container .profile-col-2 .username {
-    color: var(--dark-green);
+    color: var(--dark);
     font-size: 30px;
 }
 
@@ -151,26 +191,76 @@
 
 /* tablet devices */
 @media (max-width: 768px) {
+
+    body{
+        overflow-y: scroll;
+    }
+
+    .home-container .section-h{
+        width: 100%;
+    }
+
+    .home-container .section-h h2 {
+        font-size: 20px;
+    }
+
     .profile-container {
         display: flex;
+        background-color: transparent;
         flex-direction: column;
+        height: auto;
+        margin-right: auto;
+        margin-left: auto;
+        width: 95%;
+        padding-right: 15px;
     }
 
     .profile-container .profile-col-2 {
-        margin-top: 0px;
-        width: auto;
+        width: 50vw;
+        margin: 15px auto 20px auto;
     }
 
-    .profile-col-1 .profile-form {
+    .profile-container .profile-col-1 {
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .profile-container .profile-col-1 .profile-form {
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin: auto;
     }
+    .profile-container .profile-col-2 .img-container img{
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile-container .profile-col-2 .img-container .img-overlay {
+        width: 200px;
+        height: 200px;
+    }
+
 }
 
 /* mobile phones */
 @media (max-width: 480px) {
+
+    .profile-container {
+        height: auto;
+        background-color: transparent;
+    }
+
+    .profile-container .profile-col-1{
+        margin-left: -15px;
+        width: 95%;
+    }
+
+    .profile-container .profile-col-2{
+
+    }
+
     .profile-container .profile-col-1 .profile-form .form-group {
         display: flex;
         flex-direction: column;
@@ -179,7 +269,23 @@
     }
 
     .profile-container .profile-col-1 .profile-form .form-group input{
-        width: 90%;
+        width: 95%;
         margin-left: 0px;
+    }
+
+    .profile-container .profile-col-2 .img-container img{
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-container .profile-col-2 .img-container .img-overlay {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-container .profile-col-1 .profile-form .form-group .edit-profile-btn{
+        margin-top: 30px;
+        width: 60vw;
+        margin-bottom: 20px;
     }
 }

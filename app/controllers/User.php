@@ -139,7 +139,7 @@ class User extends BaseController
                     $this->createUserSession($userLoggedIn);
                     Url::redirect('patient/index');
                 } else {
-                    $data['error'] = "invalid username or password";
+                    $data['error'] = "Invalid username or password";
                 }
             }
         } else {
@@ -222,6 +222,59 @@ class User extends BaseController
             ];
         }
         $this->view('pages/patientRegister', $data);
+    }
+
+    public function register_doctor(){
+        if (Request::isPost()) {
+            Request::removeTags();
+
+            $data = [
+                'first_name' => trim($_POST['fName']),
+                'last_name' => trim($_POST['lName']),
+                'nic' => trim($_POST['nic']),
+                'email' => trim($_POST['email']),
+                'phone' => trim($_POST['phone']),
+                'username' => trim($_POST['userName']),
+                'password' => trim($_POST['password']),
+                'error' => ''
+            ];
+
+            $userExists = $this->userModel->isUserExists($data['username']);
+
+            if ($userExists) {
+                $data['error'] = 'username is already taken';
+            }
+            else {
+                $data['password'] = Crypto::createHash($data['password']);
+
+                if ($this->userModel->register($data, 2)) {
+                    $userId = $this->userModel->getUserId(2);
+
+                    if ($this->userModel->registerDoctor($data, $userId)) {
+
+                        //redirect to home view
+                        // Url::redirect('doctor/index');
+                        Url::redirect('User/login_doctor');
+                    }
+                    // else {
+                    //     echo "error";
+                    // }
+                }
+            }
+        } else {
+            $data = [
+                'first_name' => '',
+                'last_name' => '',
+                'nic' => '',
+                'email' => '',
+                'phone' => '',
+                'username' => '',
+                'password' => '',
+                'error' => ''
+            ];
+        }
+
+        $this->view('pages/doctorRegister', $data);
     }
 
     public function verify()
