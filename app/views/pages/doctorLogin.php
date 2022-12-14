@@ -61,6 +61,7 @@
           </div>
      </div>
      <?php require APP_ROOT . '/views/layout/footer.php' ?>
+     <script src="<?php echo URL_ROOT; ?>/js/Validate.js"></script>
      <script src="<?php echo URL_ROOT; ?>/js/login.js"></script>
 </body>
 </html>
