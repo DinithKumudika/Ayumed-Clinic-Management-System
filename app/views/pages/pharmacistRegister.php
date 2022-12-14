@@ -12,7 +12,7 @@
             <img src="<?php echo URL_ROOT; ?>/images/Pharmacistregister.png" alt="" class="signup-img">
         </div>
      <div class="form-container">
-        <form action="<?php echo URL_ROOT ?>/user/register_pharm" method="post">
+        <form action="<?php echo URL_ROOT ?>/user/register_pharm" method="post" id="submit-form">
         <div>
             <img src="../images/logo.png" alt="logo" class="logo">
             </div>
@@ -53,8 +53,6 @@
            <!-- <input type="submit" value="Sign up" class="signup_button" name="signup" id="signup-btn"> -->
             <div class="signup_button" id="signup-btn">Register</div>
             </div>
-           
-        
         </form>
         
         <div class="not-member">

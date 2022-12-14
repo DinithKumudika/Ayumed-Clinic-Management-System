@@ -8,19 +8,7 @@ class PharmacistModel extends Database{
           $this->db = Database::connect();
      }
 
-     public function viewmedicines(){
-
-     }
-
-     public function addmedicines(){
-
-     }
-
-     public function deletemedicine(){
-          
-     }
-
-     public function getPatientId($userId){
+     public function getPharmacistId($userId){
           $sql = "SELECT * FROM `tbl_pharmacists` WHERE `user_id` = :id";
           $this->prepare($sql);
           $params = [
@@ -29,7 +17,7 @@ class PharmacistModel extends Database{
           $row = $this->result($params);
   
           if($this->rowCount()>0){
-              return $row->id;
+              return $row->pharmacist_id;
           }
           else{
               return false;

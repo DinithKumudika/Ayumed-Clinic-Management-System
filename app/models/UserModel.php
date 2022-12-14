@@ -34,6 +34,7 @@ class UserModel extends Database{
      }
 
      public function register($data, $roleId){
+    
           $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`role_id`) 
                     VALUES (
                         :first_name, 
@@ -56,9 +57,13 @@ class UserModel extends Database{
           ];
 
           if($this->execute($params)){
+            // print_r("DATABAE AVA");
+            // die();    
               return true;
           }
           else{
+            print_r("DATABAE AVE Na");
+            die();
               return  false;
           }
      }
@@ -142,17 +147,30 @@ class UserModel extends Database{
         }
      }
 
-     public function registerPharmacist($data, ){
-          $sql = "INSERT INTO `tbl_pharmasits`(`Phone_No`) 
+     public function registerPharmacist($phoneNo, $userId){
+
+        
+          $sql = "INSERT INTO `tbl_pharmacists`(`user_id`, `Phone_No`) 
           VALUES (
+               :user_id,
                :Phone_No
           )";
 
           $this->prepare($sql);
 
           $params = [
-               'Phone_No'=>$data['phone'],
+               'user_id'=>$userId,
+               'Phone_No'=>$phoneNo
           ];
+
+          if($this->execute($params)){
+        //     print_r("DB awa");
+        // die();
+               return true;
+          }
+          else{
+               return false;
+          }
      }
 
      public function verifyRegistration(){
@@ -164,24 +182,7 @@ class UserModel extends Database{
 
      }
 
-     public function getUser($username){
-          $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
- 
-          $this->prepare($sql);
- 
-          $params = [
-              'user'=>$username,
-          ];
- 
-          $user = $this->result($params);
- 
-          if($this->rowCount()>0){
-              return $user;
-          }
-          else{
-              return false;
-          }
-      }
+
 
      public function getUserId($role_id){
           $sql = "SELECT * FROM `tbl_users` WHERE `role_id` = :role_id ORDER BY `user_id` DESC LIMIT 1";

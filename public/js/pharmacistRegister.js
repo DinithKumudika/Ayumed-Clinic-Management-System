@@ -5,6 +5,7 @@ const phoneNoInput = document.getElementById('phone');
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
 const repeatPasswordInput = document.getElementById('confirm_password');
+const signupForm = document.getElementById('submit-form');
 
 
 const signupBtn = document.getElementById('signup-btn');
@@ -19,7 +20,7 @@ const firstNameErr = document.getElementById('err-fname');
 const lastNameErr = document.getElementById('err-lname');
 const emailErr = document.getElementById('err-email');
 const phoneErr = document.getElementById('err-phone');
-const usernameErr = document.getElementById('err-uname');
+const usernameErr = document.getElementById('err-username');
 const passwordErr = document.getElementById('err-password');
 const passwordRepeatErr = document.getElementById('err-confirmpassword');
 
@@ -54,6 +55,9 @@ function isFormValid() {
    else if (!passwordValid){
      return false; 
    }
+   else if(!passwordMatch){
+     return false;
+   }
     else {
          return true;
     }
@@ -63,18 +67,20 @@ function isFormValid() {
 signupBtn.addEventListener('click', function () {
     if (isFormValid()) {
          signupForm.submit();
-         Swal.fire(
+     //     Swal.fire(
               
-         );
+     //     );
     }
 });
 
 // show/hide password
+let isShowingPwd=false;
 showPasswordBtn.addEventListener('click', function () {
     isShowingPwd = toggleShowPassword(isShowingPwd, showPasswordBtn, passwordInput);
 });
 
 let isShowingRepeatPwd = false;
+
 
 // show/hide confirm password
 showRepeatPasswordBtn.addEventListener('click', function () {

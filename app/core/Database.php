@@ -32,7 +32,7 @@
 
           public function query($sql){
                $this->stmt = self::$dbh->query($sql);
-               return $this->stmt->fetch();
+               return $this->stmt->fetchAll();
           }
 
           // prepare sql query
@@ -41,7 +41,7 @@
           }
 
           // execute the query
-          public function execute($params){
+          public function execute($params=[]){
                return $this->stmt->execute($params);
           }
 

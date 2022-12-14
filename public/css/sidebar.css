@@ -6,6 +6,7 @@ body{
      font-family: 'Poppins', sans-serif;
 }
 
+
 .side-nav-container{
      position: fixed;
      top: 0;
@@ -106,6 +107,7 @@ body{
      display: none;
      pointer-events: none;
      transition: all  0.5s ease-in-out;
+    
 }
 
 .main-container{
@@ -116,6 +118,7 @@ body{
      left: 65px;
      transition: all  0.5s ease-in-out;
      padding-left: 10px;
+     
 }
 
 /* styles when side bar is active */
@@ -143,11 +146,20 @@ body{
      left: 270px;
 }
 
+
 /* mobile phones */
 @media (max-width: 480px) {
      .side-nav-container .logo-container .menu-btn{
           display: none;
      }
+}
+
+.nav-item-text {
+  color: white;
+}
+
+.nav-item-icon{
+     color:white
 }
 
 

@@ -5,7 +5,7 @@
 			<li>
                     <a href="#">
                          <div class="profile-img-container">
-                              <img src="<?php echo URL_ROOT ?>/images/profile.jpg" alt="" class="profile-img">
+                              <img src="<?php echo URL_ROOT ?>/images/jayaniprofile.jpg" alt="" class="profile-img">
                          </div>
                     </a>
                </li>

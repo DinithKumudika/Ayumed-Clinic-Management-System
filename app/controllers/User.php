@@ -61,27 +61,26 @@ class User extends BaseController{
      }
 
      public function login_pharm(){
-          if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-               
-               Request::removeTags();
 
+          if(Request::isPost()){
+
+               Request::removeTags();
                $data = [
                     'username'=>trim($_POST['username']),
                     'password'=>trim($_POST['password']),
                     'error'=> ''
                ];
 
-               if(!empty($data['username']) && !empty($data['password'])){
-                    $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
+              $isValidUser = $this->userModel->login($data['username'], $data['password']);
 
-                    if($userLoggedIn){
-                         $this->createUserSession($userLoggedIn);
-                         Url::redirect('Pharmacist/index');  
-                    }
-                    else{
-                         $data['error'] = "invalid username or password";
-                    }
-               }
+              if($isValidUser){
+                  $userLoggedIn = $this->userModel->getUser($data['username']);
+                  $this->createUserSession($userLoggedIn);
+                  Url::redirect('Pharmacist/index');
+              }
+              else{
+                  $data['error'] = "invalid username or password";
+              }
           }
           else{
                $data = [
@@ -93,6 +92,38 @@ class User extends BaseController{
 
           $this->view('pages/pharmacistLogin', $data); 
      }
+          // if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+               
+               // Request::removeTags();
+
+          //      $data = [
+          //           'username'=>trim($_POST['username']),
+          //           'password'=>trim($_POST['password']),
+          //           'error'=> ''
+          //      ];
+
+          //      if(!empty($data['username']) && !empty($data['password'])){
+          //           $userLoggedIn = $this->userModel->login($data['username'], $data['password']);
+
+          //           if($userLoggedIn){
+          //                $this->createUserSession($userLoggedIn);
+          //                Url::redirect('Pharmacist/index');  
+          //           }
+          //           else{
+          //                $data['error'] = "invalid username or password";
+          //           }
+          //      }
+          // }
+          // else{
+          //      $data = [
+          //           'username'=>'',
+          //           'password'=>'',
+          //           'error'=> ''
+          //      ];
+          // }
+
+          // $this->view('pages/pharmacistLogin', $data); 
+     
 
      public function login_patient(){
 
@@ -248,8 +279,7 @@ class User extends BaseController{
 
 
      public function register_pharm(){
-          $this->view('pages/pharmacistRegister');
-
+  
           if(Request::isPost()){
                Request::removeTags();
 
@@ -268,17 +298,19 @@ class User extends BaseController{
                if($isExistingUser){
                     $data['error'] = 'user already exists';
                }
+               
                else{
                     $data['password'] = Crypto::createHash($data['password']);
-                    // if($this->userModel->register($data, 1)){
-                         // $age = Generate::age($data['dob']);
-                         // $OTPCode = Generate::verificationCode($data['email']);
-
-                         // $userId = $this->userModel->getUserId(1);
-                         // $regNo = Generate::regNo($userId);
-                         // $this->userModel->registerPharmacist($data, $age, $regNo, $OTPCode);
-                         // Url::redirect('user/verify');
-                    // }
+                    if($this->userModel->register($data, 4)){
+                          $userId = $this->userModel->getUserId(4);
+                          if($this->userModel->registerPharmacist($data['phone'], $userId)){
+                              Url::redirect('User/login_pharm');
+                          }
+                          
+                    }
+                    else{
+                         echo "erooooooooor";
+                    }
                }
           }
           else{
@@ -326,6 +358,16 @@ class User extends BaseController{
                }
           } 
      }
+
+     // public function logout_pharm(){
+     //      if(Request::isPost()){
+     //           Session::unset('user_id');
+     //           Session::unset('username');
+     //           Session::unset('role_id');
+     //           Session::destroy();
+     //           Url::redirect('user/login_pharm');
+     //      } 
+     // }
 
      public function error(){
           $this->view('404');

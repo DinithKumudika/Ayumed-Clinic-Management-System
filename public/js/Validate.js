@@ -221,7 +221,7 @@ class Validate{
      // confirm password validation
      static isPasswordMatch(inputField, confirmField, messageEl){
           if(this.isRequired(inputField)){
-               this.error(inputField, messageEl, "*password is required");
+               this.error(inputField, messageEl, "*confirm password is required");
                document.getElementById('show-pwd-repeat').style.color = '#DC3545';
                return false;
           }
