@@ -232,6 +232,10 @@ class User extends BaseController
                         // redirect to OTP verification view
                         Url::redirect('user/verify');
                     }
+                    else{
+                        Flash::setFlash("reg_error", "something went wrong", Flash::FLASH_WARNING);
+                        Url::redirect('user/register_patient');
+                    }
                 }
             }
         } else {
@@ -253,6 +257,7 @@ class User extends BaseController
         $this->view('pages/patientRegister', $data);
     }
 
+    // action to register a doctor
     public function register_doctor(){
         if (Request::isPost()) {
             Request::removeTags();
@@ -280,14 +285,13 @@ class User extends BaseController
                     $userId = $this->userModel->getUserId(2);
 
                     if ($this->userModel->registerDoctor($data, $userId)) {
-
-                        //redirect to home view
-                        // Url::redirect('doctor/index');
-                        Url::redirect('User/login_doctor');
+                        //redirect to log in
+                        Url::redirect('user/login_doctor');
                     }
-                    // else {
-                    //     echo "error";
-                    // }
+                }
+                else{
+                    Flash::setFlash("reg_error", "something went wrong", Flash::FLASH_WARNING);
+                    Url::redirect('user/register_doctor');
                 }
             }
         } else {
@@ -306,6 +310,58 @@ class User extends BaseController
         $this->view('pages/doctorRegister', $data);
     }
 
+    // action to register a staff member
+    public function register_staff (){
+        if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
+            Request::removeTags();
+
+            $data = [
+                'first_name' => trim($_POST['first_name']),
+                'last_name' => trim($_POST['last_name']),
+                'email' => trim($_POST['email']),
+                'staff_no' => trim($_POST['staff_no']),
+                'username' => trim($_POST['username']),
+                'password' => trim($_POST['password']),
+                'error' => ''
+            ];
+
+            $userExists = $this->userModel->isUserExists($data['username']);
+
+            if ($userExists) {
+                $data['error'] = 'username is already taken';
+            }
+            else{
+                $data['password'] = Crypto::createHash($data['password']);
+
+                if ($this->userModel->register($data, 3)) {
+                    $userId = $this->userModel->getUserId(3);
+
+                    if ($this->userModel->registerStaff($data['staff_no'], $userId)) {
+                        //redirect to log in
+                        Url::redirect('user/login_staff');
+                    }
+                }
+                else {
+                    Flash::setFlash("reg_error", "something went wrong", Flash::FLASH_WARNING);
+                    Url::redirect('user/register_staff');
+                }
+            }
+        }
+        else{
+            $data = [
+                'first_name' => '',
+                'last_name' => '',
+                'email' => '',
+                'staff_no' => '',
+                'username' => '',
+                'password' => '',
+                'error' => ''
+            ];
+        }
+        $this->view('pages/staffRegister', $data);
+    }
+
+    // action to verify user account using OTP
     public function verify()
     {
         if (Request::isPost()) {
@@ -344,6 +400,7 @@ class User extends BaseController
         $this->view('pages/signupVerification', $data);
     }
 
+    // action to change password
     public function forgotPassword()
     {
         if (Request::isPost()) {
@@ -373,6 +430,7 @@ class User extends BaseController
         $this->view('pages/forgotPassword', $data);
     }
 
+    // create user session
     public function createUserSession($user)
     {
         Session::set('user_id', $user->user_id);
@@ -381,6 +439,7 @@ class User extends BaseController
         Session::set('avatar_url', $user->avatar);
     }
 
+    // action to log out users
     public function logout()
     {
 

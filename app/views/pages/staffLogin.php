@@ -24,15 +24,17 @@
                     <input type="password" name="Password" placeholder="Password" id="password">
                 </div>
                 <p style="color: red" id="error-password"></p>
-                <p style="color: red"><?php echo $data['error']; ?>></p>
+                <p style="color: red"><?php echo $data['error']; ?></p>
                 <br/><br/><br/><br/>
                 <center>
                     <button type="submit" id="login-btn">LOGIN</button>
                 </center>
             </form>
+            <p class="signup-opt">Are you a new user? <a href="">Sign Up</a></p>
         </div>
     </div>
 </div>
+<?php require APP_ROOT . '/views/layout/footer.php' ?>
 <script src="<?php echo URL_ROOT; ?>/js/staffLogin.js"></script>
 </body>
 </html>

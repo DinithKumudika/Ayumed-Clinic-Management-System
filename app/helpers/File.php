@@ -1,5 +1,5 @@
 <?php
-
+/* handles everything file related */
 namespace helpers;
 
 class File
@@ -8,7 +8,7 @@ class File
 
     }
 
-    public function upload(){
+    public function upload($fileName){
 
     }
 }

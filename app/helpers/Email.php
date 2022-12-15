@@ -56,7 +56,8 @@ class Email
                     <h4 style='text-align: center;'>The verification code is : <b>" . $OTPCode . "<b></h4>";
                }
                $this->mail->send();
-          } catch (Exception $e) {
+          }
+          catch (Exception $e) {
                echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
           }
      }

@@ -170,8 +170,27 @@ class UserModel extends Database{
         }
     }
 
-     public function registerStaffMem(){
+     public function registerStaff($staff_no, $user_id){
+         $sql = "INSERT INTO `tbl_staff`(`staff_reg_no`,`status`,`user_id`) 
+        VALUES (
+             :staff_reg_no,
+             :status,
+             :user_id
+        )";
 
+         $this->prepare($sql);
+
+         $params = [
+             'staff_reg_no' => $staff_no,
+             'status' => NULL,
+             'user_id' => $user_id
+         ];
+
+         if ($this->execute($params)) {
+             return true;
+         } else {
+             return  false;
+         }
      }
 
      public function registerPharmacist(){
