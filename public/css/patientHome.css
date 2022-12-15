@@ -268,10 +268,25 @@
           width: 50vw;
      }
 
+     .table tbody tr .status .status-true {
+          background-color: transparent;
+          color: var(--success);
+     }
+     
+     .table tbody tr .status .status-false {
+          background-color: transparent;
+          color: var(--warning);
+     }
+
 }
 
 /* mobile phones */
 @media (max-width: 480px) {
+
+     body {
+          width: 100%;
+     }
+
      .table thead {
           display: none;
      }
@@ -329,5 +344,15 @@
      .form-group #appoint-reason {
           width: 50vw;
           margin-left: 0px;
+     }
+
+     .table tbody tr .status .status-true {
+          background-color: var(--success);
+          color: var(--light);
+     }
+     
+     .table tbody tr .status .status-false {
+          background-color: var(--warning);
+          color: var(--dark);
      }
 }

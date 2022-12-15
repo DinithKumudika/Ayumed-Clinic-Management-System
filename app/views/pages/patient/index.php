@@ -107,6 +107,14 @@
                 </div>
             </form>
 
+            <?php 
+            if(!isset($data['appointments'])){
+                echo "<div>
+                <h3>No past Appointments</h3>
+                </div>";
+            }
+            else { ?>
+
             <div class="table-container">
                 <table class="table">
                     <thead>
@@ -135,6 +143,7 @@
             </div>
         </div>
     </div>
+    <?php } ?>
 
     <?php require APP_ROOT . '/views/layout/footer.php' ?>
     <script>
