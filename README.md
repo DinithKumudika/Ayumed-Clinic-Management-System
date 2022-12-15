@@ -1,4 +1,4 @@
-<div style="text-align:center"><img src="./public/images/icons/72x72.png" /></div>
+<div style="text-align:center"><img src="./public/images/icons/192x192.png" /></div>
 
 # Ayumed-Clinic-Management-System
 Ayumed is a Web based Clinic Management System developed for the 2nd year group project of university
