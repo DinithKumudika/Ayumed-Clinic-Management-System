@@ -24,6 +24,7 @@
           <div class="img-container">
                <img src="<?php echo URL_ROOT; ?>/images/p-signup.jpg" alt="" class="signup-img">
           </div>
+         <?php echo \utils\Flash::flash("reg_error");  ?>
           <div class="signup-container">
                <div class="login">
                     <h3>Already a member?<a href="<?php echo URL_ROOT; ?>/user/login_patient"> Log In</a></h3>

@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
     <?php require APP_ROOT . '/views/layout/header.php' ?>
-
     <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/doctorRegister.css">
-
-
     <title>Doctor Sign Up</title>
 </head>
 <body>
@@ -13,9 +10,8 @@
 <div class="main">
 
     <img src="<?php echo URL_ROOT ?>/images/logo.png" alt=" Ayumed Logo">
-
+    <?php echo \utils\Flash::flash("reg_error");  ?>
     <p class="signup-title">Doctor Sign Up</p>
-
     <p class="UserGuide">Already have an account? <a href="<?php echo URL_ROOT; ?>/User/login_doctor">Log In</a></p>
 
     
@@ -85,15 +81,8 @@
             <!--<input type="submit" id="submit_btn" name="submit_btn" value="Create an Account">-->
             <div class="submit_btn" id="btn-signup">Create an Account</div>
         </form>
-
-
-    
-
-    
 </div>
-
-<?php require APP_ROOT . '/views/layout/footer.php' ?> 
-<script src="<?php echo URL_ROOT; ?>/js/Validate.js"></script>
+<?php require APP_ROOT . '/views/layout/footer.php' ?>
 <script src="<?php echo URL_ROOT; ?>/js/doctor_signup.js"></script>    
 </body>
 </html>

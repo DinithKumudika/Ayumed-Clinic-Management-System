@@ -127,6 +127,18 @@ class Validate{
           }
      }
 
+     // statff number validation
+     static  isStaffNoValid(inputField, messageEl){
+          if(this.isRequired(inputField)){
+               this.error(inputField, messageEl, "*staff no is required");
+               return false;
+          }
+          else{
+               this.success(inputField, messageEl);
+               return true;
+          }
+     }
+
      // address validation
      static isAddressValid(inputField, messageEl){
           if(this.isRequired(inputField)){
@@ -240,18 +252,18 @@ class Validate{
 
      // confirm password validation
      static isPasswordMatch(inputField, confirmField, messageEl){
-          if(this.isRequired(inputField)){
-               this.error(inputField, messageEl, "*password is required");
+          if(this.isRequired(confirmField)){
+               this.error(confirmField, messageEl, "*repeat password is required");
                document.getElementById('show-pwd-repeat').style.color = '#DC3545';
                return false;
           }
           else if(inputField.value !== confirmField.value){
-               this.error(inputField, messageEl, "*password does not match");
+               this.error(confirmField, messageEl, "*password does not match");
                document.getElementById('show-pwd-repeat').style.color = '#DC3545';
                return false;
           }
           else{
-               this.success(inputField, messageEl);
+               this.success(confirmField, messageEl);
                document.getElementById('show-pwd-repeat').style.color = '#28A745';
                return true;
           }
