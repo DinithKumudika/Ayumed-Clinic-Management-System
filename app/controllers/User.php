@@ -155,7 +155,36 @@ class User extends BaseController
 
     public function login_staff()
     {
+        if ($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post") {
 
+            Request::removeTags();
+
+            $data = [
+                'username' => trim($_POST['Username']),
+                'password' => trim($_POST['Password']),
+                'error' => ''
+            ];
+
+            if (!empty($data['username']) && !empty($data['password'])) {
+                $isValidUser = $this->userModel->login($data['username'], $data['password']);
+
+                if ($isValidUser) {
+                    $userLoggedIn = $this->userModel->getUser($data['username']);
+                    $this->createUserSession($userLoggedIn);
+                    Url::redirect('staff/index');
+                } else {
+                    $data['error'] = "Invalid username or password";
+                }
+            }
+        } else {
+            $data = [
+                'username' => '',
+                'password' => '',
+                'error' => ''
+            ];
+        }
+
+        $this->view('pages/staffLogin', $data);
     }
 
     public function login_admin()
