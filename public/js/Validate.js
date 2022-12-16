@@ -19,6 +19,22 @@ class Validate{
           }
      }
 
+     // validate email address is existing one or not using an API request
+     // async static isEmailExist(inputField){
+     //      const email = inputField.value;
+     //      const api_key = '4f2ed61f9d974c3ea1848e563efa7f82';
+     //      const url = new URL(`https://emailvalidation.abstractapi.com/v1/`);
+     //      // set url parameters
+     //      url.searchParams.set('api_key',api_key);
+     //      url.searchParams.set('email',email);
+     //      const res = await fetch(url);
+     //      console.log("before");
+     //      if(res.status === 200){
+     //           const data = await res.json();
+     //           return data.deliverability;
+     //      }
+     // }
+
      // first name validation
      static isFirstNameValid(inputField, messageEl){
 
@@ -67,6 +83,7 @@ class Validate{
           }
      }
 
+     // dob validation
      static isDOBValid(inputField, messageEl){
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl, "*date of birth is required");
@@ -110,6 +127,7 @@ class Validate{
           }
      }
 
+     // address validation
      static isAddressValid(inputField, messageEl){
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl, "*address is required");
@@ -124,6 +142,8 @@ class Validate{
      // email validation
      static isEmailValid(inputField, messageEl){
           const emailRegex = /[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+[.]+[a-z-A-Z]/;
+          // const emailStatus = await this.isEmailExist(inputField.value);
+          // const emailStatus = "DELIVERABLE";
 
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl, "*email is required");
@@ -221,7 +241,7 @@ class Validate{
      // confirm password validation
      static isPasswordMatch(inputField, confirmField, messageEl){
           if(this.isRequired(inputField)){
-               this.error(inputField, messageEl, "*confirm password is required");
+               this.error(inputField, messageEl, "*password is required");
                document.getElementById('show-pwd-repeat').style.color = '#DC3545';
                return false;
           }
@@ -248,6 +268,7 @@ class Validate{
           }
      }
 
+     // appointment date validation
      static isDateValid(inputField, messageEl){
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl,"*Date is required");
@@ -259,6 +280,7 @@ class Validate{
           }
      }
 
+     // appointment time validation
      static isTimeValid(inputField, messageEl){
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl,"*Time is required");

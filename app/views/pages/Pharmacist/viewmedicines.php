@@ -60,7 +60,7 @@
                <thead>
                     <tr>
                          <th>Name</th>
-                         <th>Weight</th>
+                         <th>Weight/Volume</th>
                          <th>Unit</th>
                          <th>Category</th>
                          <th>Quantity</th>

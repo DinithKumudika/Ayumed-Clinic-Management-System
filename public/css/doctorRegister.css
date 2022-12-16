@@ -1,0 +1,179 @@
+body{
+    margin: 0%;
+
+}
+
+label{
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-top: 3%;
+}
+
+input{
+    padding: 5%; 
+    border: solid 3px #19A627;
+    border-radius: 6px;
+    width: 150%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+form{
+    position: absolute;
+    left: 27.5%;
+    margin-top: 13%;
+    width: 40%;
+    border: solid 3px #19a627;
+    border-radius: 10px;
+    padding: 2% 6% 0% 0%;
+
+}
+
+/* #submit_btn{
+    margin-left: 13%;
+    margin-bottom: 5%;
+    padding: 1% 3%;
+    border-radius: 15px;
+    border: 2px solid #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 90%;
+    background-color: #19A627;
+    font-weight: 500;
+    color: #fff;
+    width: 25%;
+} */
+
+/* #submit_btn:hover{
+    margin-left: 13%;
+    margin-bottom: 5%;
+    padding: 1% 3%;
+    border-radius: 15px;
+    border: 2px solid #19A627;
+    font-family: 'Poppins', sans-serif;
+    font-size: 90%;
+    background-color: #fff;
+    font-weight: 500;
+    color: #19A627;
+    width: 25%;
+} */
+
+.innerForm{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: stretch; */
+}
+
+.right_form .left_form{
+    width: 100%;
+}
+
+/* .main{
+    background-image: url(/images/doc-signup-bg.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+}  */
+
+img{
+    position: absolute;
+    left: 45.5%;
+    width: 10%;
+}
+
+.signup-title{
+    position: absolute;
+    left: 45%;
+    margin-top: 9%;
+    width: 15%;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.UserGuide{
+    position: absolute;
+    left: 59%;
+    margin-top: 11.5%;
+    font-family:'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.UserGuide a{
+    color: #19A627;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* .form-control.success input{
+    border: 3px solid #19A627;
+    padding: 4%; 
+    border-radius: 6px;
+    width: 115%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+.form-control.error input{
+    border: 3px solid #ff0000;
+    padding: 3.735%; 
+    border-radius: 6px;
+    width: 112.035%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+} */
+
+.form-control p{
+    margin-bottom: 0;
+}
+
+/* .form-control.error p{
+    visibility: visible;
+    color: #ff0000;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 0%;
+    margin-bottom: 2%;
+} */
+
+.submit_btn{
+    cursor: pointer;
+    margin-top: 3%;
+    margin-left: 13%;
+    margin-bottom: 5%;
+    padding: 1% 3%;
+    border-radius: 15px;
+    border: 2px solid #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 90%;
+    background-color: #19A627;
+    font-weight: 500;
+    color: #fff;
+    width: 19%;
+}
+
+.submit_btn:hover{
+    margin-top: 3%;
+    margin-left: 13%;
+    margin-bottom: 5%;
+    padding: 1% 3%;
+    border-radius: 15px;
+    border: 2px solid #19A627;
+    font-size: 90%;
+    background-color: #fff;
+    font-weight: 500;
+    color: #19A627;
+    width: 19%;
+}
+
+/* .error{
+    border: 2px solid var(--danger);
+} */
+
+.err-signup{
+    text-align: left;
+    font-size: 15px;
+    color: var(--danger);
+    margin-top: -3px;
+    margin-left: 3px;
+}

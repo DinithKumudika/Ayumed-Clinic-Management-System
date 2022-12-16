@@ -37,7 +37,7 @@ body {
 }  
 
 .topic {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: bold;
   margin-top: -2%;
   margin-bottom: -5px;
@@ -191,7 +191,7 @@ h4 {
 
 hr{
   border: 0.1px solid black;
-  width: 45%;
-  margin-left: 131px;
+  width: 60%;
+  margin-left: 99px;
   margin-bottom: 35px;
 }

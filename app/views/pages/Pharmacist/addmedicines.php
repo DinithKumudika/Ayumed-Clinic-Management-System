@@ -29,7 +29,7 @@
                <input type="text" id="name" class="input" name="name" >
                <p id="name_error"></p>
                
-               <label for="weight" >Weight:</label>
+               <label for="weight" >Weight/Volume:</label>
                <input type="text" id="weight" class="input" name="weight">
                <p id="weight_error"></p>
                
@@ -49,6 +49,8 @@
                     <option value="capsule">Capsule</option>
                     <option value="oil">Oil</option>
                     <option value="syrup">Syrup</option>
+                    <option value="packets">Packets</option>
+                    <option value="eeds">Seeds</option>
                </select>
                <p id="category_error"></p>
                

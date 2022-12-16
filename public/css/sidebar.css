@@ -146,7 +146,6 @@ body{
      left: 270px;
 }
 
-
 /* mobile phones */
 @media (max-width: 480px) {
      .side-nav-container .logo-container .menu-btn{

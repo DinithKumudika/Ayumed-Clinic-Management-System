@@ -15,11 +15,13 @@ class Patient extends BaseController
     public function __construct()
     {
         if(!Session::isLoggedIn()){
+            Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
             Url::redirect('user/login_patient');
         }
-
-        $this->patientModel = $this->model('PatientModel');
-        $this->appointmentModel = $this->model('AppointmentModel');
+        else{
+            $this->patientModel = $this->model('PatientModel');
+            $this->appointmentModel = $this->model('AppointmentModel');
+        }
     }
 
     public function index()
@@ -85,7 +87,7 @@ class Patient extends BaseController
             $data['upcoming'] = $upcoming;
         }
         else{
-            $data['upcoming'] = "No Appointments";
+            $data['upcoming'] = false;
         }
 
 

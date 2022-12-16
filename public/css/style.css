@@ -24,12 +24,21 @@ body{
      box-sizing: border-box;
      margin: 0;
      font-family: 'Poppins', sans-serif;
+
+}
+
+::-webkit-scrollbar-thumb {
+     background: var(--green);
+}
+
+::-webkit-scrollbar-thumb:hover {
+     background: var(--dark-green);
 }
 
 .btn{
      cursor: pointer;
      border-radius: 10px;
-     font-size: 12px;
+     font-size: 15px;
      border: 0px;
      padding-top: 10px;
      padding-bottom: 10px;
@@ -376,4 +385,3 @@ body{
 }
 
 /* 404 page styles end */
-

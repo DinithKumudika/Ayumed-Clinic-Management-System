@@ -35,7 +35,7 @@
             <div class="form-container">
                 <form action="<?php echo URL_ROOT; ?>/user/login_pharm" method="post" id="form" class="login-form ">
                     <img src="../images/logo.png" alt="logo" class="logo">
-                    <h1 class="topic">Login</h1>
+                    <h1 class="topic">Pharmacist Login</h1>
                     <hr>
                     <div class=" form-content">
                         <h4>Username</h4>

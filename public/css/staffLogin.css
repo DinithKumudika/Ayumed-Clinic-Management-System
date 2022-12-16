@@ -1,0 +1,50 @@
+.main{
+    width : 100% ;
+    display:flex;
+    
+    }
+    .left{
+    width : 50% ;
+    background-image : url(../images/signin.jpg) ;
+    background-size : cover ;
+    height : 100vh ;
+    background-position : center ;
+    }
+    .right {
+    width : 50% ;
+     background-image: linear-gradient(to right, #bfe586 , #bfe586);
+    
+    }
+    h1 {
+    color:white;
+    font-size:35px;
+    text-align:center;
+    }
+    .form {
+    max-width : 60%; 
+    margin-left:20%;
+    }
+    .form input {
+    width:100%;
+    padding : 10px;
+    font-size:15px;
+    border-radius:30px;
+    border-color:green;
+    }
+    .form input:focus {
+    border:3px solid dodgerblue;
+    }
+    
+    button{
+    background-color:#82E0AA;
+    padding:10px 50px;
+    border-radius:30px;
+    font-weight:bold;
+    color:white;
+    border:none;
+    cursor:pointer;
+    }
+    button:hover{
+    background-color:#27AE60;
+    color:black;
+    }

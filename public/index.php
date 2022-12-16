@@ -12,5 +12,6 @@ require_once '../app/init.php';
      $dotenv->load();
 
      Session::init();
+
      /* initialize app class */
      $app = new App();

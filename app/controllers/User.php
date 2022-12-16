@@ -12,10 +12,12 @@ class User extends BaseController{
 
      public $userModel;
      public $verificationModel;
+     private $rememberLoginModel;
 
      public function __construct()
      {
           $this->userModel = $this->model('UserModel');
+          $this->rememberLoginModel = $this->model('RememberLoginModel');
           $this->verificationModel = $this->model('VerificationModel');
      }
 
@@ -27,37 +29,56 @@ class User extends BaseController{
           $this->view('pages/signup');
      }
 
-     public function login_doctor(){
-
-          if(Request::isPost()){
-
-               Request::removeTags();
-               $data = [
-                    'username'=>trim($_POST['username']),
-                    'password'=>trim($_POST['password']),
-                    'error'=> ''
-               ];
-
-              $isValidUser = $this->userModel->login($data['username'], $data['password']);
-
-              if($isValidUser){
-                  $userLoggedIn = $this->userModel->getUser($data['username']);
-                  $this->createUserSession($userLoggedIn);
-                  Url::redirect('doctor/index');
-              }
-              else{
-                  $data['error'] = "invalid username or password";
-              }
-          }
-          else{
-               $data = [
-                    'username'=>'',
-                    'password'=>'',
-                    'error'=> ''
-               ];
-          }
-
-          $this->view('pages/doctorLogin', $data); 
+     public function login_doctor()
+     {
+ 
+         if (Session::isLoggedIn() || isset($_COOKIE['remember_me'])) {
+             Url::redirect('doctor/index');
+         }
+ 
+         if (Request::isPost()) {
+ 
+             Request::removeTags();
+ 
+             $data = [
+                 'username' => trim($_POST['username']),
+                 'password' => trim($_POST['password']),
+                 'error' => ''
+             ];
+ 
+             $isValidUser = $this->userModel->login($data['username'], $data['password']);
+ 
+             if ($isValidUser) {
+                 $userLoggedIn = $this->userModel->getUser($data['username']);
+                 $this->createUserSession($userLoggedIn);
+ 
+                 if (isset($_POST['remember_me'])) {
+                     $data['remember_me'] = true;
+                     $token = new Token();
+                     $hashed_token = $token->getHashedToken();
+                     $exp_time = time() + 60 * 60 * 24;
+ 
+                     if ($this->rememberLoginModel->remember($hashed_token, Session::get('user_id'), $exp_time)) {
+                         $remember_token = $token->getTokenValue();
+                         setcookie('remember_me', $remember_token, $exp_time, '/');
+                     }
+                 }
+ 
+                 Flash::setFlash('login_success', 'Login successful', Flash::FLASH_SUCCESS);
+                 Url::redirect('doctor/index');
+             }
+             else {
+                 $data['error'] = "invalid username or password";
+             }
+         } else {
+             $data = [
+                 'username' => '',
+                 'password' => '',
+                 'error' => ''
+             ];
+         }
+ 
+         $this->view('pages/doctorLogin', $data);
      }
 
      public function login_pharm(){
@@ -161,9 +182,40 @@ class User extends BaseController{
          $this->view('pages/patientLogin', $data);
      }
 
-     public function login_staff(){
-
+     public function login_staff()
+     {
+         if ($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post") {
+ 
+             Request::removeTags();
+ 
+             $data = [
+                 'username' => trim($_POST['Username']),
+                 'password' => trim($_POST['Password']),
+                 'error' => ''
+             ];
+ 
+             if (!empty($data['username']) && !empty($data['password'])) {
+                 $isValidUser = $this->userModel->login($data['username'], $data['password']);
+ 
+                 if ($isValidUser) {
+                     $userLoggedIn = $this->userModel->getUser($data['username']);
+                     $this->createUserSession($userLoggedIn);
+                     Url::redirect('staff/index');
+                 } else {
+                     $data['error'] = "Invalid username or password";
+                 }
+             }
+         } else {
+             $data = [
+                 'username' => '',
+                 'password' => '',
+                 'error' => ''
+             ];
+         }
+ 
+         $this->view('pages/staffLogin', $data);
      }
+   
 
      public function login_admin(){
           
@@ -275,6 +327,7 @@ class User extends BaseController{
           Session::set('user_id',$user->user_id);
           Session::set('username',$user->username);
           Session::set('role_id',$user->role_id);
+          Session::set('avatar_url', $user->avatar);
      }
 
 
@@ -368,6 +421,89 @@ class User extends BaseController{
      //           Url::redirect('user/login_pharm');
      //      } 
      // }
+
+     public function register_doctor(){
+          if (Request::isPost()) {
+              Request::removeTags();
+  
+              $data = [
+                  'first_name' => trim($_POST['fName']),
+                  'last_name' => trim($_POST['lName']),
+                  'nic' => trim($_POST['nic']),
+                  'email' => trim($_POST['email']),
+                  'phone' => trim($_POST['phone']),
+                  'username' => trim($_POST['userName']),
+                  'password' => trim($_POST['password']),
+                  'error' => ''
+              ];
+  
+              $userExists = $this->userModel->isUserExists($data['username']);
+  
+              if ($userExists) {
+                  $data['error'] = 'username is already taken';
+              }
+              else {
+                  $data['password'] = Crypto::createHash($data['password']);
+  
+                  if ($this->userModel->register($data, 2)) {
+                      $userId = $this->userModel->getUserId(2);
+  
+                      if ($this->userModel->registerDoctor($data, $userId)) {
+  
+                          //redirect to home view
+                          // Url::redirect('doctor/index');
+                          Url::redirect('User/login_doctor');
+                      }
+                      // else {
+                      //     echo "error";
+                      // }
+                  }
+              }
+          } else {
+              $data = [
+                  'first_name' => '',
+                  'last_name' => '',
+                  'nic' => '',
+                  'email' => '',
+                  'phone' => '',
+                  'username' => '',
+                  'password' => '',
+                  'error' => ''
+              ];
+          }
+  
+          $this->view('pages/doctorRegister', $data);
+      }
+
+      public function forgotPassword()
+      {
+          if (Request::isPost()) {
+              Request::removeTags();
+  
+              $data = [
+                  'username' => trim($_POST['username']),
+                  'email' => trim($_POST['email']),
+                  'error' => ''
+              ];
+  
+              $userExists = $this->userModel->isUserExists($data['username']);
+  
+              if ($userExists) {
+                  $email = new Email($data['email']);
+                  $email->changePasswordEmail();
+              } else {
+                  $data['error'] = 'invalid username';
+              }
+          } else {
+              $data = [
+                  'username' => '',
+                  'email' => '',
+                  'error' => ''
+              ];
+          }
+          $this->view('pages/forgotPassword', $data);
+      }
+  
 
      public function error(){
           $this->view('404');

@@ -24,4 +24,20 @@ class PatientModel extends Database
             return false;
         }
     }
+
+    public function getPatient($userId){
+        $sql = "SELECT * FROM `tbl_patients` WHERE `user_id` = :id";
+        $this->prepare($sql);
+        $params = [
+            'id'=>$userId
+        ];
+        $patient = $this->result($params);
+
+        if($this->rowCount()>0){
+            return $patient;
+        }
+        else{
+            return false;
+        }
+    }
 }

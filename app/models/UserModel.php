@@ -1,5 +1,6 @@
 <?php
 use utils\Crypto;
+use utils\Token;
 
 class UserModel extends Database{
      private $db;
@@ -34,14 +35,14 @@ class UserModel extends Database{
      }
 
      public function register($data, $roleId){
-    
-          $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`role_id`) 
+        $sql = "INSERT INTO `tbl_users`(`first_name`,`last_name`,`email`,`username`,`password`,`role_id`) 
                     VALUES (
                         :first_name, 
                         :last_name, 
                         :email, 
                         :username, 
-                        :password, 
+                        :password,
+                        :avatar_url, 
                         :role_id
                     )";
 
@@ -53,17 +54,14 @@ class UserModel extends Database{
                'email'=>$data['email'],
                'username'=>$data['username'],
                'password'=>$data['password'],
+               'avatar_url'=>URL_ROOT. "/images/profile.jpg",
                'role_id'=>$roleId
           ];
 
-          if($this->execute($params)){
-            // print_r("DATABAE AVA");
-            // die();    
+          if($this->execute($params)){  
               return true;
           }
           else{
-            print_r("DATABAE AVE Na");
-            die();
               return  false;
           }
      }
@@ -173,6 +171,33 @@ class UserModel extends Database{
           }
      }
 
+
+     
+    //A temporary table. Just for the interim presentation.
+    public function registerDoctor($data, $user_id)
+    {
+        $sql = "INSERT INTO `tbl_doctors`(`NIC`,`phone_no`,`user_id`) 
+        VALUES (
+             :nic,
+             :phone_no,
+             :user_id
+        )";
+
+        $this->prepare($sql);
+
+        $params = [
+            'nic' => $data['nic'],
+            'phone_no' => $data['phone'],
+            'user_id' => $user_id
+        ];
+
+        if ($this->execute($params)) {
+            return true;
+        } else {
+            return  false;
+        }
+    }
+
      public function verifyRegistration(){
           
      }
@@ -201,4 +226,23 @@ class UserModel extends Database{
               return  false;
           }
      }
+
+     
+     public function getAvatar($user_id){
+        $sql = "SELECT `avatar` FROM `tbl_users` WHERE `user_id` = :id";
+        $this->prepare($sql);
+
+        $params = [
+            'id'=>$user_id
+        ];
+
+        $avatar_url = $this->result($params);
+
+        if($this->rowCount()>0){
+            return $avatar_url->avatar;
+        }
+        else{
+            return false;
+        }
+    }
 }
