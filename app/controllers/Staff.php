@@ -20,6 +20,10 @@ class Staff extends BaseController
         $this->view('pages/staffMem/index');
     }
 
+    public function addPatient(){
+
+    }
+
     public function error()
     {
         $this->view('404');

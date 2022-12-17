@@ -1,0 +1,169 @@
+.welcome-container{
+    width: 100vw;
+    height: 90vh;
+    background-color: var(--light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-container .logo img{
+    width: 500px;
+    height: 500px;
+    animation: fadein 5s;
+}
+
+.welcome-container .welcome-header{
+    text-align: center;
+    margin-bottom: 80px;
+    font-size: 40px;
+}
+
+.welcome-container .welcome-header div {
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+}
+.welcome-container .welcome-header div:first-of-type {
+    animation: showup 7s infinite;
+}
+
+.welcome-container .welcome-header div:last-of-type {
+    width:0px;
+    animation: reveal 7s infinite;
+}
+
+.welcome-container .welcome-header div:last-of-type span {
+    margin-left:-550px;
+    animation: slidein 7s infinite;
+}
+
+@keyframes fadein {
+    0% {opacity:0;}
+    100% {opacity:1;}
+ }
+
+@keyframes showup {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+
+@keyframes slidein {
+    0% { margin-left:-800px; }
+    20% { margin-left:-800px; }
+    35% { margin-left:0px; }
+    100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+    0% {opacity:0;width:0px;}
+    20% {opacity:1;width:0px;}
+    30% {width:550px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:550px;}
+}
+
+.welcome-container .welcome-btn-group{
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.welcome-btn {
+    font-size: 20px;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.welcome-btn a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.welcome-btn:hover {
+    color: #3498db;
+}
+
+.welcome-btn::after {
+    content: "";
+    background: var(--light);
+    position: absolute;
+    z-index: -1;
+    padding: 10px 20px;
+    display: block;
+    transition: all 0.4s ease-in-out;
+}
+
+.welcome-btn:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+.welcome-login {
+    background: var(--green);
+    border: 2px solid var(--green);
+}
+
+.welcome-login:hover a{
+    color: var(--green);
+}
+
+.welcome-signup {
+    background: var(--light-green);
+    border: 2px solid var(--light-green);
+}
+
+.welcome-signup:hover a {
+    color: var(--light-green);
+}
+
+.welcome-login::after {
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+}
+
+.welcome-signup::after {
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    right: -100%;
+}
+
+.footer {
+    text-align: center;
+    color: var(--dark);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+/* media query starts */
+
+/* tablet devices */
+@media (max-width: 768px){
+    .welcome-container .welcome-header {
+        font-size: 30px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+/* mobile phones */
+@media (max-width: 480px){
+
+}
+

@@ -1,9 +1,11 @@
 <?php
-
+use helpers\Session;
+use utils\Url;
 class Home extends BaseController
 {
      public function __construct()
      {
+
      }
 
      public function index()
@@ -11,6 +13,7 @@ class Home extends BaseController
           $data = [
                'title' => 'Ayumed'
           ];
+
           $this->view('pages/index', $data);
      }
 

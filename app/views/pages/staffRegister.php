@@ -24,6 +24,7 @@
                     </div>
                     <div>
                         <label for="email">Email</label>
+                        <br>
                         <input type="email" placeholder="Email" name="email" id="email">
                         <p style="color: red; text-align: center" id="error-email"></p>
                         <small>We'll never share your email with anyone else.</small>
@@ -41,11 +42,13 @@
                     <div>
                         <label for="password">Password</label>
                         <input type="password" placeholder="Password" name="password" id="password">
+                        <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd"></i>
                         <p style="color: red; text-align: center" id="error-password"></p>
                     </div>
                     <div>
                         <label for="c-password">Confirm Password</label>
                         <input type="password" placeholder="Confirm Password" name="c-password" id="c-password">
+                        <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd-repeat"></i>
                         <p style="color: red; text-align: center" id="error-c-password"></p>
                     </div>
                     <div name="signup" id="staff-signup-btn">Sign Up</div>

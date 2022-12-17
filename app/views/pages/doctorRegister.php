@@ -43,6 +43,7 @@
                     <div class="form-control">
                         <label for="password">Password</label><br>
                         <input type="password" id="password" name="password">
+                        <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd"></i>
                         <p class="err-signup" id="err-password"></p>
                     </div><br>
 
@@ -71,8 +72,8 @@
                     <div class="form-control">
                         <label for="cpassword">Confirm Password</label><br>
                         <input type="password" id="cpassword" name="cpassword">
+                        <i class="fa-solid fa-eye show-pwd-icon" id="show-pwd-repeat"></i>
                         <p class="err-signup" id="err-password-repeat"></p>
-                        
                     </div><br>
 
                 </div>

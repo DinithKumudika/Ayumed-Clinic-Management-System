@@ -1,114 +1,197 @@
 body {
-     background-image: url("../images/pharmacist1.jpg");
-     padding: 0;
-     font-family: "Poppins";
-     background-size: 500px 700px;
-}
-
-.container {
+     /* background-image: url("../images/pharmacist.png");   */
+     /* padding: 10px 30px 10px 30px;               */
+      font-family: "Poppins";
+    /* background-repeat: no-repeat; 
+     background-size: 52% 91%; */
+     overflow: hidden;
+    
+   }
+   
+   /* .container {
      width: 70vw;
      margin: auto;
-     border-radius: 2px;
+      border-radius: 2px; 
      text-align: center;
-     margin-top: 5%;
-}
-
-.topic {
+     margin-top: 3%; 
+    
+   } */
+   
+   .login-img{
+     width:752px;
+     height:791px;
+     float: left; 
+     margin:-30px 0px 0px -20px;
+   } 
+   
+   .form-container{
+     width:500px;
+     height:560px;
+     float: right;
+     padding: 10px 10px 10px 10px;
+     margin: 3px 25px 0px 60px;  
+     border-radius: 10px;
      text-align: center;
-     font-size: 40px;
+     align-items: center;
+     box-shadow:  1px 2px 3px black;
+   }  
+   
+   .topic {
+     font-size: 32px;
      font-weight: bold;
-     margin-top: 0%;
-     font-style: italic;
-}
-
-.item1 {
-     opacity: 0.97;
-     width: 34vw;
-     background: #86e4b7;
-     height: 82vh;
-     box-shadow: 4px 4px;
-}
-
-.logo {
+     margin-top: -2%;
+     margin-bottom: -5px;
+     
+   }
+   
+    /* .back-btn-container{
+     margin-top: 30px;
+     margin-left:350px;
+   } 
+   
+   .back-btn{
+     background-color: white;
+    width: 100px;
+     height: 30px; 
+      font-size: 16px; 
+     border: 1px solid transparent;
+      padding: 5px 10px 5px 10px; 
+    
+   }
+   
+   .back-link{
+     color: var(--green);
+   }  
+   
+   .back-link:link{
+    text-decoration: none;
+   } 
+   
+   .back-icon{
+      color: var(--green); 
+     font-size: 15px;
+   } */
+   
+   .show-pwd-icon{
+     color: var(--green);
+     font-size: 15px;
+     position: absolute;
+     margin-left: 9px;
+     margin-top: 13px;
+     cursor: pointer;
+   }
+   
+   .item1 {
+     /* opacity: 0.97; */
+     /*width: 64vw;
+      background-color: rgb(255, 255, 255); 
+     height: 77vh;
+     /* box-shadow: 1px 1px 1px 3px var( --dark-green) ; 
+     box-shadow:  1px 2px 3px black;
+     border-radius: 30px;
+     margin-left: 520px;
+     margin-top: 38px;*/
+    
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+   }
+   
+    /* .checkbox {
+     margin-top: 21px;
+     font-size: 13px;
+   }  */
+   
+   .logo {
      width: 150px;
      height: 150px;
-}
-
-.login-btn {
+     /* margin-bottom: 0px; */
+   }
+   
+   .login-btn {
      border-radius: 5px;
-     width: 100px;
-     background-color: #bee3d3;
+     width: 120px;
+     background-color: var(--green);
+     color: white;
      font-weight: bold;
-     font-size: 20px;
-     text-align: center;
-     margin-top: 28px;
+     font-size: 21px; 
+     margin-top: 30px;
      transition: 0.5s;
-     font-family: "Poppins";
-}
-
-.login-form .login-btn:hover {
+   
+     cursor: pointer;
+     margin-left: 190px;  
+   }
+   
+   /* .login-form .login-btn:hover {
      background: #40a981;
-}
-
-.form-input {
+   } */
+   
+   .form-input {
      border-radius: 5px;
-     font-size: 12px;
-     height: 20px;
-     width: 50%;
+     font-size: 16px;
+     height: 10px;
+     width: 60%;
      border: 2px solid green;
-}
-
-.grid-container {
+     /* background: #e7e7e7; */
+     padding: 12px 14px;
+     margin-bottom: 4px;
+     background: #a7d2bc;
+    
+   }
+   
+   .grid-container {
      display: grid;
      grid-template-columns: repeat(2, 1fr);
-     margin-left: 25%;
-}
-
-.grid-row {
+     margin-left: 80px;
+   }
+   /* 
+   .grid-row {
      border-radius: 30px;
-}
-
-.pharmacist {
+   } */
+   
+   .pharmacist {
      width: 37vw;
      height: 63vh;
-}
-
-.form-content {
+   }
+   
+   .form-content {
      font-size: 17px;
-}
-
-.checkbox {
-     margin-top: 28px;
-     font-size: 13px;
-}
-
-.sign-up {
+   }
+   
+   .sign-up {
      margin-top: 10px;
-}
-
-.forgot-password {
-     margin-top: 25px;
-}
-
-a:link {
-     color: black;
-}
-
-.link {
+   }
+   
+   .sign-up {
+     margin-top: 20px;
      font-size: 13px;
-}
-
-h4 {
-     margin-top: 13px;
-}
-
-#username_error,
-#password_error {
-     color: #bd2d17;
+   } 
+   
+   a:link {
+     color: black;
+   }
+   
+   
+   h4 {
      margin-top: 3px;
+     font-weight: lighter;
+     /* text-align: left;
+     margin-left: 18%; */
+     margin-bottom: 6px;
+   }
+   
+   .username_error,
+   .password_error {
+     color: #bd2d17; 
+     margin-top: 2px;
      text-align: center;
-}
-
-#show_password {
-     margin-left: 5%;
-}
+     font-size: 14px;
+    
+   }
+   
+   hr{
+     border: 0.1px solid black;
+     width: 60%;
+     margin-left: 99px;
+     margin-bottom: 35px;
+   }
