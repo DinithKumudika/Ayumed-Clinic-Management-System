@@ -113,7 +113,7 @@ class Validate{
                this.success(inputField, messageEl);
                return true;
           }
-          else if(nic.length === 10 && !isNaN(nic.substring(0,9)) && isNaN(nic.substring(9,1).toUpperCase()) && ['X','Y'].includes(nic.substring(9,1).toUpperCase())){
+          else if(nic.length === 10 && !isNaN(nic.substring(0,9)) && isNaN(nic.substring(9,1).toUpperCase()) && ['X','V'].includes(nic.substring(9,1).toUpperCase())){
                this.success(inputField, messageEl)
                return true;
           }

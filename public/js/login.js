@@ -7,7 +7,62 @@ const passwordError = document.querySelector('.err-pwd');
 const loginBtn = document.getElementById('btn-login');
 const loginForm = document.getElementById('login-form');
 
+const userDoctor = document.getElementById("user-doctor");
+const userStaff = document.getElementById("user-staff");
+const userPharmacist = document.getElementById("user-pharm");
+const userAdmin = document.getElementById("user-admin");
+
+const userTypes = document.getElementsByName("user_type");
+
+userTypes[0].checked = true;
+userDoctor.classList.add("checked");
+userDoctor.style.color = "#ffffff";
+
+function addStyle(element){
+     element.classList.add("checked");
+     element.style.color = "#ffffff";
+}
+
+function removeStyle(element){
+     element.classList.remove("checked");
+     element.style.color = "#1B9527";
+}
+userDoctor.addEventListener('click', function (){
+     userTypes[0].checked = true;
+     addStyle(userDoctor);
+     removeStyle(userStaff);
+     removeStyle(userPharmacist);
+     removeStyle(userAdmin);
+});
+
+userStaff.addEventListener('click', function (){
+     userTypes[1].checked = true;
+     addStyle(userStaff);
+     removeStyle(userDoctor);
+     removeStyle(userPharmacist);
+     removeStyle(userAdmin);
+});
+
+userPharmacist.addEventListener('click', function (){
+     userTypes[2].checked = true;
+     addStyle(userPharmacist);
+     removeStyle(userDoctor);
+     removeStyle(userStaff);
+     removeStyle(userAdmin);
+});
+
+userAdmin.addEventListener('click', function (){
+     userTypes[3].checked = true;
+     addStyle(userAdmin);
+     removeStyle(userDoctor);
+     removeStyle(userStaff);
+     removeStyle(userPharmacist);
+});
+
+
 let isShowing = false;
+
+loginBtn.disable = true;
 
 // show password option
 showPasswordBtn.addEventListener('click',()=>{
@@ -25,33 +80,13 @@ showPasswordBtn.addEventListener('click',()=>{
      }
 });
 
-
-/* stop default behavior of login form on submit */
-// loginForm.addEventListener('submit',(e)=>{
-//      e.preventDefault();
-// });
-
-//input validation
-loginBtn.addEventListener('click',()=>{
-     if(isValidated()){
-          loginForm.submit();
-     }
+usernameInput.addEventListener('input', function (){
+     inputValidate(usernameInput, usernameError, "username cannot be empty");
 });
 
-function isValidated(){
-     if(!usernameValidate() && !passwordValidate()){
-          return false;
-     }
-     else if(!usernameValidate()){
-          return false;
-     }
-     else if(!passwordValidate()){
-          return false;
-     }
-     else{
-          return true;
-     }
-}
+passwordInput.addEventListener('input', function () {
+     inputValidate(passwordInput, passwordError, "password cannot be empty");
+});
 
 /* check for empty input fields */
 function emptyInput(inputField){
@@ -67,29 +102,16 @@ function error(inputField,element,message){
      element.innerHTML = message;
 }
 
-function success(inputField,element,message){
+function success(inputField,element){
      inputField.style.borderBottom = "2px solid #28A745";
-     element.innerHTML = message;
+     element.innerHTML = "";
 }
 
-function usernameValidate(){
-     if(emptyInput(usernameInput)){
-          error(usernameInput, usernameError, "username cannot be empty");
-          return false;
+function inputValidate(input, inputError, message){
+     if(emptyInput(input, inputError, message)){
+          error(input, inputError, message);
      }
      else{
-          success(usernameInput, usernameError,"");
-          return true;
-     }
-}
-
-function passwordValidate(){
-     if(emptyInput(passwordInput)){
-          error(passwordInput , passwordError, "password cannot be empty");
-          return false;
-     }
-     else{
-          success(passwordInput, passwordError,"");
-          return true;
+          success(input, inputError);
      }
 }

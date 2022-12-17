@@ -26,12 +26,12 @@
         <div class="banner-text-2" id="text-2">Caring Hearts</div>
         <div class="btn-group">
             <div class="banner-button" id="banner-btn">
-                <a href="<?php echo URL_ROOT ?>/user/register_patient">
+                <a href="<?php echo URL_ROOT ?>/user/register/patient">
                     <button id="banner-btn-register">Register Now</button>
                 </a>
             </div>
             <div class="banner-button" id="banner-btn">
-                <a href="<?php echo URL_ROOT ?>/user/login_patient">
+                <a href="<?php echo URL_ROOT ?>/user/login/patient">
                     <button id="banner-btn-login">Login</button>
                 </a>
             </div>
@@ -69,8 +69,8 @@
             <div class="service service-4">
                 <img src="<?php echo URL_ROOT ?>/images/service-4.jpg" alt="" class="service-img">
                 <div class="service-detail">
-                    <div class="service-name"></div>
-                    <div class="service-desc"></div>
+                    <div class="service-name">Place Medicine Orders</div>
+                    <div class="service-desc">Place medicine orders through the our system for prescriptions issued by the doctor without waiting in the queue</div>
                 </div>
             </div>
         </div>
@@ -138,9 +138,8 @@
                 <h4>About us</h4>
                 <div>
                     <p>
-                        HelaChai coffee shop offers a unique coffee house environment unlike any other in Sri Lanka.
-                        We are not only a place to drop in and get your morning cup of coffee (although you are more than welcome to do that), we are a place where you can sit down and enjoy that tailor-made cup of coffee.
-                        We offer a delicious variety of coffee made by our professionally trained baristas. We have everything from classic coffee to our house made specialty beverages and we offer everything from classic coffee to our house made specialty beverages.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a urna turpis. Sed ac elit rutrum, suscipit leo sed, sagittis ex. Sed porttitor porttitor mi, sit amet molestie ex pulvinar ut. Suspendisse ac orci arcu. 
+                    Proin gravida magna non ipsum molestie, at tincidunt mauris congue. Nullam magna sapien, iaculis in diam quis.
                     </p>
                 </div>
             </div>
@@ -154,7 +153,7 @@
                         <i class="fa-solid fa-phone"></i><a href="#">+94 11 282 32 65</a>
                     </li>
                     <li>
-                        <i class="fa-solid fa-envelope"></i><a href="#">helachaicoffee@gmail.com</a>
+                        <i class="fa-solid fa-envelope"></i><a href="#">ayumed@gmail.com</a>
                     </li>
                 </ul>
             </div>

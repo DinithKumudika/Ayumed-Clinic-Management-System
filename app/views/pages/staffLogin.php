@@ -30,7 +30,7 @@
                     <button type="submit" id="login-btn">LOGIN</button>
                 </center>
             </form>
-            <p class="signup-opt">Are you a new user? <a href="">Sign Up</a></p>
+            <p class="signup-opt">Are you a new user? <a href="<?php echo URL_ROOT?>/user/register_staff">Sign Up</a></p>
         </div>
     </div>
 </div>

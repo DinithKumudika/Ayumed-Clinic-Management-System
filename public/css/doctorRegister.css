@@ -11,10 +11,10 @@ label{
 }
 
 input{
-    padding: 5%; 
+    padding: 10px; 
     border: solid 3px #19A627;
     border-radius: 6px;
-    width: 150%;
+    width: 300px;
     margin-top: 0%;
     margin-bottom: 0%;
 }
@@ -59,8 +59,9 @@ form{
 } */
 
 .innerForm{
+    padding: 0px 10px 0px 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     /* align-items: stretch; */
 }
 
@@ -177,4 +178,8 @@ img{
     color: var(--danger);
     margin-top: -3px;
     margin-left: 3px;
+}
+
+.show-pwd-icon {
+    color: var(--green);
 }

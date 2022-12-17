@@ -32,13 +32,13 @@ function checkInputs(){
     }
 
 
-	if(emailValue === '') {
-		setErrorFor(email, 'Email cannot be empty');
-	} else if (!isEmail(emailValue)) {
-		setErrorFor(email, 'Not a valid email');
-	} else {
-		setSuccessFor(email);
-	}
+    if(emailValue === '') {
+        setErrorFor(email, 'Email cannot be empty');
+    } else if (!isEmail(emailValue)) {
+        setErrorFor(email, 'Not a valid email');
+    } else {
+        setSuccessFor(email);
+    }
 
 
     if(fnameValue ===''){
@@ -56,19 +56,19 @@ function checkInputs(){
 
 
     if(passwordValue === '') {
-		setErrorFor(password, 'Password cannot be empty');
-	} else {
-		setSuccessFor(password);
-	}
+        setErrorFor(password, 'Password cannot be empty');
+    } else {
+        setSuccessFor(password);
+    }
     
 
     if(cpasswordValue === '') {
-		setErrorFor(cpassword, 'Enter the password again');
-	} else if(passwordValue !== cpasswordValue) {
-		setErrorFor(cpassword, 'Passwords does not match');
-	} else{
-		setSuccessFor(cpassword);
-	}
+        setErrorFor(cpassword, 'Enter the password again');
+    } else if(passwordValue !== cpasswordValue) {
+        setErrorFor(cpassword, 'Passwords does not match');
+    } else{
+        setSuccessFor(cpassword);
+    }
 
 }
 
@@ -89,7 +89,7 @@ function setSuccessFor(input){
 }
 
 function isEmail(email) {
-	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 */
 
@@ -117,30 +117,33 @@ const usernameErr = document.getElementById('err-uname');
 const passwordErr = document.getElementById('err-password');
 const passwordRepeatErr = document.getElementById('err-password-repeat');
 
+const showPasswordBtn = document.getElementById('show-pwd');
+const showRepeatPasswordBtn = document.getElementById('show-pwd-repeat');
+
 
 
 //form  validation
 function isFormValid() {
-     const firstNameValid = Validate.isFirstNameValid(firstNameInput, firstNameErr);
-     const lastNameValid = Validate.isLastNameValid(lastNameInput, lastNameErr);
-     const nicValid = Validate.isNicValid(nicInput, nicErr);
-     const emailValid = Validate.isEmailValid(emailInput, emailErr);
-     const phoneNoValid = Validate.isPhoneNoValid(phoneNoInput, phoneErr);
-     const usernameValid = Validate.isUsernameValid(usernameInput, usernameErr);
-     const passwordValid = Validate.isPasswordValid(passwordInput, passwordErr);
-     const passwordMatch = Validate.isPasswordMatch(repeatPasswordInput, passwordInput, passwordRepeatErr);
+    const firstNameValid = Validate.isFirstNameValid(firstNameInput, firstNameErr);
+    const lastNameValid = Validate.isLastNameValid(lastNameInput, lastNameErr);
+    const nicValid = Validate.isNicValid(nicInput, nicErr);
+    const emailValid = Validate.isEmailValid(emailInput, emailErr);
+    const phoneNoValid = Validate.isPhoneNoValid(phoneNoInput, phoneErr);
+    const usernameValid = Validate.isUsernameValid(usernameInput, usernameErr);
+    const passwordValid = Validate.isPasswordValid(passwordInput, passwordErr);
+    const passwordMatch = Validate.isPasswordMatch(repeatPasswordInput, passwordInput, passwordRepeatErr);
 
     if (!firstNameValid && !lastNameValid && !nicValid && !emailValid && !phoneNoValid && !usernameValid && !passwordValid && !passwordMatch) {
-          return false;
+        return false;
     }
     else if (!firstNameValid) {
-          return false;
+        return false;
     }
     else if (!lastNameValid) {
-          return false;
+        return false;
     }
     else if (!nicValid) {
-          return false;
+        return false;
     }
     else if (!emailValid) {
         return false;
@@ -148,8 +151,8 @@ function isFormValid() {
     else if (!phoneNoValid) {
         return false;
     }
-   else if (!usernameValid) {
-    return false;
+    else if (!usernameValid) {
+        return false;
     }
     else if (!passwordValid) {
         return false;
@@ -157,16 +160,45 @@ function isFormValid() {
     else if (!passwordMatch) {
         return false;
     }
-     else {
-          return true;
-     }
+    else {
+        return true;
+    }
+}
+
+let isShowingPwd = false;
+
+// show/hide password
+showPasswordBtn.addEventListener('click', function () {
+    isShowingPwd = toggleShowPassword(isShowingPwd, showPasswordBtn, passwordInput);
+});
+
+let isShowingRepeatPwd = false;
+
+// show/hide confirm password
+showRepeatPasswordBtn.addEventListener('click', function () {
+    isShowingRepeatPwd = toggleShowPassword(isShowingRepeatPwd, showRepeatPasswordBtn, repeatPasswordInput);
+});
+
+function toggleShowPassword(isShowing, passwordBtn, input) {
+    if (!isShowing) {
+        passwordBtn.classList.remove("fa-eye");
+        passwordBtn.classList.add("fa-eye-slash");
+        input.type = "text";
+        return true;
+    }
+    else {
+        passwordBtn.classList.remove("fa-eye-slash");
+        passwordBtn.classList.add("fa-eye");
+        input.type = "password";
+        return false;
+    }
 }
 
 
 // submit registration form
 signupBtn.addEventListener('click', function () {
     if (isFormValid()) {
-        console.log("Clicked");
+        // console.log("Clicked");
         signupForm.submit();
     }
 });
