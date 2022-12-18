@@ -14,12 +14,14 @@ abstract class Url{
                     self::redirect('doctor/index');
                     break;
                case 3:
-                    self::redirect('staffMem/index');
+                    self::redirect('staff/index');
                     break;
                case 4:
                     self::redirect('pharmacist/index');
+                    break;
                case 5:
                     self::redirect('admin/index');
+                    break;
                default:
                     self::redirect('user/login');
                     break;

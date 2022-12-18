@@ -25,6 +25,22 @@ abstract class Request{
                $_POST[$key] = strip_tags($value);
           }
      }
+
+     public static function getIpAddress(){
+         // to get shared ISP IP address
+         if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
+             $ip_addr = $_SERVER['HTTP_CLIENT_IP'];
+         }
+         // to get IPs passing through proxy servers
+         elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+             $ip_addr = $_SERVER['HTTP_X_FORWARDED_FOR'];
+         }
+         // to get ip is from the remote address
+         else{
+             $ip_addr = $_SERVER['REMOTE_ADDR'];
+         }
+         return $ip_addr;
+     }
 }
 
 
