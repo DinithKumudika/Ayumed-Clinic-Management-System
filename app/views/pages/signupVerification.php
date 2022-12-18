@@ -22,41 +22,23 @@
                          <h3>OTP code has been send to the email you've provided. To complete registration, please check the inbox or spam folder
                               and enter the OTP code you received below
                          </h3>
-                         <p class="err" id="otp-err"></p>
+                        <p class="err"><?php echo $data['error']; ?></p>
                          <form action="<?php echo URL_ROOT?>/user/verify" method="POST" id="otp-form">
-                              <input type="text" name="otp" id="otp-input">
+                              <div class="input-boxes">
+                                  <input type="number" min="0" max="9" name="otp_1">
+                                  <input type="number" disabled min="0" max="9" name="otp_2">
+                                  <input type="number" disabled min="0" max="9" name="otp_3">
+                                  <input type="number" disabled min="0" max="9" name="otp_4">
+                                  <input type="number" disabled min="0" max="9" name="otp_5">
+                              </div>
                               <div class="btn otp-btn" id="otp-btn">Verify</div>
                          </form>
-                        <p class="err"><?php echo $data['error']; ?></p>
                     </div>
                </div>
           </div>
      </div>     
      <?php require APP_ROOT . '/views/layout/footer.php' ?>
      <script src="<?php echo URL_ROOT; ?>/js/Validate.js"></script>
-
-     <!-- client side OTP validation -->
-     <script>
-          const otpField = document.getElementById('otp-input');
-          const verifyBtn = document.getElementById('otp-btn');
-          const otpErr = document.getElementById('otp-err');
-          const otpForm = document.getElementById('otp-form');
-          
-          function isOTPFormValid(){
-               const otpValid = Validate.isOTPValid(otpField, otpErr);
-               if(!otpValid){
-                    return false;
-               }
-               else{
-                    return true;
-               }
-          }
-
-          verifyBtn.addEventListener('click', function(){
-               if(isOTPFormValid()){
-                    otpForm.submit();
-               }
-          });
-     </script>   
+     <script src="<?php echo URL_ROOT; ?>/js/otp.js"></script>
 </body>
 </html>
