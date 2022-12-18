@@ -328,12 +328,18 @@ class User extends BaseController
             Request::removeTags();
 
             $data = [
-                'otp' => trim($_POST['otp']),
+                'otp_num_1' => trim($_POST['otp_1']),
+                'otp_num_2' => trim($_POST['otp_2']),
+                'otp_num_3' => trim($_POST['otp_3']),
+                'otp_num_4' => trim($_POST['otp_4']),
+                'otp_num_5' => trim($_POST['otp_5']),
                 'error' => '',
                 'status' => ''
             ];
 
-            $verifiedPatient = $this->verificationModel->verifyOTP($data['otp']);
+            $otp = $data['otp_num_1'] . $data['otp_num_2'] . $data['otp_num_3'] . $data['otp_num_4'] . $data['otp_num_5'];
+
+            $verifiedPatient = $this->verificationModel->verifyOTP($otp);
 
             if ($verifiedPatient) {
                 if ($this->verificationModel->verify($verifiedPatient->id)) {
@@ -352,7 +358,11 @@ class User extends BaseController
             }
         } else {
             $data = [
-                'otp' => '',
+                'otp_num_1' => '',
+                'otp_num_2' => '',
+                'otp_num_3' => '',
+                'otp_num_4' => '',
+                'otp_num_5' => '',
                 'error' => '',
                 'status' => ''
             ];
