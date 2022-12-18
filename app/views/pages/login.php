@@ -24,7 +24,7 @@
                <img src="<?php echo URL_ROOT; ?>/images/login.jpg" alt="" class="login-img">
           </div>
           <div class="login-container">
-               <form class="form login-form" method="POST" id="login-form" action="<?php echo URL_ROOT ?>/user/login_doctor">
+               <form class="form login-form" method="POST" id="login-form" action="">
                    <div class="login-form-header">
                        <img src="<?php echo URL_ROOT ?>/images/logo.png" alt="logo" id="logo">
                        <h2>Log In</h2>
@@ -67,7 +67,6 @@
                     </div>
                     <p class="err-login"><?php echo $data['error'] ?></p>
                     <div class="btn login-btn" id="btn-login">login</div>
-                   <div class="signup-opt"><p>Not yet a member? <a href="<?php echo URL_ROOT?>/user/register/doctor">Sign Up</a></p></div>
                </form>
           </div>
      </div>

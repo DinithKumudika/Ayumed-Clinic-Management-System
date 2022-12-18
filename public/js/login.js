@@ -14,9 +14,47 @@ const userAdmin = document.getElementById("user-admin");
 
 const userTypes = document.getElementsByName("user_type");
 
-userTypes[0].checked = true;
-userDoctor.classList.add("checked");
-userDoctor.style.color = "#ffffff";
+const url = window.location.href;
+
+loginForm.setAttribute("action", url);
+
+switch (url) {
+     case "http://localhost/ayumed/user/login/doctor":
+          userTypes[0].checked = true;
+          addStyle(userDoctor);
+          removeStyle(userStaff);
+          removeStyle(userPharmacist);
+          removeStyle(userAdmin);
+          break;
+     case "http://localhost/ayumed/user/login/staff":
+          addStyle(userStaff);
+          userTypes[1].checked = true;
+          removeStyle(userDoctor);
+          removeStyle(userPharmacist);
+          removeStyle(userAdmin);
+          break;
+     case "http://localhost/ayumed/user/login/pharm":
+          addStyle(userPharmacist);
+          userTypes[2].checked = true;
+          removeStyle(userDoctor);
+          removeStyle(userStaff);
+          removeStyle(userAdmin);
+          break;
+     case "http://localhost/ayumed/user/login/admin":
+          addStyle(userAdmin);
+          userTypes[3].checked = true;
+          removeStyle(userDoctor);
+          removeStyle(userStaff);
+          removeStyle(userPharmacist);
+          break;
+     case "http://localhost/ayumed/user/login":
+          userTypes[0].checked = true;
+          addStyle(userDoctor);
+          removeStyle(userStaff);
+          removeStyle(userPharmacist);
+          removeStyle(userAdmin);
+          break;
+}
 
 function addStyle(element){
      element.classList.add("checked");
@@ -28,41 +66,28 @@ function removeStyle(element){
      element.style.color = "#1B9527";
 }
 userDoctor.addEventListener('click', function (){
+     window.location.href = "http://localhost/ayumed/user/login/doctor";
      userTypes[0].checked = true;
-     addStyle(userDoctor);
-     removeStyle(userStaff);
-     removeStyle(userPharmacist);
-     removeStyle(userAdmin);
 });
 
 userStaff.addEventListener('click', function (){
+     window.location.href = "http://localhost/ayumed/user/login/staff";
      userTypes[1].checked = true;
-     addStyle(userStaff);
-     removeStyle(userDoctor);
-     removeStyle(userPharmacist);
-     removeStyle(userAdmin);
 });
 
 userPharmacist.addEventListener('click', function (){
+     window.location.href = "http://localhost/ayumed/user/login/pharm";
      userTypes[2].checked = true;
-     addStyle(userPharmacist);
-     removeStyle(userDoctor);
-     removeStyle(userStaff);
-     removeStyle(userAdmin);
 });
 
 userAdmin.addEventListener('click', function (){
+     window.location.href = "http://localhost/ayumed/user/login/admin";
      userTypes[3].checked = true;
-     addStyle(userAdmin);
-     removeStyle(userDoctor);
-     removeStyle(userStaff);
-     removeStyle(userPharmacist);
 });
 
 
 let isShowing = false;
 
-loginBtn.disable = true;
 
 // show password option
 showPasswordBtn.addEventListener('click',()=>{
@@ -80,12 +105,13 @@ showPasswordBtn.addEventListener('click',()=>{
      }
 });
 
-usernameInput.addEventListener('input', function (){
-     inputValidate(usernameInput, usernameError, "username cannot be empty");
-});
+loginBtn.addEventListener('click', function () {
+     const validUsername = validInput(usernameInput, usernameError, "username is required");
+     const validPassword = validInput(passwordInput, passwordError, "password is required");
 
-passwordInput.addEventListener('input', function () {
-     inputValidate(passwordInput, passwordError, "password cannot be empty");
+     if(validUsername && validPassword){
+          loginForm.submit();
+     }
 });
 
 /* check for empty input fields */
@@ -107,11 +133,13 @@ function success(inputField,element){
      element.innerHTML = "";
 }
 
-function inputValidate(input, inputError, message){
-     if(emptyInput(input, inputError, message)){
-          error(input, inputError, message);
+function validInput (input, error, $message){
+     if(emptyInput(input)){
+          error(input, error, $message);
+          return false;
      }
      else{
-          success(input, inputError);
+          success(input, error);
+          return true;
      }
 }
