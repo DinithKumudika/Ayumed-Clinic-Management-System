@@ -8,7 +8,6 @@ abstract class Validate {
 
           // initialize cURL
           $ch = curl_init();
-
           curl_setopt(
                $ch, 
                CURLOPT_URL, 
@@ -21,20 +20,11 @@ abstract class Validate {
           curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
           // execute request
-          $res = curl_exec($ch);
+          $data = curl_exec($ch);
 
           // close cURL handle
           curl_close($ch);
 
-         $data = json_decode($res, true);
-
-         $status = $data["deliverability"];
-
-         if($status == "DELIVERABLE") {
-             return true;
-         }
-         else if($status == "UNDELIVERABLE"){
-             return false;
-         }
+          return $data;
      }
 }  

@@ -213,6 +213,8 @@ class UserModel extends Database
         ];
 
         if ($this->execute($params)) {
+            //     print_r("DB awa");
+            // die();
             return true;
         } else {
             return false;
@@ -234,26 +236,6 @@ class UserModel extends Database
             return $user->user_id;
         } else {
             return  false;
-        }
-    }
-
-    public function recordLogin($user_id, $username, $role_id, $ip_addr){
-        $sql = "INSERT INTO `tbl_logins`(`user_id`, `username`, `role_id`, `ip_address`) 
-                VALUES (:user_id, :username, :role_id, :ip_addr)";
-
-        $this->prepare($sql);
-
-        $params = [
-            'user_id' => $user_id,
-            'username' => $username,
-            'role_id'=> $role_id,
-            'ip_addr' => $ip_addr
-        ];
-
-        if ($this->execute($params)) {
-            return true;
-        } else {
-            return false;
         }
     }
 
