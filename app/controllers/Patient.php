@@ -1,6 +1,7 @@
 <?php
 
 use utils\Request;
+use utils\Response;
 use utils\Url;
 use utils\Flash;
 use utils\Generate;
@@ -9,14 +10,18 @@ use helpers\Session;
 class Patient extends BaseController
 {
 
-    public $patientModel;
-    public $appointmentModel;
+    private $rememberLoginModel;
+    private $patientModel;
+    private $appointmentModel;
 
     public function __construct()
     {
+        $this->rememberLoginModel = $this->model('RememberLoginModel');
+
         if(!Session::isLoggedIn()){
+            Url::rememberRequestedPage();
             Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
-            Url::redirect('user/login_patient');
+            Url::redirect('user/login/patient');
         }
         else{
             $this->patientModel = $this->model('PatientModel');
@@ -33,11 +38,9 @@ class Patient extends BaseController
             Request::removeTags();
 
             $data = [
-                'appointment_date' => trim($_POST['date']),
-                'appointment_time' => trim($_POST['time']),
+                'appointment_date' => date("Y-m-d", strtotime(trim($_POST['date']))),
+                'appointment_time' => date("H:i:s", strtotime(trim($_POST['time']))),
                 'appointment_reason' => trim($_POST['reason']),
-                'error' => '',
-                'success'=>''
             ];
 
             // check whether the given time slot is available or not
@@ -72,6 +75,9 @@ class Patient extends BaseController
         // get all past appointments
         $appointments = $this->appointmentModel->viewAll($patientId, $currDate, $currTime);
 
+        // get all upcoming appointments
+//        $upcomingAppointments = $this->appointmentModel->getAllUpcoming($patientId, $currDate, $currTime);
+
         if($appointments){
             // convert time of each appointment to 12 hours format
             foreach ($appointments as $appointment){
@@ -80,8 +86,9 @@ class Patient extends BaseController
             $data['appointments'] = $appointments;
         }
 
-        //get upcoming appointment
+        //get closest upcoming appointment
         $upcoming = $this->appointmentModel->getMostRecent($patientId, $currDate, $currTime);
+
         if ($upcoming) {
             $upcoming->time = Generate::changeTimeFormat($upcoming->time, Generate::TIME_FORMAT_12);
             $data['upcoming'] = $upcoming;
@@ -90,6 +97,10 @@ class Patient extends BaseController
             $data['upcoming'] = false;
         }
 
+//        if($upcomingAppointments) {
+//            $res = new Response($upcomingAppointments);
+//            //echo $res->toJson();
+//        }
 
         $this->view('pages/patient/index', $data);
     }

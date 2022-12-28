@@ -19,17 +19,19 @@
                 <form action="<?php echo URL_ROOT ?>/patient/index" method="post" class="form appointment-form" id="new-appoint-form">
                     <div class="form-group">
                         <h5>Date</h5>
-                        <input type="date" id="appoint-date" name="date" class="form-input">
+                        <input type="date" id="appoint-date" name="date" class="form-input" value="<?php echo $data['appointment_date'] ?>">
                     </div>
                     <p class="err" id="err-date"></p>
                     <div class="form-group">
                         <h5>Time</h5>
-                        <input type="time" id="appoint-time" name="time" class="form-input">
+                        <input type="time" id="appoint-time" name="time" class="form-input" value="<?php echo $data['appointment_time'] ?>">
                     </div>
                     <p class="err" id="err-time"></p>
                     <div class="form-group">
                         <h5>Reason</h5>
-                        <textarea name="reason" id="appoint-reason" cols="30" rows="40" placeholder="Medical reason"></textarea>
+                        <textarea name="reason" id="appoint-reason" cols="30" rows="40" placeholder="Medical reason" >
+                            <?php echo $data['appointment_reason'] ?>
+                        </textarea>
                     </div>
                     <p class="err" id="err-reason"></p>
                     <!--                    <p class="err-appoint err">--><?php //echo $data['error']; 
@@ -66,13 +68,12 @@
                 </button>
             </div>
             <div class="section-h">
-                <h2>Upcoming Appointment</h2>
+                <h2>Upcoming Appointments</h2>
                 <hr>
             </div>
             <div class="appointment-container">
                 <div class="card appointment-details">
                     <?php
-
                     if ($data['upcoming']) {
                         echo "<h3>Appointment No : " . $data['upcoming']->ref_no . "</h3>
                         <h3>Date : " . $data['upcoming']->date . "</h3>
@@ -82,9 +83,6 @@
                         echo "<h3>No Upcoming Appointments</h3>";
                     }
                     ?>
-
-                </div>
-                <div class="btn-group">
                     <button class="btn download-btn">
                         <i class="fa-solid fa-download"></i>
                         <span>Download</span>
@@ -94,6 +92,7 @@
                         <span>Cancel</span>
                     </button>
                 </div>
+                <div id="calendar" class="appointment-calendar"></div>
             </div>
             <div class="section-h">
                 <h2>Previous Appointments</h2>

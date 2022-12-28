@@ -34,6 +34,10 @@ class RememberLoginModel extends Database
         }
     }
 
+    public function forget(){
+
+    }
+
 
     public function findByToken($token){
         $token = new Token($token);

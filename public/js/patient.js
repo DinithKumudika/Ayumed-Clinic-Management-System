@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded',function () {
     const appointReason =  document.getElementById("appoint-reason");
     const newAppointForm = document.getElementById("new-appoint-form");
     const addAppointBtn = document.getElementById("new-appoint-btn");
+    const modalCloseBtn = document.querySelector(".close");
 
     const appointDateErr = document.getElementById("err-date");
     const appointTimeErr = document.getElementById("err-time");
@@ -23,6 +24,56 @@ window.addEventListener('DOMContentLoaded',function () {
     setNavItem(treatmentLogLink, patientNav.treatment_log.link, patientNav.treatment_log.icon, patientNav.treatment_log.text);
     setNavItem(prescriptionLink, patientNav.prescription.link, patientNav.prescription.icon, patientNav.prescription.text);
     setNavItem(recommendationLink, patientNav.recommendation.link, patientNav.recommendation.icon, patientNav.recommendation.text);
+
+    //full calendar
+    const calendarEl = document.getElementById("calendar");
+    const calendar =  new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        timeZone: 'local',
+        editable: true,
+        selectable: true,
+        events: [],
+        eventClick: function (info) {
+            let reason;
+            if(info.event.extendedProps.reason === ""){
+                reason = "None";
+            }
+            else{
+                reason = info.event.extendedProps.reason;
+            }
+            Swal.fire({
+                title: 'appointment No: ' + info.event.title,
+                html: `<h3>Reason: ${reason} </h3><h3>Time: ${info.event.extendedProps.time}</h3>`
+            });
+        }
+    });
+    calendar.render();
+
+    let upcomingAppointments = [];
+
+    function getUpcoming(calendar){
+        const url = "http://localhost/ayumed/ajax/getAllUpcomingAppoint";
+        const method = "GET";
+        const responseType = "JSON";
+
+        ajax(url, method, responseType).then(function (result){
+            if(result.status === 200){
+                result.response.forEach(function (item){
+                    upcomingAppointments.push({
+                        id: item.appointment_id,
+                        title: item.ref_no,
+                        start: item.date,
+                        end: item.date,
+                        time: item.time,
+                        reason: item.reason
+                    });
+                });
+            }
+            calendar.addEventSource(upcomingAppointments);
+        });
+    }
+
+    getUpcoming(calendar);
 
     // using jQuery
     // $(document).ready(function () {
@@ -84,7 +135,7 @@ window.addEventListener('DOMContentLoaded',function () {
     //         xhr.send(params);
     //     }
     // });
-    
+
     addAppointBtn.addEventListener('click', function () {
         if(isFormValid()){
             newAppointForm.submit();

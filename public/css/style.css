@@ -1,14 +1,14 @@
 /* fonts */
 
 /* poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:display=swap");
 
 /* color variables */
 :root {
      --green: #1B9527;
      --dark-green:#007B0C;
      --darker-green:#005700;
-     --light-green:#007B6B;
+     --light-green: rgba(0, 123, 107, 0.53);
      --dark:#000000;
      --light:#ffffff;
      --primary:#007BFF;
@@ -24,7 +24,7 @@ body{
      box-sizing: border-box;
      margin: 0;
      font-family: 'Poppins', sans-serif;
-
+     overflow-y: scroll;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -62,7 +62,7 @@ body{
      text-align: center;
      margin-left: auto;
      margin-right: auto;
-     height: 95vh;
+     height: 100vh;
      width: 100vw; 
 }
 
@@ -92,6 +92,28 @@ body{
      font-size: 20px;
      padding: 5px 10px;
      text-align: center;
+}
+
+.footer {
+     text-align: center;
+     color: var(--green);
+}
+
+/* media query starts */
+
+/* tablet devices */
+@media (max-width: 768px){
+     .footer {
+     }
+}
+
+/* mobile phones */
+@media (max-width: 480px){
+     .footer {
+          margin-top: 20px;
+          padding-left: 5px;
+          padding-right: 5px;
+     }
 }
 
 /* login options page styles */
@@ -315,7 +337,7 @@ body{
      .container {
           overflow-y: scroll;
      }
-     
+
      #otp-form{
           flex-direction: column;
      }
@@ -350,6 +372,7 @@ body{
      margin: 50px auto;
      padding: 20px;
      width: 80%;
+     z-index: 1;
 }
 
 

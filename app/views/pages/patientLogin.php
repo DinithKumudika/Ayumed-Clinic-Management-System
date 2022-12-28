@@ -17,25 +17,25 @@
 
 <div class="rightSide">
 
-<p class="newUserGuide">New User? <a href="<?php echo URL_ROOT ?>/user/register_patient">Sign Up</a></p>
+<p class="newUserGuide">New User? <a href="<?php echo URL_ROOT ?>/user/register/patient">Sign Up</a></p>
 
 <div class="logoBox"><img class="ayuLogo" src="<?php echo URL_ROOT ?>/images/logo.png" alt="ayumedLogo"></div>
 <div class="headingBox"><p class="login">Login</p></div>
 
 <div class="formOuterGroup">
 
-    <form action="<?php echo URL_ROOT?>/user/login_patient" method="POST" id="login-form">
-
+    <form action="<?php echo URL_ROOT?>/user/login/patient" method="POST" id="login-form">
+        <input type="radio" name="user_type" class="user_type" value="patient" checked>
         <div class="formInnerGroup">
             <label for="userName" class="label1">User Name</label>
-            <input type="text" id=userName name="userName" >
-            <p class="err-uname err_msg"><?php echo $data['error'] ?></p>
+            <input type="text" id=userName name="username" >
+            <p class="err-uname err_msg"><?php echo $data['error_uname'] ?></p>
         </div>
         
         <div class="formInnerGroup">
             <label for="password" class="label1">Password</label>
             <input type="password" id=password name="password" >
-            <p class="err-pwd err_msg"><?php echo $data['error'] ?></p>
+            <p class="err-pwd err_msg"><?php echo $data['error_pwd'] ?></p>
         </div>
 
 

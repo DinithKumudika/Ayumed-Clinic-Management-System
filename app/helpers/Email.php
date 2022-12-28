@@ -11,24 +11,21 @@ class Email
 
      protected $receiver;
      protected $sender;
-     protected $password;
      protected $mail;
      protected $template;
 
      public function __construct($email)
      {
           $this->receiver = $email;
-          $this->sender = $_ENV['EMAIL'];
-          $this->password = $_ENV['APP_PASSWORD'];
-
+          $this->sender = $_ENV['SMTP_USER'];
           $this->mail = new PHPMailer();
           $this->mail->isSMTP();                                     //Send using SMTP
-          $this->mail->Host       = 'smtp.gmail.com';                //Set the SMTP server to send through
+          $this->mail->Host       = $_ENV['SMTP_HOST'];                //Set the SMTP server to send through
           $this->mail->SMTPAuth   = true;                            //Enable SMTP authentication
-          $this->mail->Username   = $this->sender;                   //SMTP username
-          $this->mail->Password   = $this->password;                 //SMTP password
-          $this->mail->SMTPSecure = 'tls';                           //Enable implicit TLS encryption
-          $this->mail->Port       = 587;                             //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+          $this->mail->Username   = $_ENV['SMTP_USER'];                   //SMTP username
+          $this->mail->Password   = $_ENV['SMTP_PASSWORD'];                 //SMTP password
+          $this->mail->SMTPSecure = $_ENV['SMTP_ENCRYPT'];                           //Enable implicit TLS encryption
+          $this->mail->Port       = $_ENV['SMTP_PORT'];                             //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
      }
 
      // send OTP verification email
@@ -62,7 +59,7 @@ class Email
           }
      }
 
-     public function changePasswordEmail($userId)
+     public function changePasswordEmail($name)
      {
           try {
                $this->mail->setFrom($this->sender, 'Ayumed');
@@ -72,9 +69,9 @@ class Email
                $this->mail->isHTML(true);
                $this->mail->Subject = "Ayumed - Account Password Reset";
 
-               $this->mail->Body = "<h1 style='margin-top: 40px;'>Hello There,</h1>
-                    <h2 style='color: #19A627; text-align: center'>Account Password Reset</h2>
-                    <h4>Please click on the below button to reset your password</h4>
+               $this->mail->Body = "<h1 style='color: #19A627; text-align: center'>Account Password Reset</h1>
+                    <h2 style='margin-top: 40px;'>Dear,". $name ."</h2>
+                    <h4>Your request for account password change has been received. Please click on the below button to reset your password</h4>
                     <div style='background-color: #19A627;padding: 5px 10px; color: white; border: 0px solid black; border-radius: 5px'>Reset Password</div>
                     <h4>Or</h4>
                     <h4>Follow this link to reset your pasword</h4>

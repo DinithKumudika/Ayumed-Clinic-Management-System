@@ -6,32 +6,45 @@ window.addEventListener('DOMContentLoaded', function (){
     const emailErr = document.getElementById("err-email");
     const forgotPasswordForm = document.getElementById("forgot-pwd-form");
 
-    function isForgotFormValid(){
-        const usernameValid =  function () {
-            if(Validate.isRequired(username)){
-                Validate.error(username, usernameErr, "*username is required");
-                return false;
-            }
-            else{
-                Validate.success(username, usernameErr);
-                return true;
-            }
-        }
-        const emailValid = Validate.isEmailValid(email, emailErr);
-
-        if(!usernameValid() && !emailValid){
-            return false;
-        }
-        else if(!usernameValid()){
-            return false;
-        }
-        else if(!emailValid){
+    const usernameValid =  function () {
+        if(!Validate.isUsernameValid(username, usernameErr)){
             return false;
         }
         else{
             return true;
         }
     }
+    const emailValid = function () {
+        if(!Validate.isEmailValid(email, emailErr)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    };
+
+    function isForgotFormValid(){
+        if(!usernameValid() && !emailValid()){
+            return false;
+        }
+        else if(!usernameValid()){
+            return false;
+        }
+        else if(!emailValid()){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    username.addEventListener('keyup',function () {
+        usernameValid();
+    });
+
+    email.addEventListener('keyup', function () {
+        emailValid();
+    });
 
     confirmBtn.addEventListener('click', function () {
        if(isForgotFormValid()){

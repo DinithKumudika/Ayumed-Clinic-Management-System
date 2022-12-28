@@ -1,4 +1,7 @@
 <?php
+
+    /* Application config*/
+
     // App root (app directory)
     define('APP_ROOT', dirname(dirname(__FILE__)));
 
@@ -7,4 +10,3 @@
 
     //SITE name
     define('SITE_NAME', 'Ayumed');
-

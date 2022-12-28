@@ -8,6 +8,7 @@ use utils\Generate;
 use utils\Url;
 use utils\Flash;
 use utils\Token;
+use utils\Validate;
 
 class User extends BaseController
 {
@@ -15,6 +16,7 @@ class User extends BaseController
     private $userModel;
     private $verificationModel;
     private $rememberLoginModel;
+    private $roleId;
 
     public function __construct()
     {
@@ -28,16 +30,11 @@ class User extends BaseController
         $this->view('pages/welcome');
     }
 
-    public function register()
-    {
-        $this->view('pages/signup');
-    }
-
     public function login($user_type = null)
     {
 
         if (Session::isLoggedIn() || isset($_COOKIE['remember_me'])) {
-            Url::redirect('doctor/index');
+            Url::redirectToHome(Session::get('role_id'));
         }
 
         if (Request::isPost()) {
@@ -48,56 +45,85 @@ class User extends BaseController
                 'username' => trim($_POST['username']),
                 'password' => trim($_POST['password']),
                 'user_type' => trim($_POST['user_type']),
-                'error' => ''
+                'error_uname' => '',
+                'error_pwd' => ''
             ];
 
             switch ($data['user_type']){
+                case "patient":
+                    $this->roleId = 1;
+                    break;
                 case "doctor":
-                    $isValidUser = $this->userModel->login($data['username'], $data['password'], 2);
+                    $this->roleId = 2;
                     break;
                 case "staff":
-                    $isValidUser = $this->userModel->login($data['username'], $data['password'], 3);
+                    $this->roleId= 3;
                     break;
                 case "pharm":
-                    $isValidUser = $this->userModel->login($data['username'], $data['password'], 4);
+                    $this->roleId= 4;
                     break;
                 case "admin":
-                    $isValidUser = $this->userModel->login($data['username'], $data['password'], 5);
+                    $this->roleId= 5;
                     break;
             }
 
-            $isValidUser = $this->userModel->login($data['username'], $data['password'], 2);
+            $user = $this->userModel->getUser($data['username'], $this->roleId);
 
-            if ($isValidUser) {
-                $userLoggedIn = $this->userModel->getUser($data['username']);
-                $this->createUserSession($userLoggedIn);
+            if ($user) {
+                $hashedPassword = $this->userModel->getUserPassword($user->username, $this->roleId);
+                $validPassword = Validate::validatePassword($data['password'], $hashedPassword);
 
-                if (isset($_POST['remember_me'])) {
-                    $data['remember_me'] = true;
-                    $token = new Token();
-                    $hashed_token = $token->getHashedToken();
-                    $exp_time = time() + 60 * 60 * 24;
+                if($validPassword['status']){
+                    // get client ip
+                    $user_ip = Request::getIpAddress();
+                    // create user session
+                    $this->createUserSession($user);
+                    // add user log with login time and client ip address
+                    $this->userModel->recordLogin(Session::get('user_id'), Session::get('username'), Session::get('role_id'), $user_ip);
 
-                    if ($this->rememberLoginModel->remember($hashed_token, Session::get('user_id'), $exp_time)) {
-                        $remember_token = $token->getTokenValue();
-                        setcookie('remember_me', $remember_token, $exp_time, '/');
+                    if (isset($_POST['remember_me'])) {
+                        $data['remember_me'] = true;
+                        $token = new Token();
+                        $hashed_token = $token->getHashedToken();
+                        $exp_time = time() + 60 * 60 * 24;
+
+                        if ($this->rememberLoginModel->remember($hashed_token, Session::get('user_id'), $exp_time)) {
+                            $remember_token = $token->getTokenValue();
+                            setcookie('remember_me', $remember_token, $exp_time, '/');
+                        }
+                    }
+
+                    Flash::setFlash('login_success', 'Login successful', Flash::FLASH_SUCCESS);
+
+                    // return to the previously requested page
+                    if(Session::isSet('return')){
+                        $returnToPage = Url::getReturnPage();
+                        Session::unset('return');
+                        Url::redirectToRequested($returnToPage);
+                        Session::unset('return');
+                    }
+                    else{
+                        Url::redirectToHome(Session::get('role_id'));
                     }
                 }
-
-                Flash::setFlash('login_success', 'Login successful', Flash::FLASH_SUCCESS);
-                Url::redirect('doctor/index');
+                else{
+                    $data['error_pwd'] = $validPassword['error'];
+                }
             }
             else {
-                $data['error'] = "invalid username or password";
+                $data['error_uname'] = "*invalid username";
             }
-        } else {
+        }
+        else {
             $data = [
                 'username' => '',
                 'password' => '',
                 'user_type' => '',
-                'error' => ''
+                'error_uname' => '',
+                'error_pwd' => ''
             ];
         }
+
 
         if($user_type == "patient"){
             $this->view('pages/patientLogin', $data);
@@ -107,7 +133,7 @@ class User extends BaseController
         }
     }
 
-    public function register_patient()
+    public function register()
     {
 
         if (Request::isPost()) {
@@ -132,13 +158,14 @@ class User extends BaseController
 
             if ($userExists) {
                 $data['error'] = 'username is already taken';
-            } else {
+            }
+            else {
                 $data['password'] = Crypto::createHash($data['password']);
 
                 if ($this->userModel->register($data, 1)) {
                     $age = Generate::age($data['dob']);
                     $OTPCode = Generate::otpCode();
-                    $userId = $this->userModel->getUserId(1);
+                    $userId = $this->userModel->getUserId($data['username']);
                     $regNo = Generate::regNo($userId);
 
                     if ($this->userModel->registerPatient($data, $age, $regNo, $OTPCode, $userId)) {
@@ -149,7 +176,7 @@ class User extends BaseController
                     }
                     else{
                         Flash::setFlash("reg_error", "something went wrong", Flash::FLASH_WARNING);
-                        Url::redirect('user/register_patient');
+                        Url::redirect('user/register');
                     }
                 }
             }
@@ -170,155 +197,6 @@ class User extends BaseController
             ];
         }
         $this->view('pages/patientRegister', $data);
-    }
-
-    // action to register a doctor
-    public function register_doctor(){
-        if (Request::isPost()) {
-            Request::removeTags();
-
-            $data = [
-                'first_name' => trim($_POST['fName']),
-                'last_name' => trim($_POST['lName']),
-                'nic' => trim($_POST['nic']),
-                'email' => trim($_POST['email']),
-                'phone' => trim($_POST['phone']),
-                'username' => trim($_POST['userName']),
-                'password' => trim($_POST['password']),
-                'error' => ''
-            ];
-
-            $userExists = $this->userModel->isUserExists($data['username']);
-
-            if ($userExists) {
-                $data['error'] = 'username is already taken';
-            }
-            else {
-                $data['password'] = Crypto::createHash($data['password']);
-
-                if ($this->userModel->register($data, 2)) {
-                    $userId = $this->userModel->getUserId(2);
-
-                    if ($this->userModel->registerDoctor($data, $userId)) {
-                        //redirect to log in
-                        Url::redirect('user/login_doctor');
-                    }
-                }
-                else{
-                    Flash::setFlash("reg_error", "something went wrong", Flash::FLASH_WARNING);
-                    Url::redirect('user/register_doctor');
-                }
-            }
-        } else {
-            $data = [
-                'first_name' => '',
-                'last_name' => '',
-                'nic' => '',
-                'email' => '',
-                'phone' => '',
-                'username' => '',
-                'password' => '',
-                'error' => ''
-            ];
-        }
-
-        $this->view('pages/doctorRegister', $data);
-    }
-
-    // action to register a staff member
-    public function register_staff (){
-        if($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post"){
-            Request::removeTags();
-
-            $data = [
-                'first_name' => trim($_POST['first_name']),
-                'last_name' => trim($_POST['last_name']),
-                'email' => trim($_POST['email']),
-                'staff_no' => trim($_POST['staff_no']),
-                'username' => trim($_POST['username']),
-                'password' => trim($_POST['password']),
-                'error' => ''
-            ];
-
-            $userExists = $this->userModel->isUserExists($data['username']);
-
-            if ($userExists) {
-                $data['error'] = 'username is already taken';
-            }
-            else{
-                $data['password'] = Crypto::createHash($data['password']);
-
-                if ($this->userModel->register($data, 3)) {
-                    $userId = $this->userModel->getUserId(3);
-
-                    if ($this->userModel->registerStaff($data['staff_no'], $userId)) {
-                        //redirect to log in
-                        Url::redirect('user/login_staff');
-                    }
-                }
-                else {
-                    Flash::setFlash("reg_error", "something went wrong", Flash::FLASH_WARNING);
-                    Url::redirect('user/register_staff');
-                }
-            }
-        }
-        else{
-            $data = [
-                'first_name' => '',
-                'last_name' => '',
-                'email' => '',
-                'staff_no' => '',
-                'username' => '',
-                'password' => '',
-                'error' => ''
-            ];
-        }
-        $this->view('pages/staffRegister', $data);
-    }
-
-    public function register_pharm()
-    {
-
-        if (Request::isPost()) {
-            Request::removeTags();
-
-            $data = [
-                'first_name' => trim($_POST['f-name']),
-                'last_name' => trim($_POST['l-name']),
-                'email' => trim($_POST['e-mail']),
-                'phone' => trim($_POST['phone']),
-                'username' => trim($_POST['username']),
-                'password' => trim($_POST['password']),
-                'error' => ''
-            ];
-
-            $isExistingUser = $this->userModel->isUserExists($data['username'], $data['password']);
-
-            if ($isExistingUser) {
-                $data['error'] = 'user already exists';
-            } else {
-                $data['password'] = Crypto::createHash($data['password']);
-                if ($this->userModel->register($data, 4)) {
-                    $userId = $this->userModel->getUserId(4);
-                    if ($this->userModel->registerPharmacist($data['phone'], $userId)) {
-                        Url::redirect('User/login_pharm');
-                    }
-                } else {
-                    echo "erooooooooor";
-                }
-            }
-        } else {
-            $data = [
-                'first_name' => '',
-                'last_name' => '',
-                'email' => '',
-                'phone' => '',
-                'username' => '',
-                'password' => '',
-                'error' => ''
-            ];
-        }
-        $this->view('pages/pharmacistRegister', $data);
     }
 
     // action to verify user account using OTP
@@ -370,34 +248,60 @@ class User extends BaseController
         $this->view('pages/signupVerification', $data);
     }
 
-    // action to change password
-    public function forgotPassword()
+    // action to change/forgot password
+    public function password($action, $selector = null, $validator = null)
     {
-        if (Request::isPost()) {
-            Request::removeTags();
+        // forgot password
+        if($action == "forgot"){
+            if (Request::isPost()) {
+                Request::removeTags();
 
-            $data = [
-                'username' => trim($_POST['username']),
-                'email' => trim($_POST['email']),
-                'error' => ''
-            ];
+                $data = [
+                    'username' => trim($_POST['username']),
+                    'email' => trim($_POST['email']),
+                    'error_uname' => '',
+                    'error_email' => ''
+                ];
 
-            $userExists = $this->userModel->isUserExists($data['username']);
+                // check username for database
+                $userExists = $this->userModel->isUserExists($data['username']);
+                // check email using abstract email api
+                $validEmail = Validate::validateEmail($data['email']);
 
-            if ($userExists) {
-                $email = new Email($data['email']);
-                $email->changePasswordEmail();
+                if (!$userExists) {
+                    $data['error_uname'] = 'invalid username';
+                }
+
+                if (!$validEmail['status']){
+                    $data['error_email'] = $validEmail['error'];
+                }
+
+                if($userExists && $validEmail['status']){
+                    $user = $this->userModel->getUser($data['username']);
+                    $email = new Email($data['email']);
+                    $email->changePasswordEmail($user->first_name);
+                }
             } else {
-                $data['error'] = 'invalid username';
+                $data = [
+                    'username' => '',
+                    'email' => '',
+                    'error_uname' => '',
+                    'error_email' => ''
+                ];
             }
-        } else {
-            $data = [
-                'username' => '',
-                'email' => '',
-                'error' => ''
-            ];
+            $this->view('pages/forgotPassword', $data);
         }
-        $this->view('pages/forgotPassword', $data);
+        // change password
+        else if($action == "change"){
+            $data = [
+                'error' =>''
+            ];
+            $this->view('pages/changePassword', $data);
+        }
+        // invalid param
+        else{
+            $this->view('404');
+        }
     }
 
     // create user session
@@ -406,6 +310,7 @@ class User extends BaseController
         Session::set('user_id', $user->user_id);
         Session::set('username', $user->username);
         Session::set('role_id', $user->role_id);
+        Session::set('time_login', Generate::currentDateTime());
         Session::set('avatar_url', $user->avatar);
     }
 
@@ -414,26 +319,35 @@ class User extends BaseController
     {
 
         $role_id = Session::get('role_id');
+
+        // set user's logout time in user log
+        $this->userModel->setLogOut(
+            Session::get('user_id'),
+            Session::get('time_login'),
+            Generate::currentDateTime()
+        );
+
         Flash::setFlash("logout", "Logout success!", Flash::FLASH_SUCCESS);
         Session::unset('user_id');
         Session::unset('username');
         Session::unset('role_id');
+        Session::unset('time_login');
 
         switch ($role_id) {
             case 1:
-                Url::redirect('user/login_patient');
+                Url::redirect('user/login/patient');
                 break;
             case 2:
-                Url::redirect('user/login_doctor');
+                Url::redirect('user/login/doctor');
                 break;
             case 3:
-                Url::redirect('user/login_staff');
+                Url::redirect('user/login/staff');
                 break;
             case 4:
-                Url::redirect('user/login_pharm');
+                Url::redirect('user/login/pharm');
                 break;
             case 5:
-                Url::redirect('user/login_admin');
+                Url::redirect('user/login/admin');
                 break;
             default:
                 Url::redirect('user/index');

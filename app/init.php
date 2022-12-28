@@ -16,6 +16,8 @@ require_once 'utils/Generate.php';
 require_once 'utils/Flash.php';
 require_once 'utils/Token.php';
 require_once 'utils/Validate.php';
+require_once 'utils/Alert.php';
+require_once 'utils/Response.php';
 
 // Load all the core files
 require_once 'core/App.php';

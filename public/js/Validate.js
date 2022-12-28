@@ -19,22 +19,6 @@ class Validate{
           }
      }
 
-     // validate email address is existing one or not using an API request
-     // async static isEmailExist(inputField){
-     //      const email = inputField.value;
-     //      const api_key = '4f2ed61f9d974c3ea1848e563efa7f82';
-     //      const url = new URL(`https://emailvalidation.abstractapi.com/v1/`);
-     //      // set url parameters
-     //      url.searchParams.set('api_key',api_key);
-     //      url.searchParams.set('email',email);
-     //      const res = await fetch(url);
-     //      console.log("before");
-     //      if(res.status === 200){
-     //           const data = await res.json();
-     //           return data.deliverability;
-     //      }
-     // }
-
      // first name validation
      static isFirstNameValid(inputField, messageEl){
 
