@@ -13,27 +13,31 @@
                     <img src="<?php echo URL_ROOT; ?>/images/logo.png" alt="">
                     <h1>Forgot Password</h1>
                </div>
-               <form class="form signup-form" method="POST" id="forgot-pwd-form" action="<?php echo URL_ROOT ?>/user/register_patient">
+               <form class="form signup-form" method="POST" id="forgot-pwd-form" action="<?php echo URL_ROOT ?>/user/password/forgot">
+                   <h5 class="forgot-header">An email will be sent to you with instructions on how to reset your password</h5>
                     <div class="form-body" id="first">
                          <div class="form-group">
                               <h5>Username</h5>
-                              <input type="text" id="forgot-username" name="username" class="form-input">
+                              <input type="text" id="forgot-username" name="username" class="form-input" value="<?php echo $data['username'] ?>">
                          </div>
                         <p class="err-signup" id="err-username"></p>
+                        <p class="err-signup" id="err-invalid-uname"><?php echo $data['error_uname'];?></p>
                          <div class="form-group">
                               <h5>Email</h5>
-                              <input type="email" id="forgot-email" name="email" class="form-input">
+                              <input type="email" id="forgot-email" name="email" class="form-input" value="<?php echo $data['email'] ?>">
                          </div>
                          <p class="err-signup" id="err-email"></p>
-                         <p class="err-signup" style="text-align: center;font-size: 20px" id="err-invalid"><?php echo $data['error'];?></p>
+                         <p class="err-signup" id="err-invalid-email"><?php echo $data['error_email'];?></p>
                         <div class="btn forgot-pwd-btn" id="btn-forgot-pwd">Confirm</div>
                     </div>
                </form>
           </div>
      </div>
+     <footer>
+         <div class="footer"><p class="copyright">&copy;2022 - Ayumed | All Rights Reserved | Developed by Group 17 - IS</p></div>
+     </footer>
      <?php require APP_ROOT . '/views/layout/footer.php' ?>
      <script src="<?php echo URL_ROOT; ?>/js/Validate.js"></script>
-     <script src="<?php echo URL_ROOT; ?>/js/signup.js"></script>
+     <script src="<?php echo URL_ROOT; ?>/js/forgotPassword.js"></script>
 </body>
-
 </html>

@@ -1,34 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const avatarFileUpload = document.getElementById('avatar-upload');
-    const updateAvatar = document.getElementById('avatar-upload-btn');
-    const avatarImage = document.getElementById('avatar');
 
-    const editProfileForm = document.getElementById('edit-profile');
-    const updateProfileBtn = document.getElementById('edit-profile-btn');
+    // toggle buttons
+    const toggleWhatsapp = document.getElementById("toggle-whatsapp")
+    const toggleBtnWhatsapp = document.getElementById("toggle-btn-whatsapp");
 
-    // form inputs
-    const firstName = editProfileForm.elements['first-name'];
-    const lastName = editProfileForm.elements['last-name'];
+    const toggleSms = document.getElementById("toggle-sms")
+    const toggleBtnSms = document.getElementById("toggle-btn-sms");
 
-    //error boxes
+    const toggleEmail = document.getElementById("toggle-email")
+    const toggleBtnEmail = document.getElementById("toggle-btn-email");
 
-    updateAvatar.addEventListener('click', function () {
-        avatarFileUpload.click();
-    });
+    const checkWhatsapp = document.getElementById("notify-whatsapp");
+    const checkSms = document.getElementById("notify-sms");
+    const checkEmail = document.getElementById("notify-email");
 
-    avatarFileUpload.addEventListener('change', function () {
-        const avatar = this.files[0];
+    function animateToggle (toggle){
+        toggle.classList.toggle("toggle-active");
+    }
 
-        if (avatar) {
-            const fileReader = new FileReader();
-            fileReader.addEventListener('load', function () {
-                avatarImage.src = fileReader.result;
-                console.log(fileReader.result);
-            });
-            fileReader.readAsDataURL(avatar);
+    function toggleCheck(checkbox, toggle){
+        if(checkbox.checked){
+            toggle.classList.add("toggle-active");
         }
-    });
+        else{
+            toggle.classList.remove("toggle-active");
+        }
+    }
 
+    toggleCheck(checkWhatsapp, toggleWhatsapp);
+    toggleCheck(checkSms, toggleSms);
+    toggleCheck(checkEmail, toggleEmail);
 
 });
 

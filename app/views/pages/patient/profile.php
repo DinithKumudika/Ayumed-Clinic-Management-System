@@ -16,18 +16,54 @@
             </div>
             <hr>
         </div>
-        <div class="profile-container">
-            <div class="profile-col-2">
-                <div class="img-container">
-                    <input type="file" hidden id="avatar-upload">
-                    <img src="<?php echo URL_ROOT ?>/images/profile.jpg" alt="" id="avatar">
+        <form action="" class="profile-form">
+            <div class="profile-container">
+                <div class="profile-col-2">
+                    <div class="img-container">
+                        <input type="file" hidden id="avatar-upload" name="avatar-upload">
+                        <img src="<?php echo $data['profile_img']; ?>" alt="" id="avatar">
+                    </div>
+                    <div class="username">
+                        <h5><?php echo \helpers\Session::get('username') ?></h5>
+                    </div>
+                    <div class="notification-opt">
+                        <h5>Receive notification via</h5>
+                        <div class="toggle-container">
+                            <div class="toggle-text">Whatsapp</div>
+                            <?php if ($data['notification_methods']->whatsapp){ ?>
+                                <input type="checkbox" name="notify-whatsapp" id="notify-whatsapp" checked readonly>
+                            <?php }else { ?>
+                                <input type="checkbox" name="notify-whatsapp" id="notify-whatsapp" readonly>
+                            <?php } ?>
+                            <div class="toggle" id="toggle-whatsapp">
+                                <div class="toggle-button" id="toggle-btn-whatsapp"></div>
+                            </div>
+                        </div>
+                        <div class="toggle-container">
+                            <div class="toggle-text">SMS</div>
+                            <?php if ($data['notification_methods']->sms){ ?>
+                                <input type="checkbox" name="notify-sms" id="notify-sms" checked readonly>
+                            <?php }else { ?>
+                                <input type="checkbox" name="notify-sms" id="notify-sms" readonly>
+                            <?php } ?>
+                            <div class="toggle" id="toggle-sms">
+                                <div class="toggle-button" id="toggle-btn-sms"></div>
+                            </div>
+                        </div>
+                        <div class="toggle-container">
+                            <div class="toggle-text">Email</div>
+                            <?php if ($data['notification_methods']->email){ ?>
+                                <input type="checkbox" name="notify-email" id="notify-email" checked readonly>
+                            <?php }else { ?>
+                                <input type="checkbox" name="notify-email" id="notify-email" readonly>
+                            <?php } ?>
+                            <div class="toggle" id="toggle-email">
+                                <div class="toggle-button" id="toggle-btn-email"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="username">
-                    <h5><?php echo \helpers\Session::get('username') ?></h5>
-                </div>
-            </div>
-            <div class="profile-col-1">
-                <form action="" class="profile-form">
+                <div class="profile-col-1">
                     <div class="form-group">
                         <h5>First Name</h5>
                         <input type="text" readonly value="<?php echo $data['user']->first_name ?>">
@@ -60,9 +96,9 @@
                             </div>
                         </a>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <?php require APP_ROOT . '/views/layout/footer.php' ?>

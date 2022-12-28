@@ -7,9 +7,9 @@ Appointment extends BaseController{
 
     public function __construct()
     {
-//        if(!Session::isLoggedIn()){
-//            Url::redirect('user/login_doctor');
-//        }
+        if(!Session::isLoggedIn()){
+            Url::redirect('user/login/doctor');
+        }
     }
 
     public function index(){

@@ -14,6 +14,10 @@ body{
    
 }
 
+.user_type {
+    display: none;
+}
+
 .leftSide {
     /*float: left;*/
   

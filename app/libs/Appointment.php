@@ -8,10 +8,8 @@ class Appointment
     private $reason;
     private $refNo;
 
-    public function __construct($date, $time, $reason){
-        $this->date = $date;
-        $this->time = $time;
-        $this->reason = $reason;
+    public function __construct($appointments){
+
     }
 
     public function getDate(){

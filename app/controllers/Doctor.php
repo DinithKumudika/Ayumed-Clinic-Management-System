@@ -14,6 +14,8 @@ class Doctor extends BaseController
         $this->rememberLoginModel = $this->model('RememberLoginModel');
 
         if (!Session::isLoggedIn()) {
+            Url::rememberRequestedPage();
+
             if(isset($_COOKIE['remember_me'])){
                 $cookie = $_COOKIE['remember_me'];
 
@@ -21,12 +23,12 @@ class Doctor extends BaseController
 
                 if (!$rememberedLogin) {
                     Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
-                    Url::redirect('user/login_doctor');
+                    Url::redirect('user/login/doctor');
                 }
             }
             else{
                 Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
-                Url::redirect('user/login_doctor');
+                Url::redirect('user/login/doctor');
             }
         }
     }

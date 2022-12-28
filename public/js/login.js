@@ -90,7 +90,7 @@ let isShowing = false;
 
 
 // show password option
-showPasswordBtn.addEventListener('click',()=>{
+showPasswordBtn.addEventListener('click',function (){
      if (!isShowing){
           showPasswordBtn.classList.remove("fa-eye");
           showPasswordBtn.classList.add("fa-eye-slash");
@@ -123,23 +123,23 @@ function emptyInput(inputField){
           return false;
      }
 }
-function error(inputField,element,message){
+function showError(inputField,element,message){
      inputField.style.borderBottom = "2px solid #DC3545";
      element.innerHTML = message;
 }
 
-function success(inputField,element){
+function showSuccess(inputField,element){
      inputField.style.borderBottom = "2px solid #28A745";
      element.innerHTML = "";
 }
 
 function validInput (input, error, $message){
      if(emptyInput(input)){
-          error(input, error, $message);
+          showError(input, error, $message);
           return false;
      }
      else{
-          success(input, error);
+          showSuccess(input, error);
           return true;
      }
 }

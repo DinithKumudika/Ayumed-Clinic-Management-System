@@ -48,11 +48,20 @@ abstract class Session
     }
 
 
-    // unset session variables
+    // unset a session variable
     public static function unset($key)
     {
         if (!empty($key)) {
             unset($_SESSION[$key]);
+        }
+    }
+
+    // unset multiple session variables at once
+    public static function unsetOnce($keys){
+        foreach ($keys as $key){
+            if (!empty($key)) {
+                unset($_SESSION[$key]);
+            }
         }
     }
 

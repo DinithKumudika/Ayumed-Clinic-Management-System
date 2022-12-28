@@ -1,7 +1,7 @@
 {
      "name": "Ayumed",
      "short_name": "Ayumed",
-     "start_url": "http://localhost/ayumed/user/login.php",
+     "start_url": "http://localhost/ayumed/user/login",
      "display": "standalone",
      "background_color": "#28A745",
      "theme_color":"#19A627",

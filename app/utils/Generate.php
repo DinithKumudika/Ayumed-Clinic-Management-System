@@ -96,4 +96,9 @@ abstract class Generate
         $arr = explode(":", $time);
         return $today . "-" . $arr[0] . $arr[1] . $patientId;
     }
+
+    // create url to change password
+    public static function resetPasswordURL($selector, $validator){
+        return URL_ROOT . "/user/password/change/" . $selector . "/" . $validator;
+    }
 }

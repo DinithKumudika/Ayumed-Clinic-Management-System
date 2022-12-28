@@ -2,7 +2,8 @@
      position: absolute;
      width: calc(100% - 30px);
      transition: all  0.5s ease-in-out;
-     background-color: #005700;
+     background-color: var(--light);
+     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
      font-family: 'Poppins', sans-serif;
      z-index: 1;
 }
@@ -10,7 +11,7 @@
      height: 40px;
      list-style-type: none;
      align-items: center;
-	display: flex;
+	 display: flex;
      justify-content: flex-end;
 }
 .navbar a{
@@ -26,11 +27,11 @@
 
 .navbar li .username{
      font-weight: bold;
-     color: var(--light);
+     color: var(--green);
 }
 
 .nav-container .navbar .fa-bell{
-     color: var(--light);
+     color: var(--green);
      font-size: 20px;
 }
 

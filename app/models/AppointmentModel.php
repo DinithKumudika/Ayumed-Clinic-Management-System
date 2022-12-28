@@ -58,6 +58,31 @@ class AppointmentModel extends Database
         }
     }
 
+    public function getAllUpcoming($patientId, $currentDate, $currentTime){
+        $sql = "SELECT *
+                FROM `tbl_appointments`
+                WHERE (`patient_id` = :id AND `status` = :status) AND (`date` > :date_1 OR (`date` = :date_2 AND `time` > :time)) 
+                ORDER BY `created_at` ASC";
+
+        $this->prepare($sql);
+
+        $params = [
+            'id' => $patientId,
+            'status' => false,
+            'date_1' => $currentDate,
+            'date_2' => $currentDate,
+            'time' => $currentTime
+        ];
+
+        $appointment = $this->resultSet($params);
+
+        if ($this->rowCount() > 0) {
+            return $appointment;
+        } else {
+            return false;
+        }
+    }
+
     public function add($appointmentData, $refNo, $patientId)
     {
         $sql = "INSERT INTO `tbl_appointments`(`ref_no`,`date`,`time`,`reason`,`status`,`patient_id`) 

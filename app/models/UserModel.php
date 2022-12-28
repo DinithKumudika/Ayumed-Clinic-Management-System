@@ -2,6 +2,7 @@
 
 use utils\Crypto;
 use utils\Token;
+use utils\Validate;
 
 class UserModel extends Database
 {
@@ -12,7 +13,7 @@ class UserModel extends Database
         $this->db = Database::connect();
     }
 
-    public function login($username, $password, $roleId)
+    public function getUserPassword($username, $roleId)
     {
         if ($this->isUserExists($username, $roleId)) {
             $sql = "SELECT `password` FROM `tbl_users` WHERE `username` = :user AND `role_id` = :role_id";
@@ -26,8 +27,8 @@ class UserModel extends Database
 
             $row = $this->result($params);
 
-            if (Crypto::verifyHash($row->password, $password)) {
-                return true;
+            if ($this->rowCount() > 0) {
+                return $row->password;
             } else {
                 return false;
             }
@@ -68,15 +69,25 @@ class UserModel extends Database
         }
     }
 
-    public function getUser($username)
+    public function getUser($username, $roleId = null)
     {
-        $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
+        if ($roleId == null){
+            $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
+            $this->prepare($sql);
 
-        $this->prepare($sql);
+            $params = [
+                'user' => $username
+            ];
+        }
+        else{
+            $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user AND `role_id` = :role_id";
+            $this->prepare($sql);
 
-        $params = [
-            'user' => $username,
-        ];
+            $params = [
+                'user' => $username,
+                'role_id' => $roleId
+            ];
+        }
 
         $user = $this->result($params);
 
@@ -87,16 +98,26 @@ class UserModel extends Database
         }
     }
 
-    public function isUserExists($username, $roleId)
+    public function isUserExists($username, $roleId = null)
     {
-        $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user AND `role_id` = :role_id";
+        if ($roleId == null){
+            $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user";
+            $this->prepare($sql);
 
-        $this->prepare($sql);
+            $params = [
+                'user' => $username
+            ];
+        }
+        else{
+            $sql = "SELECT * FROM `tbl_users` WHERE `username` = :user AND `role_id` = :role_id";
 
-        $params = [
-            'user' => $username,
-            'role_id' => $roleId
-        ];
+            $this->prepare($sql);
+
+            $params = [
+                'user' => $username,
+                'role_id' => $roleId
+            ];
+        }
 
         $user = $this->result($params);
 
@@ -213,21 +234,19 @@ class UserModel extends Database
         ];
 
         if ($this->execute($params)) {
-            //     print_r("DB awa");
-            // die();
             return true;
         } else {
             return false;
         }
     }
 
-    public function getUserId($role_id)
+    public function getUserId($username)
     {
-        $sql = "SELECT * FROM `tbl_users` WHERE `role_id` = :role_id ORDER BY `user_id` DESC LIMIT 1";
+        $sql = "SELECT * FROM `tbl_users` WHERE `username` = :username";
         $this->prepare($sql);
 
         $params = [
-            'role_id' => $role_id,
+            'username' => $username,
         ];
 
         $user = $this->result($params);
@@ -239,19 +258,38 @@ class UserModel extends Database
         }
     }
 
-    public function getAvatar($user_id)
-    {
-        $sql = "SELECT `avatar` FROM `tbl_users` WHERE `user_id` = :id";
+    public function recordLogin($user_id, $username, $role_id, $ip_addr){
+        $sql = "INSERT INTO `tbl_logins`(`user_id`, `username`, `role_id`, `ip_address`) 
+                VALUES (:user_id, :username, :role_id, :ip_addr)";
+
         $this->prepare($sql);
 
         $params = [
-            'id' => $user_id
+            'user_id' => $user_id,
+            'username' => $username,
+            'role_id'=> $role_id,
+            'ip_addr' => $ip_addr
         ];
 
-        $avatar_url = $this->result($params);
+        if ($this->execute($params)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        if ($this->rowCount() > 0) {
-            return $avatar_url->avatar;
+    public function setLogOut($user_id, $time_login, $time_logout){
+        $sql = "UPDATE `tbl_logins` SET `loggedout_at` = :logout_time WHERE `user_id` = :user_id AND `logged_at` = :login_time";
+        $this->prepare($sql);
+
+        $params = [
+            'logout_time' => $time_logout,
+            'user_id' => $user_id,
+            'login_time' => $time_login
+        ];
+
+        if ($this->execute($params)) {
+            return true;
         } else {
             return false;
         }

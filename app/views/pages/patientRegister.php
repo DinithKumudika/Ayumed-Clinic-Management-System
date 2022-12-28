@@ -2,23 +2,7 @@
 <title>SignUp</title>
 <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/signup.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
-<?php
-// if(isset($data['error'])){
-//      echo "<script>
-//      document.getElementById('input-uname').style.borderBottom = '2px solid #DC3545';
-//      document.getElementById('input-pwd').style.borderBottom = '2px solid #DC3545'
-//      </script>";
-// }
-// else{
-//      echo "<script>
-//      document.getElementById('input-uname').style.borderBottom = '2px solid #28A745';
-//      document.getElementById('input-pwd').style.borderBottom = '2px solid #28A745'
-//      </script>";
-// }
-?>
-
 <body>
      <div class="container col-2">
           <div class="img-container">
@@ -27,7 +11,7 @@
          <?php echo \utils\Flash::flash("reg_error");  ?>
           <div class="signup-container">
                <div class="login">
-                    <h3>Already a member?<a href="<?php echo URL_ROOT; ?>/user/login_patient"> Log In</a></h3>
+                    <h3>Already a member?<a href="<?php echo URL_ROOT; ?>/user/login/patient"> Log In</a></h3>
                </div>
                <div class="header">
                     <img src="<?php echo URL_ROOT; ?>/images/logo.png" alt="">
@@ -145,5 +129,4 @@
      <script src="<?php echo URL_ROOT; ?>/js/Validate.js"></script>
      <script src="<?php echo URL_ROOT; ?>/js/signup.js"></script>   
 </body>
-
 </html>

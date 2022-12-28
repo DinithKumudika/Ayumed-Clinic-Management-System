@@ -6,12 +6,19 @@ use utils\Url;
 
 class Staff extends BaseController
 {
+    private $rememberLoginModel;
 
     public function __construct()
     {
+        $this->rememberLoginModel = $this->model('RememberLoginModel');
+
         if (!Session::isLoggedIn()) {
+            Url::rememberRequestedPage();
             Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
-            Url::redirect('user/login_staff');
+            Url::redirect('user/login/staff');
+        }
+        else{
+
         }
     }
 
