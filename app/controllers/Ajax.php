@@ -64,4 +64,8 @@ class Ajax extends BaseController
         Request::setHeader(Request::HEADER_CONTENT_TYPE, Request::CONTENT_TYPE_JSON);
         echo $res->toJson();
     }
+
+    public function getStatsByMonths(){
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    }
 }

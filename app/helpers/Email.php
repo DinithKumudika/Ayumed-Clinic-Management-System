@@ -9,82 +9,168 @@ use utils\Flash;
 class Email
 {
 
-     protected $receiver;
-     protected $sender;
-     protected $mail;
-     protected $template;
+    protected $receiver;
+    protected $sender;
+    protected $mail;
+    protected $template;
 
-     public function __construct($email)
-     {
-          $this->receiver = $email;
-          $this->sender = $_ENV['SMTP_USER'];
-          $this->mail = new PHPMailer();
-          $this->mail->isSMTP();                                     //Send using SMTP
-          $this->mail->Host       = $_ENV['SMTP_HOST'];                //Set the SMTP server to send through
-          $this->mail->SMTPAuth   = true;                            //Enable SMTP authentication
-          $this->mail->Username   = $_ENV['SMTP_USER'];                   //SMTP username
-          $this->mail->Password   = $_ENV['SMTP_PASSWORD'];                 //SMTP password
-          $this->mail->SMTPSecure = $_ENV['SMTP_ENCRYPT'];                           //Enable implicit TLS encryption
-          $this->mail->Port       = $_ENV['SMTP_PORT'];                             //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-     }
+    const TEMPLATE_PATH_EMAIL = APP_ROOT . '/templates/email/';
 
-     // send OTP verification email
-     public function sendVerificationEmail($receiverName, $OTPCode)
-     {
-          $this->template = APP_ROOT . "/templates/email.php";
+    public function __construct($email)
+    {
+        $this->receiver = $email;
+        $this->sender = $_ENV['SMTP_USER'];
+        $this->mail = new PHPMailer();
+        $this->mail->isSMTP();                                     //Send using SMTP
+        $this->mail->Host = $_ENV['SMTP_HOST'];                //Set the SMTP server to send through
+        $this->mail->SMTPAuth = true;                            //Enable SMTP authentication
+        $this->mail->Username = $_ENV['SMTP_USER'];                   //SMTP username
+        $this->mail->Password = $_ENV['SMTP_PASSWORD'];                 //SMTP password
+        $this->mail->SMTPSecure = $_ENV['SMTP_ENCRYPT'];                           //Enable implicit TLS encryption
+        $this->mail->Port = $_ENV['SMTP_PORT'];                             //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    }
 
-          try {
-               $this->mail->setFrom($this->sender, 'Ayumed');
-               $this->mail->addAddress($this->receiver);
-               $this->mail->addReplyTo($this->sender);
+    public function setEmail($subject)
+    {
+        try {
+            $this->mail->setFrom($this->sender, 'Ayumed');
+            $this->mail->addAddress($this->receiver);
+            $this->mail->addReplyTo($this->sender);
 
-               $this->mail->isHTML(true);
-               $this->mail->Subject = "Ayumed Account Verification";
+            $this->mail->isHTML(true);
+            $this->mail->Subject = $subject;
+        } catch (Exception $e) {
+            echo "Mailer Error: {$this->mail->ErrorInfo}";
+        }
+    }
 
-               if (file_exists($this->template)) {
-                    $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>" . file_get_contents($this->template) .
-                         "<br>
-                    <h4 style='text-align: center;'>The verification code is : <b>" . $OTPCode . "<b></h4>";
-               } else {
-                    $this->mail->Body = "<h1 style='text-align: center; margin-top: 40px;'>Hello " . $receiverName . ",</h1>
-                    <h2 style='color: #19A627;'>Welcome To Ayumed</h2>
-                    <h4>Before using our service there is one more little thing to do. Please use the below OTP to verify your account.</h4>
-                    <h3 style='color: #19A627;'>Thank You!</h3>
-                    <h4 style='text-align: center;'>The verification code is : <b>" . $OTPCode . "<b></h4>";
-               }
-               $this->mail->send();
-          }
-          catch (Exception $e) {
-               echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
-          }
-     }
+    public function setContent($template, $data)
+    {
+        if(file_exists($template)){
+            $content = file_get_contents($template);
 
-     public function changePasswordEmail($name)
-     {
-          try {
-               $this->mail->setFrom($this->sender, 'Ayumed');
-               $this->mail->addAddress($this->receiver);
-               $this->mail->addReplyTo($this->sender);
+            $swap_data = $data;
 
-               $this->mail->isHTML(true);
-               $this->mail->Subject = "Ayumed - Account Password Reset";
+            foreach ($swap_data as $key => $val){
+               $content = str_replace($key, $val, $content);
+            }
+        }
+        else {
+            $content = false;
+        }
+        return $content;
+    }
 
-               $this->mail->Body = "<h1 style='color: #19A627; text-align: center'>Account Password Reset</h1>
-                    <h2 style='margin-top: 40px;'>Dear,". $name ."</h2>
-                    <h4>Your request for account password change has been received. Please click on the below button to reset your password</h4>
-                    <div style='background-color: #19A627;padding: 5px 10px; color: white; border: 0px solid black; border-radius: 5px'>Reset Password</div>
-                    <h4>Or</h4>
-                    <h4>Follow this link to reset your pasword</h4>
-                    <h5><a href=''>Click Here</a></h5>
-                    <h3 style='color: #19A627;'>Thank You!</h3>";
+    // send OTP verification email
+    public function sendVerificationEmail($receiverName, $OTPCode)
+    {
+        try {
+            $this->mail->setFrom($this->sender, 'Ayumed');
+            $this->mail->addAddress($this->receiver);
+            $this->mail->addReplyTo($this->sender);
 
-               $emailSent = $this->mail->send();
+            $this->mail->isHTML(true);
+            $this->mail->Subject = "Ayumed Account Verification";
 
-               if ($emailSent) {
-                    Flash::setFlash('forgot_password', 'Password reset email sent. check your inbox or spam', Flash::FLASH_SUCCESS);
-               }
-          } catch (Exception $e) {
-               echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
-          }
-     }
+            $this->template = self::TEMPLATE_PATH_EMAIL . "otpEmail.php";
+
+            $email_body = $this->setContent(
+                $this->template,
+                [
+                    "{TO_NAME}" => $receiverName,
+                    "{OTP}" => $OTPCode,
+                ]
+            );
+
+            if(!$email_body){
+                echo "no template found";
+            }
+            else{
+                $this->mail->Body = $email_body;
+            }
+
+            $this->mail->send();
+
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
+        }
+    }
+
+    public function changePasswordEmail($name, $url)
+    {
+        try {
+            $this->mail->setFrom($this->sender, 'Ayumed');
+            $this->mail->addAddress($this->receiver);
+            $this->mail->addReplyTo($this->sender);
+
+            $this->mail->isHTML(true);
+            $this->mail->Subject = "Ayumed - Account Password Reset";
+
+            $this->template = self::TEMPLATE_PATH_EMAIL . "forgotPasswordEmail.php";
+
+            $email_body = $this->setContent(
+                $this->template,
+                [
+                    "{TO_NAME}" => $name,
+                    "{URL}" => $url
+                ]
+            );
+
+            if(!$email_body){
+                echo "no template found";
+            }
+            else{
+                $this->mail->Body = $email_body;
+            }
+
+            $emailSent = $this->mail->send();
+
+            if ($emailSent) {
+                Flash::setFlash('forgot_password', 'Password reset email sent. check your inbox or spam', Flash::FLASH_SUCCESS);
+            }
+        }
+        catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
+        }
+    }
+
+    public function registrationNotification($name, $username, $password)
+    {
+        try {
+            $this->mail->setFrom($this->sender, 'Ayumed');
+            $this->mail->addAddress($this->receiver);
+            $this->mail->addReplyTo($this->sender);
+
+            $this->mail->isHTML(true);
+            $this->mail->Subject = "Ayumed - Account Registration";
+
+            $this->template = self::TEMPLATE_PATH_EMAIL . "registrationEmail.php";
+
+            $email_body = $this->setContent(
+                $this->template,
+                [
+                    "{TO_NAME}" => $name,
+                    "{USERNAME}" => $username,
+                    "{PASSWORD}" => $password
+                ]
+            );
+
+            if(!$email_body){
+                echo "no template found";
+            }
+            else{
+                $this->mail->Body = $email_body;
+            }
+
+            $emailSent = $this->mail->send();
+
+            if ($emailSent) {
+                Flash::setFlash('mail_sent', 'User credentials has been sent to the user', Flash::FLASH_SUCCESS);
+            }
+        }
+        catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
+        }
+
+    }
 }

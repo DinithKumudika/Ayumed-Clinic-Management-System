@@ -59,7 +59,7 @@ const navigation = {
         clinic_staff : {
             text : "Clinic Staff",
             icon : "fa-user-nurse",
-            link : "admin/staff"
+            link : "admin/manage_staff"
         },
         treatment_log : {
             text : "Treatment Log",
