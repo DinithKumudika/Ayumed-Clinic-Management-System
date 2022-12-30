@@ -54,11 +54,13 @@
                 document.getElementById('appoint-reason').value = '';
                 notification('Appointment Scheduled!', 'you will receive an SMS before the appointment date', 'success');
             </script>";
-            } else if ($data['error']) {
+            }
+            else if ($data['error']) {
                 echo "<script type='text/javascript'>
                 notification('Time slot is not available', 'Try again with with different time', 'warning');
             </script>";
             }
+
             ?>
 
             <div class="btn-container">

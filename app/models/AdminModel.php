@@ -1,4 +1,5 @@
 <?php
+use utils\Generate;
 
 class AdminModel extends Database
 {
@@ -7,6 +8,10 @@ class AdminModel extends Database
     public function __construct()
     {
         $this->db = Database::connect();
+    }
+
+    public function addStaffMember($data){
+
     }
 
     // get no of patients registered in the system
@@ -51,15 +56,7 @@ class AdminModel extends Database
         return $this->rowCount();
     }
 
-    // get all the users registered in the system
-    public function getAllUsers(){
-        $sql = "SELECT * FROM `tbl_users`";
-        $this->queryAll($sql);
-
-        return $this->rowCount();
-    }
-
-    // get all currently active patients
+    // get no of all currently active patients
     public function getActivePatients(){
         $sql = "SELECT * FROM `tbl_logins` WHERE `role_id` = :role_id AND loggedout_at = :logout";
         $this->prepare($sql);
@@ -73,7 +70,7 @@ class AdminModel extends Database
 
         return $this->rowCount();
     }
-    // get all currently active staff members
+    // get no of all currently active staff members
     public function getActiveStaff(){
         $sql = "SELECT * FROM `tbl_logins` WHERE `role_id` = :role_id AND loggedout_at = :logout";
         $this->prepare($sql);
@@ -88,7 +85,7 @@ class AdminModel extends Database
         return $this->rowCount();
     }
 
-    // get all currently active pharmacists
+    // get no of all currently active pharmacists
     public function getActivePharmacists(){
         $sql = "SELECT * FROM `tbl_logins` WHERE `role_id` = :role_id AND loggedout_at = :logout";
         $this->prepare($sql);
@@ -121,5 +118,26 @@ class AdminModel extends Database
     // get all the orders completed in a day
     public function getDailyOrders(){
 
+    }
+
+    public function getYearlyAppointments(){
+
+    }
+
+    // get no of all appointments
+    public function getTotalAppointments(){
+        $sql = "SELECT * FROM `tbl_appointments`";
+        $this->queryAll($sql);
+
+        return $this->rowCount();
+    }
+
+    public function getMonthlyAppointments($last_month){
+        $sql = "SELECT * FROM `tbl_appointments` WHERE `created_at` > :date1 AND `created_at` < :date2 ";
+        $this->prepare($sql);
+
+        $params = [
+
+        ];
     }
 }

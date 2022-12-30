@@ -69,12 +69,45 @@
                     </div>
                 </div>
             </div>
-            <div class="other-container">
+            <div class="overall-stat-container">
                 <div class="section-h">
                     <h2>Overall Stats</h2>
                     <hr>
                 </div>
-
+                <div class="overall-stats">
+                    <div class="details-wrapper">
+                        <div class="card-single">
+                            <div>
+                                <h1><?php echo $data['total_appointments']; ?></h1>
+                                <span>Total Appointments</span>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <div class="card-single">
+                            <div>
+                                <h1><?php echo $data['total_prescriptions']; ?></h1>
+                                <span>Total Prescriptions</span>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-clipboard"></i>
+                            </div>
+                        </div>
+                        <div class="card-single">
+                            <div>
+                                <h1><?php echo $data['total_orders']; ?></h1>
+                                <span>Completed Orders</span>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-solid fa-pills"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                            <canvas id="chart-stats-overall" class="chart-stats"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
