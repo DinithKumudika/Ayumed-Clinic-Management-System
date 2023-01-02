@@ -16,6 +16,7 @@ class User extends BaseController
     private $userModel;
     private $verificationModel;
     private $rememberLoginModel;
+    private $patientModel;
     private $roleId;
 
     public function __construct()
@@ -23,6 +24,7 @@ class User extends BaseController
         $this->userModel = $this->model('UserModel');
         $this->rememberLoginModel = $this->model('RememberLoginModel');
         $this->verificationModel = $this->model('VerificationModel');
+        $this->patientModel = $this->model('PatientModel');
     }
 
     public function index()
@@ -40,6 +42,12 @@ class User extends BaseController
         if (Request::isPost()) {
 
             Request::removeTags();
+
+            $token = filter_input(INPUT_POST,'csrf', FILTER_SANITIZE_STRING);
+
+            if(!$token || $token !== Session::get('csrf_token')){
+                $this->view('405');
+            }
 
             $data = [
                 'username' => trim($_POST['username']),
@@ -115,6 +123,7 @@ class User extends BaseController
             }
         }
         else {
+            Session::set('csrf_token', Token::csrfToken());
             $data = [
                 'username' => '',
                 'password' => '',
@@ -123,7 +132,6 @@ class User extends BaseController
                 'error_pwd' => ''
             ];
         }
-
 
         if($user_type == "patient"){
             $this->view('pages/patientLogin', $data);
@@ -168,7 +176,7 @@ class User extends BaseController
                     $userId = $this->userModel->getUserId($data['username']);
                     $regNo = Generate::regNo($userId);
 
-                    if ($this->userModel->registerPatient($data, $age, $regNo, $OTPCode, $userId)) {
+                    if ($this->patientModel->add($data, $age, $regNo, $OTPCode, $userId)) {
                         $email = new Email($data['email']);
                         $email->sendVerificationEmail($data['first_name'], $OTPCode);
                         // redirect to OTP verification view

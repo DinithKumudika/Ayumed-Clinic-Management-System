@@ -16,10 +16,11 @@ abstract class Database
         $username = $_ENV['DB_USER'];
         $password = $_ENV['DB_PASSWORD'];
         $dbname = $_ENV['DB_NAME'];
+        $encoding = $_ENV['DB_ENCODING'];
 
         try {
             // PDO instance
-            $dsn = $connection . ':host=' . $host . ';dbname=' . $dbname;
+            $dsn = $connection . ':host=' . $host . ';dbname=' . $dbname . ';charset=' . $encoding;
             self::$dbh = new PDO($dsn, $username, $password);
             // enable errors in the form of exceptions
             self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

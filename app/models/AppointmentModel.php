@@ -9,7 +9,7 @@ class AppointmentModel extends Database
         $this->db = Database::connect();
     }
 
-    public function viewAll($userId, $currentDate, $currentTime)
+    public function getAllPast($userId, $currentDate, $currentTime)
     {
         $sql = "SELECT *
                 FROM `tbl_appointments`
@@ -74,10 +74,10 @@ class AppointmentModel extends Database
             'time' => $currentTime
         ];
 
-        $appointment = $this->resultSet($params);
+        $appointments = $this->resultSet($params);
 
         if ($this->rowCount() > 0) {
-            return $appointment;
+            return $appointments;
         } else {
             return false;
         }
@@ -134,5 +134,18 @@ class AppointmentModel extends Database
         } else {
             return false;
         }
+    }
+
+    // get no of all appointments
+    public function getCount(){
+        $sql = "SELECT * FROM `tbl_appointments`";
+        $this->queryAll($sql);
+
+        return $this->rowCount();
+    }
+
+    // get all the appointments made in a day
+    public function getDailyCount(){
+
     }
 }

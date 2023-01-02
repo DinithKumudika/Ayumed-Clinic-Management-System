@@ -14,47 +14,47 @@
         </div>
         <div class="add-staff-container">
             <div class="form-title">Add new Staff Member</div>
-            <form action="<?php echo URL_ROOT?>/admin/manage_staff" id="add-staff">
+            <form action="<?php echo URL_ROOT?>/admin/manage_staff" id="staff-add-form">
                 <div class="staff-details">
                     <div class="form-row">
                         <div class="form-group">
                             <span class="input-name">First Name</span>
-                            <input type="text" id="input-fname" name="fist-name" class="form-input" placeholder="first name">
-                            <p class="err" id=""></p>
+                            <input type="text" id="input-fName" name="fist-name" class="form-input" placeholder="first name">
+                            <p class="err" id="err-first-name"></p>
                         </div>
                         <div class="form-group">
                             <span class="input-name">Last Name</span>
-                            <input type="text" id="input-lname" name="last-name" class="form-input" placeholder="last name">
-                            <p class="err" id=""></p>
+                            <input type="text" id="input-lName" name="last-name" class="form-input" placeholder="last name">
+                            <p class="err" id="err-last-name"></p>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <span class="input-name">Registration No</span>
                             <input type="text" id="input-regNo" name="reg-no" class="form-input" placeholder="staff registration no">
-                            <p class="err" id=""></p>
+                            <p class="err" id="err-reg-no"></p>
                         </div>
                         <div class="form-group">
                             <span class="input-name">Email</span>
                             <input type="email" id="input-email" name="email" class="form-input" placeholder="email">
-                            <p class="err" id=""></p>
+                            <p class="err" id="err-email"></p>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <span class="input-name">Username</span>
                             <input type="text" id="input-uname" name="username" class="form-input" placeholder="username">
-                            <p class="err" id=""></p>
+                            <p class="err" id="err-uname"></p>
                         </div>
                         <div class="form-group">
                             <span class="input-name">Password</span>
                             <input type="password" id="input-pwd" name="password" class="form-input" placeholder="password">
-                            <p class="err" id=""></p>
+                            <p class="err" id="err-pwd"></p>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <input type="submit" value="Add" class="btn submit-btn" id="btn-submit">
+                    <input type="submit" value="Add" class="btn submit-btn" id="staff-add-btn">
                 </div>
             </form>
         </div>
@@ -74,10 +74,35 @@
                     <th>Email</th>
                     <th>Username</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-
+                <?php foreach ($data['staff'] as $staff) { ?>
+                    <tr>
+                        <td data-label="Reg No"><?php echo $staff->staff_reg_no ?></td>
+                        <td data-label="Name"><?php echo $staff->first_name ." " . $staff->last_name ?></td>
+                        <td data-label="Email"><?php echo $staff->email ?></td>
+                        <td data-label="Username"><?php echo $staff->username ?></td>
+                        <?php if ($staff->status) { ?>
+                            <td data-label="Status" class="status"><span style="color: var(--success)">Available</span></td>
+                        <?php } else { ?>
+                            <td data-label="Status" class="status"><span style="color: var(--danger)">Not Available</span></td>
+                        <?php } ?>
+                        <td data-label="Action">
+                            <span class="action-icon">
+                                <a href="">
+                                    <i class="fa-solid fa-pen-to-square" style="color: var(--primary)"></i>
+                                </a>
+                            </span>
+                            <span class="action-icon">
+                                <a href="">
+                                    <i class="fa-solid fa-trash-can" style="color: var(--danger)"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                <?php } ?>
                 </tbody>
             </table>
         </div>

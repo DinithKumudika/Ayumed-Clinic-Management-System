@@ -73,7 +73,7 @@ class Patient extends BaseController
         $currTime = Generate::currentTime();
 
         // get all past appointments
-        $appointments = $this->appointmentModel->viewAll($patientId, $currDate, $currTime);
+        $appointments = $this->appointmentModel->getAllPast($patientId, $currDate, $currTime);
 
         // get all upcoming appointments
 //        $upcomingAppointments = $this->appointmentModel->getAllUpcoming($patientId, $currDate, $currTime);
@@ -96,11 +96,6 @@ class Patient extends BaseController
         else{
             $data['upcoming'] = false;
         }
-
-//        if($upcomingAppointments) {
-//            $res = new Response($upcomingAppointments);
-//            //echo $res->toJson();
-//        }
 
         $this->view('pages/patient/index', $data);
     }
