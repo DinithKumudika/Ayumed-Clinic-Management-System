@@ -13,6 +13,8 @@ class Admin extends BaseController
     private $rememberLoginModel;
     private $adminModel;
     private $userModel;
+    private $staffModel;
+    private $appointmentModel;
 
     public function __construct()
     {
@@ -26,12 +28,14 @@ class Admin extends BaseController
         else{
             $this->adminModel = $this->model('AdminModel');
             $this->userModel = $this->model('UserModel');
+            $this->staffModel = $this->model('StaffModel');
+            $this->appointmentModel = $this->model('AppointmentModel');
         }
     }
 
     public function index()
     {
-        $noOfAppointments = $this->adminModel->getTotalAppointments();
+        $noOfAppointments = $this->appointmentModel->getCount();
         $data = [
             'total_appointments' => $noOfAppointments,
             'total_prescriptions' => 0,
@@ -69,14 +73,15 @@ class Admin extends BaseController
                 }
             }
             else{
+                $password = $data['password'];
                 $data['password'] = Crypto::createHash($data['password']);
 
                 if($this->userModel->register($data, 3)){
                     $userId = $this->userModel->getUserId($data['username']);
 
-                    if($this->userModel->registerStaff($data['reg_no'],$userId)){
+                    if($this->staffModel->add($data['reg_no'],$userId)){
                         $email = new Email($data['email']);
-                        $email->registrationNotification();
+                        $email->registrationNotification($data['first_name'], $data['username'], $password);
                     }
                 }
             }
@@ -93,6 +98,9 @@ class Admin extends BaseController
                 'error_email' => ''
             ];
         }
+
+        $data['staff'] = $this->staffModel->getAll();
+
         $this->view('pages/admin/clinicStaff', $data);
     }
 }

@@ -9,13 +9,19 @@ class Ajax extends BaseController
 
     private $appointmentModel;
     private $patientModel;
+    private $staffModel;
+    private $pharmacistModel;
     private $adminModel;
+    private $loginModel;
 
     public function __construct()
     {
         $this->appointmentModel = $this->model('AppointmentModel');
         $this->patientModel = $this->model('PatientModel');
+        $this->staffModel = $this->model('StaffModel');
+        $this->pharmacistModel = $this->model('PharmacistModel');
         $this->adminModel = $this->model('AdminModel');
+        $this->loginModel = $this->model('LoginModel');
     }
 
     public function getAllUpcomingAppoint(){
@@ -35,9 +41,9 @@ class Ajax extends BaseController
 
     public function getAllUsers(){
 
-        $patients = $this->adminModel->getAllPatients();
-        $staffMembers = $this->adminModel->getAllStaff();
-        $pharmacists = $this->adminModel->getAllPharmacists();
+        $patients = $this->patientModel->getCount();
+        $staffMembers = $this->staffModel->getCount();
+        $pharmacists = $this->pharmacistModel->getCount();
 
         $allUsers = [
             'patients' => $patients,
@@ -50,9 +56,9 @@ class Ajax extends BaseController
     }
 
     public function getActiveUsers(){
-        $activePatients = $this->adminModel->getActivePatients();
-        $activeStaffMembers = $this->adminModel->getActiveStaff();
-        $activePharmacists = $this->adminModel->getActivePharmacists();
+        $activePatients = $this->loginModel->getLoggedInPatientCount();
+        $activeStaffMembers = $this->loginModel->getLoggedInStaffCount();
+        $activePharmacists = $this->loginModel->getLoggedInPharmacistCount();
 
         $activeUsers = [
             'patients' => $activePatients,

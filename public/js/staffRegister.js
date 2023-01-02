@@ -1,13 +1,9 @@
-const signupBtn = document.getElementById('staff-signup-btn');
-const signupForm = document.getElementById('staff-signup-form');
-
 const firstName = document.getElementById('first_name');
 const lastName = document.getElementById('last_name');
 const email = document.getElementById('email');
 const staffNo = document.getElementById('staff_no');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
-const confirmPassword = document.getElementById('c-password');
 
 // error elements
 const firstNameErr = document.getElementById('error-fname');

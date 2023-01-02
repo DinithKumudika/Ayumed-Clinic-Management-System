@@ -15,6 +15,7 @@
                        <img src="<?php echo URL_ROOT ?>/images/logo.png" alt="logo" id="logo">
                        <h2>Log In</h2>
                    </div>
+                   <input type="hidden" name="csrf" value="<?php echo $_SESSION['csrf_token'] ?>">
                    <div class="user-opt">
                        <div class="user-type-btn btn" id="user-doctor">Doctor</div>
                        <input type="radio" name="user_type" class="user_type" value="doctor" checked>

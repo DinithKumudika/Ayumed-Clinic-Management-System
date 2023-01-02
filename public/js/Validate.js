@@ -223,7 +223,7 @@ class Validate{
                return false;
           }
           else if(!passwordRegex.test(inputField.value)){
-               this.error(inputField, messageEl, "*username must have at least one lowercase, uppercase, special character and must be 8 characters or longer");
+               this.error(inputField, messageEl, "*username must have at least one lowercase, uppercase, digit, special character and must be 8 characters or longer");
                document.getElementById('show-pwd').style.color = '#DC3545';
                return false;
           }
@@ -249,6 +249,22 @@ class Validate{
           else{
                this.success(confirmField, messageEl);
                document.getElementById('show-pwd-repeat').style.color = '#28A745';
+               return true;
+          }
+     }
+
+     static isRegNoValid(inputField, messageEl){
+          const regNoRegex = /^[0-9]{8}$/;
+          if(this.isRequired(inputField)){
+               this.error(inputField, messageEl, "*Registration no is required");
+               return false;
+          }
+          else if(!regNoRegex.test(inputField.value)){
+               this.error(inputField, messageEl, "*Invalid registration no");
+               return false;
+          }
+          else{
+               this.success(inputField, messageEl);
                return true;
           }
      }

@@ -23,6 +23,10 @@ class Token
         return $this->hashedToken;
     }
 
+    public static function csrfToken(){
+        return bin2hex(random_bytes(32));
+    }
+
     public function getTokenValue(){
         return $this->token;
     }
