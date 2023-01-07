@@ -2,10 +2,10 @@
 
 const name = document.getElementById("name");
 const weight = document.getElementById("weight");
-const  unit= document.getElementById("unit");
-const  category= document.getElementById("category");
+const  unit= document.getElementById("add-unit");
+const  category= document.getElementById("add-category");
 const  quantity= document.getElementById("quantity");
-const  availability= document.getElementById("availability");
+// const  availability= document.getElementById("availability");
 
 const usernameError = document.getElementById("username_error");
 const passwordError = document.getElementById("password_error");

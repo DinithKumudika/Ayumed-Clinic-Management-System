@@ -97,6 +97,8 @@ class User extends BaseController{
               if($isValidUser){
                   $userLoggedIn = $this->userModel->getUser($data['username']);
                   $this->createUserSession($userLoggedIn);
+
+                  Flash::setFlash('login_success', 'Login successful', Flash::FLASH_SUCCESS);
                   Url::redirect('Pharmacist/index');
               }
               else{

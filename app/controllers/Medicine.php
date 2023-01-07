@@ -72,6 +72,55 @@ class Medicine extends BaseController{
            $this->view('pages/pharmacist/addmedicines',$data);
       }
 
+      public function edit(){
+            // get pharmacist id of the currently logged in pharmacist
+        $pharmacistId = $this->pharmacistModel->getPharmacistId(Session::get('user_id'));
+           
+        if(Request::isPost()){
+             Request::removeTags();
+
+             $data = [
+                  'name'=>trim($_POST['name']),
+                  'weight'=>trim($_POST['weight']),
+                  'unit'=>trim($_POST['add-unit']),
+                  'category'=>trim($_POST['add-category']),
+                  'quantity'=>trim($_POST['quantity']),
+                  // 'availability'=>trim($_POST['add-availability']),
+                  'error'=> ''
+             ];
+             //TODO : fix
+             $isExistingMedicine = $this->medicineModel->isMedicineExists($data['name']);
+
+             if($isExistingMedicine){
+                  $data['error'] = 'medicine already exists';
+             }
+             else{
+                  if($this->medicineModel->add($data)){
+                       //$userId = $this->userModel->getUserId(Session::get('role_id'));
+                       // echo "hari";
+                       Url::redirect('medicine/index');
+                  }
+                  else{
+                       echo "erooooooooor";
+                  }
+             }
+        }
+        else{
+             $data = [
+                  'name'=>'',
+                  'weight'=>'',
+                  'unit'=>'',
+                  'category'=>'',
+                  'quantity'=>'',
+                  // 'availability'=>'',
+                  'error'=> ''
+             ];
+        }
+
+         $this->view('pages/pharmacist/editmedicines',$data);
+
+      }
+
      public function index()
      {
      // get pharmacist id of the currently logged in pharmacist

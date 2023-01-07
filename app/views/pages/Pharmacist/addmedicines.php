@@ -27,11 +27,11 @@
             <div id="form">
                <label for="medicine_name" >Name:</label>
                <input type="text" id="name" class="input" name="name" >
-               <p id="name_error"></p>
+               <p class="err-addmedicine" id="name_error"></p>
                
                <label for="weight" >Weight/Volume:</label>
                <input type="text" id="weight" class="input" name="weight">
-               <p id="weight_error"></p>
+               <p class="err-addmedicine" id="weight_error"></p>
                
                <label for="unit">Unit:</label>
                <select name="add-unit" id="add-unit" class="input">
@@ -40,7 +40,7 @@
                     <option value="gram">g</option>
                     <option value="mililletre">ml</option>
                </select>
-               <p id="unit_error"></p>
+               <p class="err-addmedicine" id="unit_error"></p>
                
                <label for="category" >Category:</label>
                <select name="add-category" id="add-category" class="input" >
@@ -52,11 +52,11 @@
                     <option value="packets">Packets</option>
                     <option value="eeds">Seeds</option>
                </select>
-               <p id="category_error"></p>
+               <p class="err-addmedicine" id="category_error"></p>
                
                <label for="quantity" >Quantity:</label>
                <input type="text" id="quantity" class="input" name="quantity">
-               <p id="quantity_error"></p>
+               <p class="err-addmedicine" id="quantity_error"></p>
                <div class="submit-container">
                     <input type="submit" value="submit" class="submit-btn" onclick="validate()" >
                </div>
@@ -66,6 +66,6 @@
      </div>
 </div>
      <?php require APP_ROOT . '/views/layout/footer.php' ?>   
-     <script src="../public/js/medicines.js"></script>
+     <script src="<?php echo URL_ROOT; ?>/js/addmedicines.js"></script>
 </body>
 </html>

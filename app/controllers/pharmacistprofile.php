@@ -5,21 +5,20 @@ use utils\Flash;
 use utils\Url;
 use utils\Generate;
 
-class Profile extends BaseController
+class pharmacistprofile extends BaseController
 {
     private $userModel;
-    private $patientModel;
     private $pharmacistModel;
 
     public function __construct (){
 
         if(!Session::isLoggedIn()){
             Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
-            Url::redirect('user/login_patient');
+            Url::redirect('user/login_pharm');
         }
         else{
             $this->userModel = $this->model("UserModel");
-            $this->patientModel = $this->model("PatientModel");
+            $this->pharmacistModel = $this->model("PharmacistModel");
         }
     }
 
@@ -29,14 +28,7 @@ class Profile extends BaseController
         $user = $this->userModel->getUser(Session::get('username'));
         $data['user'] = $user;
 
-        if($roleId == 1){
-            $patient = $this->patientModel->getPatient($userId);
-            $patient->DOB = Generate::changeDOBFormat($patient->DOB);
-
-            $data['patient'] = $patient;
-            $this->view('pages/patient/profile',$data);
-        }
-        else{
+        if($roleId == 4){
             $pharmacist = $this->pharmacistModel->getPharmacist($userId);
             $pharmacist->DOB = Generate::changeDOBFormat($pharmacist->DOB);
 
@@ -53,10 +45,10 @@ class Profile extends BaseController
         $roleId = Session::get('role_id');
         $user = $this->userModel->getUser(Session::get('username'));
         $data['user'] = $user;
-        if($roleId == 1){
-            $patient = $this->patientModel->getPatient($userId);
-            $data['patient'] = $patient;
-            $this->view('pages/patient/editProfile',$data);
+        if($roleId == 4){
+            $pharmacist = $this->PharmacistModel->getPharmacist($userId);
+            $data['pharmacist'] = $pharmacist;
+            $this->view('pages/Pharmacist/editprofile',$data);
         }
     }
 

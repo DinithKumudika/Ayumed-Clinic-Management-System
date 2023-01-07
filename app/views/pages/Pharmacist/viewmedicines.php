@@ -89,7 +89,7 @@
                     <td class="td-6">
                          <div class="btn-container">
                               <button class="edit-btn btn">
-                                   <i class="fa-solid fa-pen-to-square"></i><a class="a-tag" href="editmedicine.php">Update</a>
+                                   <i class="fa-solid fa-pen-to-square"></i><a class="a-tag" href="<?php echo URL_ROOT?>/Medicine/edit">Update</a>
                               </button>
                               <button class="delete-btn btn">
                                    <i class="fa-solid fa-trash-can"></i><a class="a-tag" href="deletemedicine.php">Delete</a>

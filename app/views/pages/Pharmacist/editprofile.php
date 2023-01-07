@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<?php require APP_ROOT . '/views/layout/sidebar.php' ?>
+<?php require APP_ROOT . '/views/layout/pharmacistsidebar.php' ?>
 <div class="main-container">
     <div class="home-container">
         <div class="section-h">
@@ -38,7 +38,7 @@
                         <input type="text" value="<?php echo $data['user']->last_name ?>" name="last-name">
                     </div>
                     <p class="err lname-err"></p>
-                     <div class="form-group">
+                    <div class="form-group">
                         <h5>DOB</h5>
                         <input type="date" value="<?php echo $data['patient']->DOB ?>" name="dob">
                     </div>

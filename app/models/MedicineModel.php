@@ -53,6 +53,36 @@ class MedicineModel extends Database
         }
     }
 
+    public function edit($medicineData){  //,$pharmacistId,
+ 
+        $sql = "UPDATE `tbl_medicines`(`name`,`weight`,`unit`,`category`,`quantity`) 
+                VALUES 
+                (
+                 :name,
+                 :weight,
+                 :unit,
+                 :category,
+                 :quantity
+                )";
+
+        $this->prepare($sql);
+
+        $params = [
+            'name' => $medicineData['name'],
+            'weight' =>$medicineData['weight'],
+            'unit' => $medicineData['unit'],
+            'category' => $medicineData['category'],
+            'quantity' => $medicineData['quantity'],
+        ];
+
+        if ($this->execute($params)) {
+            return true;
+        } 
+        else {
+            return false;
+        }
+    }
+
     public function isMedicineExists($name){
         $sql = "SELECT * FROM `tbl_medicines` WHERE `name` = :user";
 

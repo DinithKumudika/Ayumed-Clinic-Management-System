@@ -23,4 +23,20 @@ class PharmacistModel extends Database{
               return false;
           }
       }
+
+      public function getPharmacist($userId){
+        $sql = "SELECT * FROM `tbl_pharmacists` WHERE `user_id` = :id";
+        $this->prepare($sql);
+        $params = [
+            'id'=>$userId
+        ];
+        $pharmacist = $this->result($params);
+
+        if($this->rowCount()>0){
+            return $pharmacist;
+        }
+        else{
+            return false;
+        }
+    }
 }
