@@ -117,9 +117,10 @@
         history.back();
     })
 </script>
-<script src="<?php echo URL_ROOT; ?>/js/profile.js"></script>
+<script src="<?php echo URL_ROOT; ?>/js/patient/profile.js"></script>
 <script src="<?php echo URL_ROOT; ?>/js/editProfile.js"></script>
-<script src="<?php echo URL_ROOT; ?>/js/patient.js"></script>
+<script src="<?php echo URL_ROOT; ?>/js/patient/editProfile.js"></script>
+<script src="<?php echo URL_ROOT; ?>/js/patient/patient.js"></script>
 </body>
 
 </html>

@@ -35,7 +35,8 @@ class StaffModel extends Database
 
     public function getAll(){
         $sql = "SELECT 
-            S.`staff_reg_no`, 
+            S.`staff_reg_no`,
+            U.`user_id`,
             U.`first_name`, 
             U.`last_name`, 
             U.`email`, 

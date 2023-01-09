@@ -23,7 +23,7 @@
     </tr>
     <tr>
         <td>
-            <a href="{URL}" style="text-decoration: none;color: white;">
+            <a href="{URL}" style="text-decoration: none;color: white;" target="_blank">
                 <div style='background-color: #19A627;padding: 10px 20px; color: white; border: 0px solid black; border-radius: 5px; width: 400px; margin: auto;'>Reset Password</div>
             </a>
         </td>
@@ -36,7 +36,7 @@
     <tr>
         <td>
             <h3>Follow this link to reset your password</h3>
-            <h4><a href="{URL}">Click Here</a></h4>
+            <h4><a href="{URL}" target="_blank">{URL}</a></h4>
         </td>
     </tr>
     <tr>

@@ -33,7 +33,15 @@ class PharmacistModel extends Database
 
     // get all pharmacists
     public function getAll(){
-        $sql = "SELECT * FROM `tbl_pharmacists`";
+        $sql = "SELECT 
+            P.`Phone_No`,
+            P.`status`,
+            U.`first_name`, 
+            U.`last_name`, 
+            U.`email`, 
+            U.`username`  
+            FROM `tbl_pharmacists` AS P INNER JOIN `tbl_users` AS U ON P.`user_id` = U.`user_id`";
+
         $pharmacists = $this->queryAll($sql);
 
         if($this->rowCount()>0){

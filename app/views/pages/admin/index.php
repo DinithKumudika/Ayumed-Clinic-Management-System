@@ -1,8 +1,8 @@
 <html lang="en">
 <head>
     <?php require APP_ROOT . '/views/layout/header.php' ?>
-    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/adminHome.css">
-    <title>Admin Home</title>
+    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/admin/home.css">
+    <title>Admin | Home</title>
 <body>
 <?php require APP_ROOT . '/views/layout/sidebar.php' ?>
 <div class="main-container">
@@ -118,6 +118,6 @@
     sideNavItems[0].classList.remove("non-active-item");
     sideNavItems[0].classList.add("active-item");
 </script>
-<script src="<?php echo URL_ROOT; ?>/js/admin.js" type="text/javascript"></script>
+<script src="<?php echo URL_ROOT; ?>/js/admin/admin.js" type="text/javascript"></script>
 </body>
 </html>

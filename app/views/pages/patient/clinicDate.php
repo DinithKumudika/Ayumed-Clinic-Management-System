@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require APP_ROOT . '/views/layout/header.php' ?>
-<link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/patientHome.css">
+<link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/patient/home.css">
 <title>Clinic Dates</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
     sideNavItems[1].classList.remove("non-active-item");
     sideNavItems[1].classList.add("active-item");
 </script>
-<script src="<?php echo URL_ROOT; ?>/js/patient.js"></script>
+<script src="<?php echo URL_ROOT; ?>/js/patient/patient.js"></script>
 </body>
 
 </html>

@@ -2,13 +2,13 @@
 const sideNavLinks = document.querySelectorAll(".side-nav-link");
 const homeLink = sideNavLinks[0];
 const clinicStaffLink = sideNavLinks[1];
-const treatmentLogLink =  sideNavLinks[2];
+const pharmacistLink =  sideNavLinks[2];
 const prescriptionLink = sideNavLinks[3];
 const recommendationLink = sideNavLinks[4];
 
 setNavItem(homeLink, adminNav.home.link, adminNav.home.icon, adminNav.home.text);
 setNavItem(clinicStaffLink, adminNav.clinic_staff.link, adminNav.clinic_staff.icon, adminNav.clinic_staff.text);
-setNavItem(treatmentLogLink, adminNav.treatment_log.link, adminNav.treatment_log.icon, adminNav.treatment_log.text);
+setNavItem(pharmacistLink, adminNav.pharmacist.link, adminNav.pharmacist.icon, adminNav.pharmacist.text);
 setNavItem(prescriptionLink, adminNav.prescription.link, adminNav.prescription.icon, adminNav.prescription.text);
 setNavItem(recommendationLink, adminNav.recommendation.link, adminNav.recommendation.icon, adminNav.recommendation.text);
 

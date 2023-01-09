@@ -61,10 +61,10 @@ const navigation = {
             icon : "fa-user-nurse",
             link : "admin/manage_staff"
         },
-        treatment_log : {
-            text : "Treatment Log",
+        pharmacist : {
+            text : "Pharmacist",
             icon : "fa-book-medical",
-            link : "admin/treatment_log"
+            link : "admin/manage_pharm"
         },
         prescription : {
             text : "Prescription",

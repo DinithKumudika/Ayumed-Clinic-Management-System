@@ -24,7 +24,7 @@ class Token
     }
 
     public static function csrfToken(){
-        return bin2hex(random_bytes(32));
+        return md5(uniqid(mt_rand(),true));
     }
 
     public function getTokenValue(){
