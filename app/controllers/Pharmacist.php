@@ -16,9 +16,6 @@ class Pharmacist extends BaseController{
             Flash::setFlash("login_first", "Please login before accessing that page", Flash::FLASH_INFO);
             Url::redirect('user/login/pharm');
         }
-        else{
-
-        }
     }
 
      public function index(){

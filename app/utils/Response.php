@@ -10,6 +10,10 @@ class Response
         $this->data = $data;
     }
 
+    public function getStatusCode(){
+        return http_response_code();
+    }
+
     public function toJson(){
         return json_encode($this->data);
     }

@@ -1,9 +1,5 @@
 <?php
 
-use utils\Crypto;
-use utils\Token;
-use utils\Validate;
-
 class UserModel extends Database
 {
     private $db;
@@ -179,6 +175,61 @@ class UserModel extends Database
         if ($this->execute($params)) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public function passwordReset($token_hash, $expires_at, $user_id){
+        $sql = "UPDATE `tbl_users` SET `password_reset_hash` = :token_hash, `password_reset_expiry` = :expires_at WHERE `user_id` = :user_id";
+        $this->prepare($sql);
+        $params = [
+            'token_hash' => $token_hash,
+            'expires_at' => $expires_at,
+            'user_id' => $user_id
+        ];
+
+        if($this->execute($params)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function getUserByResetToken($hashed_token){
+        $sql = "SELECT * FROM `tbl_users`WHERE `password_reset_hash` = :token_hash";
+        $this->prepare($sql);
+
+        $params = [
+            'token_hash' => $hashed_token
+        ];
+
+        $row = $this->result($params);
+
+        if($this->rowCount() > 0){
+            return $row;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function resetPassword($password, $user_id){
+        $sql = "UPDATE `tbl_users` 
+                SET `password` = :password,
+                    `password_reset_hash`= NULL, 
+                    `password_reset_expiry` = NULL 
+                WHERE `user_id` = :user_id";
+        $this->prepare($sql);
+        $params = [
+            'password' => $password,
+            'user_id' => $user_id
+        ];
+
+        if($this->execute($params)){
+            return true;
+        }
+        else{
             return false;
         }
     }

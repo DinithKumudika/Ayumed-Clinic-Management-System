@@ -1,5 +1,5 @@
-const signupBtn = document.getElementById('staff-add-btn');
-const signupForm = document.getElementById('staff-add-form');
+const addBtn = document.getElementById('staff-add-btn');
+const addForm = document.getElementById('staff-add-form');
 
 const firstName = document.getElementById('input-fName');
 const lastName = document.getElementById('input-lName');
@@ -120,9 +120,9 @@ function isFromValid(){
     }
 }
 
-signupBtn.addEventListener('click', function (e){
+addBtn.addEventListener('click', function (e){
     e.preventDefault();
     if(isFromValid()){
-        signupForm.submit();
+        addForm.submit();
     }
 })

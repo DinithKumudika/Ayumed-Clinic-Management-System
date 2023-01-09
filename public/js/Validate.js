@@ -217,38 +217,54 @@ class Validate{
            */
           const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
+          const pwdIcon = document.getElementById('show-pwd');
+
           if(this.isRequired(inputField)){
                this.error(inputField, messageEl, "*password is required");
-               document.getElementById('show-pwd').style.color = '#DC3545';
+               if(pwdIcon !== null){
+                    pwdIcon.style.color = '#DC3545';
+               }
                return false;
           }
           else if(!passwordRegex.test(inputField.value)){
                this.error(inputField, messageEl, "*username must have at least one lowercase, uppercase, digit, special character and must be 8 characters or longer");
-               document.getElementById('show-pwd').style.color = '#DC3545';
+               if(pwdIcon !== null){
+                    pwdIcon.style.color = '#DC3545';
+               }
                return false;
           }
           else{
                this.success(inputField, messageEl);
-               document.getElementById('show-pwd').style.color = '#28A745';
+               if(pwdIcon !== null){
+                    pwdIcon.style.color = '#28A745';
+               }
                return true;
           }
      }
 
      // confirm password validation
      static isPasswordMatch(inputField, confirmField, messageEl){
+          const pwdIcon = document.getElementById('show-pwd-repeat');
+
           if(this.isRequired(confirmField)){
                this.error(confirmField, messageEl, "*repeat password is required");
-               document.getElementById('show-pwd-repeat').style.color = '#DC3545';
+               if(pwdIcon !== null){
+                    pwdIcon.style.color = '#DC3545';
+               }
                return false;
           }
           else if(inputField.value !== confirmField.value){
                this.error(confirmField, messageEl, "*password does not match");
-               document.getElementById('show-pwd-repeat').style.color = '#DC3545';
+               if(pwdIcon !== null){
+                    pwdIcon.style.color = '#DC3545';
+               }
                return false;
           }
           else{
                this.success(confirmField, messageEl);
-               document.getElementById('show-pwd-repeat').style.color = '#28A745';
+               if(pwdIcon !== null){
+                    pwdIcon.style.color = '#28A745';
+               }
                return true;
           }
      }

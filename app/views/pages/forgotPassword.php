@@ -9,6 +9,7 @@
                <img src="<?php echo URL_ROOT; ?>/images/forgot.jpg" alt="" class="signup-img">
           </div>
           <div class="signup-container">
+              <?php echo \utils\Flash::flash('forgot_password') ?>
                <div class="header">
                     <img src="<?php echo URL_ROOT; ?>/images/logo.png" alt="">
                     <h1>Forgot Password</h1>
@@ -20,14 +21,12 @@
                               <h5>Username</h5>
                               <input type="text" id="forgot-username" name="username" class="form-input" value="<?php echo $data['username'] ?>">
                          </div>
-                        <p class="err-signup" id="err-username"></p>
-                        <p class="err-signup" id="err-invalid-uname"><?php echo $data['error_uname'];?></p>
+                        <p class="err-signup" id="err-username"><?php echo $data['error_uname'];?></p>
                          <div class="form-group">
                               <h5>Email</h5>
                               <input type="email" id="forgot-email" name="email" class="form-input" value="<?php echo $data['email'] ?>">
                          </div>
-                         <p class="err-signup" id="err-email"></p>
-                         <p class="err-signup" id="err-invalid-email"><?php echo $data['error_email'];?></p>
+                         <p class="err-signup" id="err-email"><?php echo $data['error_email'];?></p>
                         <div class="btn forgot-pwd-btn" id="btn-forgot-pwd">Confirm</div>
                     </div>
                </form>

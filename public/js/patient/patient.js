@@ -75,67 +75,6 @@ window.addEventListener('DOMContentLoaded',function () {
 
     getUpcoming(calendar);
 
-    // using jQuery
-    // $(document).ready(function () {
-    //     $('#new-appoint-btn').on('click', function (e) {
-    //         e.preventDefault();
-    //         if(isFormValid()){
-    //             $.ajax({
-    //                 method: "POST",
-    //                 url: "http://localhost/ayumed/patient/index",
-    //                 data: {
-    //                     date: appointDate.value,
-    //                     time: appointTime.value,
-    //                     reason: appointReason.value
-    //                 },
-    //                 success: function (res) {
-    //                     // console.log(data);
-    //                     console.log(res);
-    //                 }
-    //             });
-    //             const xhr = new XMLHttpRequest();
-    //
-    //         }
-    //     })
-    // });
-
-    // using XML http request
-    // addAppointBtn.addEventListener('click', function (e) {
-    //     e.preventDefault();
-    //     if(isFormValid()){
-    //         // initialize XMLHttpRequest object
-    //         const xhr = new XMLHttpRequest();
-    //         const method = "POST";
-    //         const url = "http://localhost/ayumed/patient/index";
-    //         const date = appointDate.value;
-    //         const time = appointTime.value;
-    //         const reason = appointReason.value;
-    //
-    //         const form = new FormData();
-    //         form.append("date", date);
-    //         form.append("time", time);
-    //         form.append("reason", reason);
-    //         const params = new URLSearchParams(form);
-    //
-    //         // establish connection with the server
-    //         xhr.open(method, url);
-    //         xhr.setRequestHeader("Content-type", "application/json");
-    //
-    //         // callback
-    //         xhr.onload = function () {
-    //             if(this.status === 200){
-    //                 const res = this.responseText;
-    //                 console.log(res);
-    //                 // const json = JSON.parse(res);
-    //                 // console.log(json);
-    //             }
-    //         }
-    //
-    //         // send request
-    //         xhr.send(params);
-    //     }
-    // });
-
     addAppointBtn.addEventListener('click', function () {
         if(isFormValid()){
             newAppointForm.submit();

@@ -14,6 +14,7 @@ class Admin extends BaseController
     private $adminModel;
     private $userModel;
     private $staffModel;
+    private $pharmacistModel;
     private $appointmentModel;
 
     public function __construct()
@@ -29,6 +30,7 @@ class Admin extends BaseController
             $this->adminModel = $this->model('AdminModel');
             $this->userModel = $this->model('UserModel');
             $this->staffModel = $this->model('StaffModel');
+            $this->pharmacistModel = $this->model('PharmacistModel');
             $this->appointmentModel = $this->model('AppointmentModel');
         }
     }
@@ -45,31 +47,32 @@ class Admin extends BaseController
         $this->view('pages/admin/index', $data);
     }
 
-    public function manage_staff($param=null){
+    public function manage_staff(){
         if(Request::isPost()){
             Request::removeTags();
 
             $data = [
-                'first_name' => trim($_POST['fist_name']),
+                'first_name' => trim($_POST['fist-name']),
                 'last_name' => trim($_POST['last-name']),
                 'reg_no' => trim($_POST['reg-no']),
                 'email' => trim($_POST['email']),
                 'username' => trim($_POST['username']),
                 'password' => trim($_POST['password']),
                 'error_uname' => '',
-                'error_email' => ''
+                'error_email' => '',
+                'success' => ''
             ];
 
             $userExists = $this->userModel->isUserExists($data['username']);
             $emailExists = Validate::validateEmail($data['email']);
 
-            if($userExists || !$emailExists){
+            if($userExists || !$emailExists['status']){
                 if ($userExists) {
                     $data['error_uname'] = 'username is already taken';
                 }
 
-                if(!$emailExists){
-                    $data['error_email'] = "email doesn't exist";
+                if(!$emailExists['status']){
+                    $data['error_email'] = $emailExists['error'];
                 }
             }
             else{
@@ -80,8 +83,12 @@ class Admin extends BaseController
                     $userId = $this->userModel->getUserId($data['username']);
 
                     if($this->staffModel->add($data['reg_no'],$userId)){
+                        $data['success'] = true;
                         $email = new Email($data['email']);
-                        $email->registrationNotification($data['first_name'], $data['username'], $password);
+                        $email->registrationEmail($data['first_name'], $data['username'], $password);
+                    }
+                    else{
+                        $data['success'] = false;
                     }
                 }
             }
@@ -95,12 +102,89 @@ class Admin extends BaseController
                 'username' =>' ',
                 'password' => '',
                 'error_uname' => '',
-                'error_email' => ''
+                'error_email' => '',
+                'success' =>''
             ];
         }
 
         $data['staff'] = $this->staffModel->getAll();
 
         $this->view('pages/admin/clinicStaff', $data);
+    }
+
+    public function manage_pharm(){
+        if(Request::isPost()){
+            Request::removeTags();
+
+            $data = [
+                'first_name' => trim($_POST['fist-name']),
+                'last_name' => trim($_POST['last-name']),
+                'phone_no' => trim($_POST['phone-no']),
+                'email' => trim($_POST['email']),
+                'username' => trim($_POST['username']),
+                'password' => trim($_POST['password']),
+                'error_uname' => '',
+                'error_email' => '',
+                'success' => ''
+            ];
+
+            $userExists = $this->userModel->isUserExists($data['username']);
+            $emailExists = Validate::validateEmail($data['email']);
+
+            if($userExists || !$emailExists['status']){
+                if ($userExists) {
+                    $data['error_uname'] = 'username is already taken';
+                }
+
+                if(!$emailExists['status']){
+                    $data['error_email'] = $emailExists['error'];
+                }
+            }
+            else{
+                $password = $data['password'];
+                $data['password'] = Crypto::createHash($data['password']);
+
+                if($this->userModel->register($data, 4)){
+                    $userId = $this->userModel->getUserId($data['username']);
+
+                    if($this->pharmacistModel->add($data['phone_no'],$userId)){
+                        $data['success'] = true;
+                        $email = new Email($data['email']);
+                        $email->registrationEmail($data['first_name'], $data['username'], $password);
+                    }
+                    else{
+                        $data['success'] = false;
+                    }
+                }
+            }
+        }
+        else{
+            $data = [
+                'first_name' => '',
+                'last_name' => '',
+                'phone_no' => '',
+                'email' => '',
+                'username' =>' ',
+                'password' => '',
+                'error_uname' => '',
+                'error_email' => '',
+                'success' =>''
+            ];
+        }
+        $data['pharmacists'] = $this->pharmacistModel->getAll();
+        $this->view('pages/admin/pharmacist', $data);
+    }
+
+    public function edit($user_type, $user_id){
+        if($user_type == "staff"){
+
+            $this->view('pages/admin/clinicStaff');
+        }
+    }
+
+    public function  delete($user_type, $user_id){
+        if($user_type == "staff"){
+            $this->view('pages/admin/clinicStaff');
+        }
     }
 }

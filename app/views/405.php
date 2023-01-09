@@ -11,8 +11,7 @@
 
 <body>
 <div class="container">
-    <h1 class="error-page-heading">405 Not Allowed</h1>
-    <img src="<?php echo URL_ROOT; ?>/images/404.jpg" alt="404-image" class="img-404">
+    <h1 class="error-page-heading">405 Method Not Allowed</h1>
     <button class="btn error-page-btn">
         <a href="">go back home</a>
     </button>

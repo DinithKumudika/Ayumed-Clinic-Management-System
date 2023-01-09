@@ -33,21 +33,21 @@ abstract class Request{
      }
 
      public static function getBody(){
-        $data = [];
+        $body = [];
 
         if(self::isGet()){
             foreach ($_GET as $key=>$value){
-                $data[$key] = filter_input(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
+                $body[$key] = filter_input(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
 
          if(self::isPost()){
              foreach ($_POST as $key=>$value){
-                 $data[$key] = filter_input(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+                 $body[$key] = filter_input(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
              }
          }
 
-         return $data;
+         return $body;
      }
 
      public static function removeTags(){

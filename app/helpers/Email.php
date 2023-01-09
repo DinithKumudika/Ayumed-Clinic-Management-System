@@ -12,7 +12,8 @@ class Email
     protected $receiver;
     protected $sender;
     protected $mail;
-    protected $template;
+    protected $template_html;
+    protected $template_text;
 
     const TEMPLATE_PATH_EMAIL = APP_ROOT . '/templates/email/';
 
@@ -72,10 +73,10 @@ class Email
             $this->mail->isHTML(true);
             $this->mail->Subject = "Ayumed Account Verification";
 
-            $this->template = self::TEMPLATE_PATH_EMAIL . "otpEmail.php";
+            $this->template_html = self::TEMPLATE_PATH_EMAIL . "otpEmail.php";
 
             $email_body = $this->setContent(
-                $this->template,
+                $this->template_html,
                 [
                     "{TO_NAME}" => $receiverName,
                     "{OTP}" => $OTPCode,
@@ -106,10 +107,19 @@ class Email
             $this->mail->isHTML(true);
             $this->mail->Subject = "Ayumed - Account Password Reset";
 
-            $this->template = self::TEMPLATE_PATH_EMAIL . "forgotPasswordEmail.php";
+            $this->template_html = self::TEMPLATE_PATH_EMAIL . "forgotPasswordEmail.php";
+            $this->template_text = self::TEMPLATE_PATH_EMAIL . "forgotPasswordEmail.txt";
 
             $email_body = $this->setContent(
-                $this->template,
+                $this->template_html,
+                [
+                    "{TO_NAME}" => $name,
+                    "{URL}" => $url
+                ]
+            );
+
+            $email_alt_body = $this->setContent(
+                $this->template_text,
                 [
                     "{TO_NAME}" => $name,
                     "{URL}" => $url
@@ -123,10 +133,11 @@ class Email
                 $this->mail->Body = $email_body;
             }
 
+            $this->mail->AltBody = $email_alt_body;
             $emailSent = $this->mail->send();
 
             if ($emailSent) {
-                Flash::setFlash('forgot_password', 'Password reset email sent. check your inbox or spam', Flash::FLASH_SUCCESS);
+                Flash::setFlash('forgot_password', 'Password reset email sent. check your inbox or spam folder', Flash::FLASH_SUCCESS);
             }
         }
         catch (Exception $e) {
@@ -134,7 +145,7 @@ class Email
         }
     }
 
-    public function registrationNotification($name, $username, $password)
+    public function registrationEmail($name, $username, $password)
     {
         try {
             $this->mail->setFrom($this->sender, 'Ayumed');
@@ -144,10 +155,10 @@ class Email
             $this->mail->isHTML(true);
             $this->mail->Subject = "Ayumed - Account Registration";
 
-            $this->template = self::TEMPLATE_PATH_EMAIL . "registrationEmail.php";
+            $this->template_html = self::TEMPLATE_PATH_EMAIL . "registrationEmail.php";
 
             $email_body = $this->setContent(
-                $this->template,
+                $this->template_html,
                 [
                     "{TO_NAME}" => $name,
                     "{USERNAME}" => $username,
@@ -166,6 +177,9 @@ class Email
 
             if ($emailSent) {
                 Flash::setFlash('mail_sent', 'User credentials has been sent to the user', Flash::FLASH_SUCCESS);
+            }
+            else{
+                Flash::setFlash('mail_sent', 'problem with sending the email', Flash::FLASH_WARNING);
             }
         }
         catch (Exception $e) {
