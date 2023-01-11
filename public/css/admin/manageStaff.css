@@ -141,8 +141,8 @@
 
 .table tbody tr td .action-icon a{
     text-decoration: none;
+    cursor: pointer;
 }
-
 
 /* media query starts */
 

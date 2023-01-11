@@ -33,6 +33,10 @@ class StaffModel extends Database
         }
     }
 
+    public function update($user_id){
+
+    }
+
     public function getAll(){
         $sql = "SELECT 
             S.`staff_reg_no`,
@@ -80,15 +84,25 @@ class StaffModel extends Database
 
     // get staff member details by user id
     public function getStaffMember($userId){
-        $sql = "SELECT * FROM `tbl_staff` WHERE `user_id` = :id";
+        $sql = "SELECT 
+            S.`staff_reg_no`,
+            U.`user_id`,
+            U.`first_name`, 
+            U.`last_name`, 
+            U.`email`, 
+            U.`username`, 
+            U.`avatar`,
+            S.`status` 
+            FROM `tbl_staff` AS S INNER JOIN `tbl_users` AS U ON S.`user_id` = U.`user_id` WHERE U.`user_id` = :id";
+
         $this->prepare($sql);
         $params = [
             'id'=>$userId
         ];
-        $patient = $this->result($params);
+        $staffMem = $this->result($params);
 
         if($this->rowCount()>0){
-            return $patient;
+            return $staffMem;
         }
         else{
             return false;

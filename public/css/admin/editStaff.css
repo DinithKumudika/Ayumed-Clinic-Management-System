@@ -1,0 +1,155 @@
+.home-container {
+    position: relative;
+    margin: 50px 10px 0px 0px;
+    padding: 20px;
+    flex-direction: column;
+    display: flex;
+    background-color: #F8FAFC;
+    height: 100vh;
+}
+
+.home-container .section-h hr {
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.edit-staff-container{
+    background-color: var(--light);
+    border: 2px solid var(--light-green);
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.edit-staff-container form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 20px;
+    width: 90vw;
+}
+
+.edit-staff-container .img-container {
+    background: transparent;
+    margin-left: auto;
+}
+
+.edit-staff-container .img-container img{
+    border-radius: 100%;
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+
+.edit-staff-container .img-container .img-overlay {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.27);
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.edit-staff-container .img-container .img-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.edit-staff-container .img-container .img-overlay:hover i {
+    color: var(--green);
+}
+
+.edit-staff-container .img-container .img-overlay i {
+    font-size: 40px;
+    color: var(--light);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    top: 40%;
+}
+
+.edit-staff-container form .staff-details {
+    margin-right: auto;
+    margin-left: auto;
+    width: 30vw;
+}
+
+.edit-staff-container form .staff-details .form-row .form-group div span {
+    color: var(--green);
+}
+
+.edit-staff-container form .staff-details .form-row .form-group input {
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid var(--secondary);
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+}
+
+.edit-staff-container form .staff-details .form-row .form-group input:focus {
+    border: 2px solid var(--green);
+}
+
+.edit-staff-container .toggle-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.edit-staff-container .toggle-container input[type=radio] {
+    display: none;
+}
+
+.edit-staff-container .toggle-container .toggle-text {
+    margin-right: 10px;
+    color: var(--light-green);
+}
+
+.edit-staff-container .toggle-container .toggle {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 40px;
+    background-color: #444;
+    border-radius: 30px;
+}
+
+.edit-staff-container .toggle-container .toggle .toggle-button {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-staff-container .toggle-container .toggle.toggle-active {
+    background-color: var(--green);
+
+}
+
+.edit-staff-container .toggle.toggle-active .toggle-button {
+    left: 35px;
+}
+
+
+.edit-staff-container form .submit-btn{
+    text-align: center;
+    color: var(--light);
+    background: var(--green);
+    width: 200px;
+    transition: all 0.3s ease-in-out;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.edit-staff-container form .submit-btn:hover {
+    background: var(--dark-green);
+}

@@ -6,7 +6,7 @@ function notification(title, text, icon) {
     });
 }
 
-function confirmation(title, text, icon, confirmBtnText, confirmTitle, confirmText, confirmIcon) {
+function confirmation(title, text, icon, confirmBtnText, cancelBtnText, confirmPath) {
     Swal.fire({
         title: title,
         text: text,
@@ -14,10 +14,11 @@ function confirmation(title, text, icon, confirmBtnText, confirmTitle, confirmTe
         showCancelButton: true,
         confirmButtonColor: '#28A745',
         cancelButtonColor: '#DC3545',
-        confirmButtonText: confirmBtnText
+        confirmButtonText: confirmBtnText,
+        cancelButtonText: cancelBtnText
     }).then((result) => {
         if (result.isConfirmed) {
-            this.notification(confirmTitle, confirmText, confirmIcon);
+            document.location.href = confirmPath;
         }
     })
 }
