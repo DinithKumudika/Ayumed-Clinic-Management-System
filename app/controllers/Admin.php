@@ -7,6 +7,7 @@ use utils\Url;
 use utils\Request;
 use utils\Validate;
 use utils\Crypto;
+use utils\Alert;
 
 class Admin extends BaseController
 {
@@ -177,14 +178,50 @@ class Admin extends BaseController
 
     public function edit($user_type, $user_id){
         if($user_type == "staff"){
+            if(Request::isPost()){
+                Request::removeTags();
+                $data = [
+                    'id' => $user_id,
+                    'first_name' => trim($_POST['first-name']),
+                    'last_name' => trim($_POST['last-name']),
+                    'reg_no' => trim($_POST['reg-no']),
+                    'email' => trim($_POST['email']),
+                    'username' => trim($_POST['username']),
+                    'availability' => trim(($_POST['availability']))
+                ];
 
-            $this->view('pages/admin/clinicStaff');
+                if($data['availability'] == "available"){
+                    $data['availability'] =  true;
+                }
+                else{
+                    $data['availability'] = false;
+                }
+
+                if($this->userModel->updateUser($data, $user_id)){
+
+                }
+
+            }
+            else{
+                $data = [
+                    'id' => $user_id,
+                    'first_name' => '',
+                    'last_name' => '',
+                    'reg_no' => '',
+                    'email' => '',
+                    'username' => '',
+                    'availability' => ''
+                ];
+            }
+            $data['staff_member'] = $this->staffModel->getStaffMember($user_id);
+            $this->view('pages/admin/editStaff', $data);
         }
     }
 
     public function  delete($user_type, $user_id){
-        if($user_type == "staff"){
-            $this->view('pages/admin/clinicStaff');
+        if($this->userModel->deleteUser($user_id)){
+            Flash::setFlash('staff_delete',"user has been deleted!", Flash::FLASH_SUCCESS);
+            Url::redirect('admin/manage_staff');
         }
     }
 }

@@ -317,7 +317,8 @@ class User extends BaseController
                 $hashed_token = $token->getHashedToken();
                 // token expires after 1 hour
                 //TODO:fix unix time issue
-                $expires_at = time() + 60 * 60;
+                date_default_timezone_set('Asia/Colombo');
+                $expires_at = date("Y-m-d H:i:s",time() + 60 * 60);
 
                 if($this->userModel->passwordReset($hashed_token, $expires_at, $user->user_id)){
                     $reset_url = URL_ROOT . "/user/password/reset/" . $token->getTokenValue();

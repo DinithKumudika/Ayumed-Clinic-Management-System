@@ -19,6 +19,7 @@
         }
         ?>
         <?php echo \utils\Flash::flash('mail_sent'); ?>
+        <?php echo \utils\Flash::flash('staff_delete') ?>
         <div class="section-h">
             <h2>Manage Clinic Staff</h2>
             <hr>
@@ -102,12 +103,12 @@
                             <?php } ?>
                         <td data-label="Action">
                             <span class="action-icon">
-                                <a href="<?php echo URL_ROOT ?>/admin/edit/staff/<?php echo $staff->user_id ?>">
+                                <a class="btn-edit" href="<?php echo URL_ROOT ?>/admin/edit/staff/<?php echo $staff->user_id ?>">
                                     <i class="fa-solid fa-pen-to-square" style="color: var(--primary)"></i>
                                 </a>
                             </span>
                             <span class="action-icon">
-                                <a href="<?php echo URL_ROOT ?>/admin/delete/staff/<?php echo $staff->user_id ?>">
+                                <a class="btn-delete" href="<?php echo URL_ROOT ?>/admin/delete/staff/<?php echo $staff->user_id ?>">
                                     <i class="fa-solid fa-trash-can" style="color: var(--danger)"></i>
                                 </a>
                             </span>
@@ -127,5 +128,7 @@
 </script>
 <script src="<?php echo URL_ROOT; ?>/js/admin/admin.js" type="text/javascript"></script>
 <script src="<?php echo URL_ROOT; ?>/js/admin/addStaff.js" type="text/javascript"></script>
+<script src="<?php echo URL_ROOT; ?>/js/admin/deleteStaff.js" type="text/javascript"></script>
+<script src="<?php echo URL_ROOT; ?>/js/admin/editStaff.js" type="text/javascript"></script>
 </body>
 </html>

@@ -19,4 +19,22 @@ abstract class Alert
             });
             </script>";
     }
+
+    public static function confirmation($title, $confirmText, $denyText, $icon){
+        return "<script type='text/javascript'>
+            Swal.fire({
+                title: '". $title ."',
+                icon: '". $icon ."',
+                showDenyButton: true,
+                confirmButtonText: '". $confirmText ."',
+                denyButtonText: '". $denyText ."',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Saved!', '', 'success')
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
+            </script>";
+    }
 }

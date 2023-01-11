@@ -233,4 +233,44 @@ class UserModel extends Database
             return false;
         }
     }
+
+    public function updateUser($data, $user_id){
+        $sql = "UPDATE `tbl_users` 
+                SET `first_name` = :first_name ,
+                    `last_name` = :last_name, 
+                    `email` = :email, 
+                    `username` = :username 
+                WHERE `user_id` = :user_id";
+        $this->prepare($sql);
+
+        $params = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'username' => $data['username'],
+            'user_id' => $user_id
+        ];
+
+        if($this->execute($params)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function deleteUser($user_id){
+        $sql = "DELETE FROM `tbl_users` WHERE `user_id` = :user_id";
+        $this->prepare($sql);
+        $params = [
+            'user_id' => $user_id
+        ];
+
+        if($this->execute($params)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
